@@ -11,11 +11,12 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH,HEIGTH))
         pygame.display.set_caption('Noba BG')
         self.clock = pygame.time.Clock()
-        self.state = Turn(TextUI())
+        self.state = Lobby(TextUI())
         self.game_data = GameData()
 
     
     def run(self):
+        self.screen.fill('black')
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or self.state.state_id == 'ST_QUIT':
@@ -24,7 +25,6 @@ class Game:
                 if event.type == pygame.KEYDOWN:
                     self.state.set_transitionable(True)
 
-            self.screen.fill('black')
             self.state = self.state.traverseState(self.game_data)
             pygame.display.update()
             self.clock.tick(FPS)
