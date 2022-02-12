@@ -56,7 +56,7 @@ For now just login to the EC2 instance, install flask and provide a basic web pa
 > `pip3 install flask`
 > `sudo pip3 install flask`
 3. Create a sample flask application (save it as *app.py*):
-> ```python
+```python
 from flask import Flask
 
 app = Flask(__name__)
