@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>state module &mdash; NobaNG 0.1 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="ui module" href="ui.html" />
+    <link rel="prev" title="settings module" href="settings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> NobaNG
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nobang.html">nobang module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="player.html">player module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">state module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html">ui module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NobaNG</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">src</a> &raquo;</li>
+      <li>state module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/state.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-state">
+<span id="state-module"></span><h1>state module<a class="headerlink" href="#module-state" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="state.Activity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">Activity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Activity" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="state.Activity.transitionate">
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Activity.transitionate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.Activity.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Activity.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="state.GameData">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">GameData</span></span><a class="headerlink" href="#state.GameData" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Holds game state meta-data.</p>
+<p>This class represents the overall game moderator and it is updated by the 
+game states.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameData.append_player">
+<span class="sig-name descname"><span class="pre">append_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.GameData.append_player" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameData.current_player">
+<span class="sig-name descname"><span class="pre">current_player</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></span><a class="headerlink" href="#state.GameData.current_player" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a <cite>Player</cite> object with the information of <strong>current</strong> player.
+Calling this function does not change game state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameData.next_player">
+<span class="sig-name descname"><span class="pre">next_player</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></span><a class="headerlink" href="#state.GameData.next_player" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a <cite>Player</cite> object with the information of the <strong>next</strong> player.
+Calling this function does change game state.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameData.player_list">
+<span class="sig-name descname"><span class="pre">player_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#state.GameData.player_list" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a <cite>list</cite> of <cite>Player</cite> objects where each element represents
+one of the players in the game.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameData.update_keys">
+<span class="sig-name descname"><span class="pre">update_keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#state.GameData.update_keys" title="Permalink to this definition"></a></dt>
+<dd><p>Use this function to read user input.
+User input is read from keyboard and it is read one key at a time. Each
+input is processed against the game state. Depending on the input, game
+state may change or not.</p>
+<p>For more information about how user input may change game state, please
+refer to the specific game states (<cite>State</cite> class)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="state.GameStart">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">GameStart</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.GameStart" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameStart.summary">
+<span class="sig-name descname"><span class="pre">summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.GameStart.summary" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameStart.transitionate">
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.GameStart.transitionate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.GameStart.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#state.GameData" title="state.GameData"><span class="pre">state.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.GameStart.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="state.Lobby">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">Lobby</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Lobby" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="state.Lobby.transitionate">
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Lobby.transitionate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.Lobby.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Lobby.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="state.Quit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">Quit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Quit" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="state.Quit.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Quit.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="state.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">State</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="state.State.get_state">
+<span class="sig-name descname"><span class="pre">get_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_class_name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">state.State</span></a></span></span><a class="headerlink" href="#state.State.get_state" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.State.set_transitionable">
+<span class="sig-name descname"><span class="pre">set_transitionable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">enabled</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.set_transitionable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.State.transitionate">
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.transitionate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.State.traverseState">
+<span class="sig-name descname"><span class="pre">traverseState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.traverseState" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.State.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="state.Turn">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">Turn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ui</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Turn" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="state.Turn.transitionate">
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Turn.transitionate" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="state.Turn.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#state.GameData" title="state.GameData"><span class="pre">state.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Turn.update" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="settings.html" class="btn btn-neutral float-left" title="settings module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ui.html" class="btn btn-neutral float-right" title="ui module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, axelgafu.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
