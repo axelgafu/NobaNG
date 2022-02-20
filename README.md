@@ -75,4 +75,6 @@ if __name__ == "__main__":
 # Useful links
  * [Python Tutorial: Pipenv - Easily Manage Packages and Virtual Environments](https://www.youtube.com/watch?v=zDYL22QNiWk)
  * [Pipenv: A Guide to the New Python Packaging Tool](https://realpython.com/pipenv-guide/)
+ * [PlantUML Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
+ * [PlantUML Tool](https://plantuml.com/)
  
