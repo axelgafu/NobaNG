@@ -40,6 +40,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html">game_rules module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nobang.html">nobang module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">player module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
@@ -77,12 +78,33 @@
   <section id="module-player">
 <span id="player-module"></span><h1>player module<a class="headerlink" href="#module-player" title="Permalink to this headline"></a></h1>
 <dl class="py class">
+<dt class="sig sig-object py" id="player.Bill">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Bill</span></span><a class="headerlink" href="#player.Bill" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#player.Character" title="player.Character"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.Character</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="player.Bill.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Bill.initialize" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
 <dt class="sig sig-object py" id="player.Character">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Character</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Character</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Character.initialize">
 <span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.Character.initialize" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="player.Character.visit_character_counter_rules">
+<span class="sig-name descname"><span class="pre">visit_character_counter_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">game_rules</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character.visit_character_counter_rules" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="player.Character.visit_character_stats_rules">
+<span class="sig-name descname"><span class="pre">visit_character_stats_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character.visit_character_stats_rules" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -94,78 +116,6 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Elie.initialize">
 <span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Elie.initialize" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="player.GameRules">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">GameRules</span></span><a class="headerlink" href="#player.GameRules" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitArrows">
-<span class="sig-name descname"><span class="pre">visitArrows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#player.GameRules.visitArrows" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitAssignCharacter">
-<span class="sig-name descname"><span class="pre">visitAssignCharacter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.GameRules.visitAssignCharacter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitBombs">
-<span class="sig-name descname"><span class="pre">visitBombs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#player.GameRules.visitBombs" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitHit">
-<span class="sig-name descname"><span class="pre">visitHit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#player.GameRules.visitHit" title="Permalink to this definition"></a></dt>
-<dd><dl class="simple">
-<dt>attack_vector(dictionary):</dt><dd><dl class="simple">
-<dt>1st element:</dt><dd><ul class="simple">
-<li><p>clockwise: Traverse players towards the right.</p></li>
-<li><p>backwards: Traverse players towards the left.</p></li>
-</ul>
-</dd>
-<dt>2nd element:</dt><dd><ul class="simple">
-<li><p>Integer list with how many shoots should be applied.</p></li>
-</ul>
-</dd>
-</dl>
-</dd>
-</dl>
-<p>e.g.:
-attack_vector = {</p>
-<blockquote>
-<div><p>‘clockwise’:[1,0,1], # Hit the first and third player on the right.
-‘backwards’:[0,2], # Hit twice the second player on the left.
-}</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitInitializePlayer">
-<span class="sig-name descname"><span class="pre">visitInitializePlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.GameRules.visitInitializePlayer" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitLife">
-<span class="sig-name descname"><span class="pre">visitLife</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#player.GameRules.visitLife" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitShoot">
-<span class="sig-name descname"><span class="pre">visitShoot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#player.GameRules.visitShoot" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitStatus">
-<span class="sig-name descname"><span class="pre">visitStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#player.GameRules.visitStatus" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="player.GameRules.visitThrowDice">
-<span class="sig-name descname"><span class="pre">visitThrowDice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">die_re_roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brave</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.GameRules.visitThrowDice" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>

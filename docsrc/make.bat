@@ -13,6 +13,7 @@ set BUILDDIR=_build
 if "%1" == "" goto help
 
 if "%1" == "github" (
+	sphinx-apidoc -o . ..\src
     %SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
     robocopy %BUILDDIR%/html ../docs /E > nul
     echo.Generated files copied to ../docs

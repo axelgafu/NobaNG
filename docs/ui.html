@@ -39,6 +39,7 @@
               <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">src</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html">game_rules module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="nobang.html">nobang module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="player.html">player module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
@@ -76,17 +77,54 @@
   <section id="module-ui">
 <span id="ui-module"></span><h1>ui module<a class="headerlink" href="#module-ui" title="Permalink to this headline"></a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="ui.TextUI">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ui.</span></span><span class="sig-name descname"><span class="pre">TextUI</span></span><a class="headerlink" href="#ui.TextUI" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dt class="sig sig-object py" id="ui.GraphicalUI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ui.</span></span><span class="sig-name descname"><span class="pre">GraphicalUI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">surface</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pygame.Surface</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ui.GraphicalUI" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ui.UI" title="ui.UI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ui.UI</span></code></a></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="ui.TextUI.debug">
-<span class="sig-name descname"><span class="pre">debug</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ui.TextUI.debug" title="Permalink to this definition"></a></dt>
+<dt class="sig sig-object py" id="ui.GraphicalUI.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ui.GraphicalUI.display" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="ui.GraphicalUI.draw_life">
+<span class="sig-name descname"><span class="pre">draw_life</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ui.GraphicalUI.draw_life" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="ui.GraphicalUI.inflate">
+<span class="sig-name descname"><span class="pre">inflate</span></span><a class="headerlink" href="#ui.GraphicalUI.inflate" title="Permalink to this definition"></a></dt>
+<dd><p>Dispatch methods based on type signature</p>
+<dl class="simple">
+<dt>See Also:</dt><dd><p>Dispatcher</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ui.TextUI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ui.</span></span><span class="sig-name descname"><span class="pre">TextUI</span></span><a class="headerlink" href="#ui.TextUI" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#ui.UI" title="ui.UI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ui.UI</span></code></a></p>
+<dl class="py method">
 <dt class="sig sig-object py" id="ui.TextUI.display">
 <span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ui.TextUI.display" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ui.UI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">ui.</span></span><span class="sig-name descname"><span class="pre">UI</span></span><a class="headerlink" href="#ui.UI" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="ui.UI.display">
+<span class="sig-name descname"><span class="pre">display</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ui.UI.display" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="ui.UI.inflate">
+<span class="sig-name descname"><span class="pre">inflate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">player</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#ui.UI.inflate" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 </dd></dl>
