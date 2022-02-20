@@ -4,6 +4,9 @@ from state import *
 from settings import *
 
 class Game:
+    """
+    .. image:: ../docsrc/image/diagram/state_diagram/StateMachine.png
+    """
     def __init__(self):
           
         # general setup
@@ -11,7 +14,8 @@ class Game:
         self.screen = pygame.display.set_mode((WIDTH,HEIGTH))
         pygame.display.set_caption('Noba BG')
         self.clock = pygame.time.Clock()
-        self.state = Lobby(TextUI())
+        self.state = Lobby()
+        self.ui = GraphicalUI(self.screen)
         self.game_data = GameData()
 
     
@@ -23,9 +27,13 @@ class Game:
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
+                    self.game_data.update_keys(pygame.key.get_pressed())
                     self.state.set_transitionable(True)
+                
 
+            pygame.event.clear()
             self.state = self.state.traverseState(self.game_data)
+            self.ui.inflate(self.state, self.game_data)
             pygame.display.update()
             self.clock.tick(FPS)
 
