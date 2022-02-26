@@ -204,7 +204,7 @@ class PlayGame(State):
         else:
             message, handler = self.handle_answer_rerol()
             return (self.get_state('Display')
-                        .next_state(self)
+                        .next_state(self)  # type: ignore # mypy, polymorphic function (see state.Display).
                         .message(message)
                         .using(handler))
             

@@ -4,10 +4,16 @@ from state import *
 from settings import *
 
 class Game:
-    """
+    """The following state diagram shows the behavior of the game screens:    
     .. image:: ../docsrc/image/diagram/state_diagram/StateMachine.png
+    
+    Report of unit testing generated with pynguin cab be seen in the following
+    link 
+    `Test Report <../_static/test_report.html>`
+
     """
     def __init__(self):
+        """Initialize overal game."""
           
         # general setup
         pygame.init()
@@ -20,6 +26,7 @@ class Game:
 
     
     def run(self):
+        """Big-Loop where the games resides in."""
         self.screen.fill('black')
         while True:
             for event in pygame.event.get():

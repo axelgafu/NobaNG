@@ -1,11 +1,12 @@
-from typing import Sequence
 import settings
 import pygame
+import player as player_module
 
-from player import Player, Elie
+from typing import Sequence
+from player import Character, Player, Elie
 from random import seed, randint
 
-seed(2022-2-10)
+#seed(2022-2-10)
 #
 # Class: GameData 
 #==============================================================================
@@ -15,8 +16,24 @@ class GameData:
     This class represents the overall game moderator and it is updated by the 
     game states.
     """
+    _instance = None
+
+    def __call__(self, *args, **kwargs):
+        """Implements Singleton design pattern from
+        `refactoring.guru <https://refactoring.guru/es/design-patterns/singleton/python/example>`
+        """
+        if self._instance is None:
+            self._instance = super().__call__(*args, **kwargs)
+
+        return self._instance
+
+
 
     def __init__(self):
+        """Initializes the data that is to be used during the Game.
+        This class implements the singleton design pattern to keep consistency
+        throughout the game.
+        """
         self.keys = None
         self._player_list = {}
         self._player_head = None
@@ -42,6 +59,8 @@ class GameData:
             self._current_player = self._current_player.right_hand_player
         else:
             self._current_player = self._player_head
+        
+        return self._current_player
 
 
 
@@ -89,13 +108,21 @@ class GameData:
         """
         return len(self._player_list)
 
+
+
     def is_first_death(self) -> bool:
+        """This function returns True when only a single player has status
+        equals to ``Player.S_DEAD``
+        """
         counts = [player.status for player in self.player_list()]
-        print(f"alive {counts}; deads {counts.count(Player.S_DEAD)}")
+        
         return counts.count('dead') == 1
 
 
 class GameRules:
+    """This class is intended to hold all the algorithms that rule the game
+    interactions with game players.
+    """
     _instance = None
 
     def __call__(self, *args, **kwargs):
@@ -109,6 +136,9 @@ class GameRules:
 
 
     def __init__(self) -> None:
+        """Initializes the game rules.
+        This class implements the singleton design pattern.
+        """
         self._dice_list = {
             'regular':['1','2','shoot','arrow','bomb','life'],
             'brave':['2x1','2x2', 'bomb','arrow','shoot','bullet'],
@@ -116,12 +146,27 @@ class GameRules:
         }
         
 
+
     def visit_assign_character(self, player:Player):
-        player.character = Elie()
+        """Randomly assign a character to the given player.
+        """
+        characters = [c for c in Character.__subclasses__()]
+        options = len(characters)-1
+
+        # Load class from name
+        class_name = characters[randint(0,options)].__name__
+        clazz = getattr(player_module, class_name)
+        player.character = clazz()
+
+
 
     def visit_initialize_player(self, player:Player):
+        """Applies the boosts and effects of the assigned character and role
+        to the given player"""
         if player.character is not None:
             player.character.initialize(player)
+
+
 
     def visit_throw_dice(self, player:Player, brave:bool) -> bool:
         """Update player statistics based on dice rule.
@@ -158,7 +203,7 @@ class GameRules:
 
         for i in range(1,player.dice_count):
             if player.dice_re_roll[i]>0:
-                player.dice_re_roll[0] -= 1
+                player.dice_re_roll[i] -= 1
                 player.dice_value[i] = self._dice_list['regular'][randint(0,5)]
                 if(player.dice_value[i] == 'bomb'):
                     player.dice_re_roll[i] = 0
@@ -183,6 +228,15 @@ class GameRules:
 
 
     def visit_life(self, player:Player) -> bool:
+        """Update player statistics based on life rule.
+        :return: True if player's turn ends.
+
+        .. note::
+            **Rule**
+            Whenever it is within the character limits:
+             - If '2xlife' is obtained player gains two life points.
+             - If 'life' is obtained player gains one life points.
+        """
         counts = {i:player.dice_value.count(i) for i in player.dice_value}
 
         if '2xlife' in counts.keys():
@@ -191,6 +245,7 @@ class GameRules:
         if 'life' in counts.keys():
             player.life += counts['life']
 
+        player.life = min(player.max_life, player.life)
         return False
 
 

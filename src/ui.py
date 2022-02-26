@@ -2,7 +2,7 @@ from typing import Tuple
 import pygame
 import state
 
-from multipledispatch import dispatch
+from multipledispatch import dispatch # type: ignore # mypy, overloaded function.
 from game_rules import GameData
 
 from player import Player
@@ -31,30 +31,30 @@ class GraphicalUI(UI):
         super().__init__()
         self.surface = surface
 
-    @dispatch(state.State, GameData)
+    @dispatch(state.State, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.State, game_data:GameData):
        self.surface.fill('Black')
 
 
-    @dispatch(state.Quit, GameData)
+    @dispatch(state.Quit, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.Quit, game_data:GameData):
         self.display('Quit - Thanks for playing NobaNG')
 
 
 
-    @dispatch(state.Lobby, GameData)
+    @dispatch(state.Lobby, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.Lobby, game_data:GameData):
         self.display("Lobby - Waiting in lobby for players to join the game (Down:add player; Right: continue).")
 
 
 
-    @dispatch(state.GameStart, GameData)
+    @dispatch(state.GameStart, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.GameStart, game_data:GameData):
         self.display('GameStart - Starting game...')
 
 
 
-    @dispatch(state.PlayGame, GameData)
+    @dispatch(state.PlayGame, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.PlayGame, game_data:GameData):
         player = game_data.current_player()
         
@@ -63,7 +63,7 @@ class GraphicalUI(UI):
 
 
 
-    @dispatch(state.PerformActivity, GameData)
+    @dispatch(state.PerformActivity, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.PerformActivity, game_data:GameData):
         player = game_data.current_player()
         
@@ -73,12 +73,12 @@ class GraphicalUI(UI):
         self.draw_status(game_data)
 
 
-    @dispatch(state.GameOver, GameData)
+    @dispatch(state.GameOver, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.GameOver, game_data:GameData):
         self.display("Game Over")
 
 
-    @dispatch(state.Display, GameData)
+    @dispatch(state.Display, GameData) # type: ignore # mypy, overloaded function.
     def inflate(self, state:state.Display, game_data:GameData):
         self.display(state.get_message())
 
@@ -88,9 +88,18 @@ class GraphicalUI(UI):
         player = game_data.current_player()
         w, _ = self.surface.get_size()
 
-        self.draw_box(player.life, 'image/lore/life.png', (10,10))        
-        self.draw_box(player.arrows, 'image/lore/arrow.png', (74,10))
-        self.draw_box(game_data.arrows_left, 'image/lore/arrow.png', (w-64,10))
+        self.draw_box(str(player.life), 'image/lore/life.png', (10,10))        
+        self.draw_box(str(player.arrows), 'image/lore/arrow.png', (74,10))
+        self.draw_box(str(game_data.arrows_left), 'image/lore/arrow.png', (w-64,10))
+
+
+    def sum_vectors(self, a:tuple, b:tuple) -> tuple:
+        """Vector sum of the two tuples passed as parameter; both tuples/vectors
+        should be of the same size.
+
+        returns a tuple with the result.
+        """
+        return tuple(map(sum, zip(a, b)))
 
 
     def draw_box(self, text:str, image_path:str, coordinate:Tuple, size:Tuple=(64,64)):
@@ -100,10 +109,10 @@ class GraphicalUI(UI):
         box_area = pygame.Rect(x, y, width, height)
 
         text_surf = local_font.render(str(text),True,'Red')
-        text_rect = text_surf.get_rect(topleft = coordinate + pygame.Vector2((3,3)))
+        text_rect = text_surf.get_rect(topleft = self.sum_vectors(coordinate, (3,3)) )
         picture_surf = pygame.image.load(image_path).convert_alpha()
-        picture_surf = pygame.transform.scale(picture_surf, size - pygame.Vector2((13,13)))
-        picture_rect = picture_surf.get_rect(center = box_area.center + pygame.Vector2((6,7)))
+        picture_surf = pygame.transform.scale(picture_surf, self.sum_vectors(size, (-13,-13)) )
+        picture_rect = picture_surf.get_rect(center = self.sum_vectors(box_area.center, (6,7)) )
 
         pygame.draw.rect(self.surface,pygame.Color(64,64,128,0),box_area)
         self.surface.blit(picture_surf,picture_rect)
