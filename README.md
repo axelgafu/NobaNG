@@ -79,3 +79,4 @@ if __name__ == "__main__":
  * [PlantUML Tool](https://plantuml.com/)
  * [pytest-pythonpath](https://pypi.org/project/pytest-pythonpath/)
  * [pyguin](https://pynguin.readthedocs.io/en/latest/api.html) 
+ * [mypy](https://mypy.readthedocs.io/en/stable/config_file.html)

@@ -13,12 +13,9 @@ set BUILDDIR=_build
 if "%1" == "" goto help
 
 if "%1" == "github" (
-	rem pynguin.exe --project_path ./src --output_path ./test --module_name game_rules --create_coverage_report true --budget 10 --seed 20220225
-    rem pynguin.exe --project_path ./src --output_path ./test --module_name player --create_coverage_report true --budget 10 --seed 20220225
-    rem pynguin.exe --project_path ./src --output_path ./test --module_name ui --create_coverage_report true --budget 10 --seed 20220225
-    rem pynguin.exe --project_path ./src --output_path ./test --module_name state --create_coverage_report true --budget 10 --seed 20220225
-	coverage run -m pytest test
+	coverage run -m pytest test --html=docs/_static/test_report.html
 	
+	%SPHINXBUILD% -b html %SOURCEDIR% %SOURCEDIR% %BUILDDIR%
     sphinx-apidoc -o docsrc src
     %SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
     robocopy %BUILDDIR%/html ../docs /E > nul
@@ -27,6 +24,48 @@ if "%1" == "github" (
 
     goto end
 )
+
+if "%1" == "help" (
+	echo.docs:			generates/update documentation.
+	echo.test:			executes unit testing.
+	echo.generate_test: use pynguin to create new test cases.
+	echo.github:		gets ready project prior to git push.
+
+    goto end
+)
+
+if "%1" == "docs" (
+	%SPHINXBUILD% -v -b coverage %SOURCEDIR% %BUILDDIR%/coverage
+	%SPHINXBUILD% -b html %SOURCEDIR% %SOURCEDIR% %BUILDDIR%
+    sphinx-apidoc -o docsrc src
+    %SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
+    robocopy %BUILDDIR%/html ../docs /E > nul
+    echo.Generated files copied to ../docs
+
+    goto end
+)
+
+if "%1" == "test" (
+	rem 
+	coverage run -m pytest test --html=docs/_static/test_report.html --mypy --mccabe --cov-branch --cov-report term-missing
+	coverage report -m 
+
+	rem https://pypi.org/project/docstr-coverage/
+	docstr-coverage --skip-file-doc --exclude ".*/docs" src
+
+    goto end
+)
+
+if "%1" == "generate_test" (
+	pynguin.exe --project_path ./src --output_path ./test --module_name game_rules --create_coverage_report true --budget 10 --seed 20220225
+    pynguin.exe --project_path ./src --output_path ./test --module_name player --create_coverage_report true --budget 10 --seed 20220225
+    pynguin.exe --project_path ./src --output_path ./test --module_name ui --create_coverage_report true --budget 10 --seed 20220225
+    pynguin.exe --project_path ./src --output_path ./test --module_name state --create_coverage_report true --budget 10 --seed 20220225
+
+    goto end
+)
+
+
 
 %SPHINXBUILD% >NUL 2>NUL
 if errorlevel 9009 (
