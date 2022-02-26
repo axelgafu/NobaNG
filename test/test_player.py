@@ -3,10 +3,9 @@ import player as module_0
 
 
 def test_case_0():
-    str_0 = '{8t-g58Mm|5'
-    character_0 = module_0.Character(str_0, str_0)
-    assert character_0.name == '{8t-g58Mm|5'
-    assert character_0.description == '{8t-g58Mm|5'
+    bill_0 = module_0.Bill()
+    assert bill_0.name == 'Bill Sin Rostro'
+    assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
 
 
 def test_case_1():
@@ -23,44 +22,19 @@ def test_case_1():
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    player_1 = module_0.Player(player_0)
-    assert player_1.life == 0
-    assert player_1.arrows == 0
-    assert player_1.dice_count == 6
-    assert player_1.status == 'alive'
-    assert player_1.dice_value == ['', '', '', '', '', '']
-    assert player_1.dice_re_roll == [3, 3, 3, 3, 3, 3]
-    assert player_1.character is None
-    assert player_1.role is None
     bill_0 = module_0.Bill()
     assert bill_0.name == 'Bill Sin Rostro'
     assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
-    var_0 = bill_0.initialize(player_1)
-    assert player_1.life == 8
-    assert player_1.dice_count == 5
+    var_0 = bill_0.initialize(player_0)
+    assert player_0.life == 8
+    assert player_0.dice_count == 5
     assert var_0 is None
-    elie_0 = module_0.Elie()
-    assert elie_0.name == 'Moli Stark'
-    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
 
 
 def test_case_2():
-    str_0 = ']/\rr%Q[fqh=U!m'
-    str_1 = "E'VrTw"
-    dict_0 = None
-    character_0 = module_0.Character(str_1, str_1)
-    assert character_0.name == "E'VrTw"
-    assert character_0.description == "E'VrTw"
-    var_0 = character_0.visit_character_counter_rules(dict_0, dict_0)
-    character_1 = module_0.Character(str_0, str_1)
-    assert character_1.name == ']/\rr%Q[fqh=U!m'
-    assert character_1.description == "E'VrTw"
-    var_1 = character_1.initialize()
-
-
-def test_case_3():
-    player_0 = module_0.Player()
-    assert player_0.name == ''
+    str_0 = "pmI('h&"
+    player_0 = module_0.Player(str_0)
+    assert player_0.name == "pmI('h&"
     assert player_0.life == 0
     assert player_0.arrows == 0
     assert player_0.dice_count == 6
@@ -72,28 +46,71 @@ def test_case_3():
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    str_0 = 'FwWhuA\n?n$EeJ'
-    character_0 = module_0.Character(str_0, str_0)
-    assert character_0.name == 'FwWhuA\n?n$EeJ'
-    assert character_0.description == 'FwWhuA\n?n$EeJ'
-    var_0 = character_0.visit_character_stats_rules(player_0)
     elie_0 = module_0.Elie()
-    assert var_0 is None
     assert elie_0.name == 'Moli Stark'
     assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
-    var_1 = elie_0.initialize(player_0)
+    bill_0 = module_0.Bill()
+    assert bill_0.name == 'Bill Sin Rostro'
+    assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
+    var_0 = elie_0.initialize(player_0)
     assert player_0.life == 8
     assert player_0.dice_count == 5
+    assert var_0 is None
+    str_1 = "0\nf:w][O5Smh\x0cl5'S8{"
+    character_0 = module_0.Character(str_0, str_1)
+    assert character_0.name == "pmI('h&"
+    assert character_0.description == "0\nf:w][O5Smh\x0cl5'S8{"
+    var_1 = character_0.initialize(player_0)
     assert var_1 is None
 
 
+def test_case_3():
+    str_0 = 'oi"AHQB(L'
+    player_0 = module_0.Player(str_0)
+    assert player_0.name == 'oi"AHQB(L'
+    assert player_0.life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
+    assert player_0.character is None
+    assert player_0.role is None
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    str_1 = "[L'.57"
+    character_0 = module_0.Character(str_1, str_1)
+    assert character_0.name == "[L'.57"
+    assert character_0.description == "[L'.57"
+    var_0 = character_0.visit_character_stats_rules(player_0)
+
+
 def test_case_4():
-    str_0 = 'G/v~5~?N`Q-/E0y'
-    set_0 = {str_0}
-    int_0 = -210
-    str_1 = 'Xe _D^=~^?]94<\x0c'
-    str_2 = 'H'
-    character_0 = module_0.Character(str_1, str_2)
-    assert character_0.name == 'Xe _D^=~^?]94<\x0c'
-    assert character_0.description == 'H'
-    var_0 = character_0.visit_character_counter_rules(set_0, int_0)
+    str_0 = "'MSmW8Qn2<bN2N%A^\t1"
+    str_1 = 'LzvVPTh6'
+    character_0 = module_0.Character(str_0, str_1)
+    assert character_0.name == "'MSmW8Qn2<bN2N%A^\t1"
+    assert character_0.description == 'LzvVPTh6'
+    elie_0 = module_0.Elie()
+    assert elie_0.name == 'Moli Stark'
+    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
+    str_2 = 'wK"g\rMXVbb/#N\x0bL59'
+    character_1 = module_0.Character(str_2, str_2)
+    assert character_1.name == 'wK"g\rMXVbb/#N\x0bL59'
+    assert character_1.description == 'wK"g\rMXVbb/#N\x0bL59'
+    var_0 = character_1.visit_character_counter_rules(character_0, elie_0)
+    assert var_0 is None
+
+
+def test_case_5():
+    bill_0 = module_0.Bill()
+    assert bill_0.name == 'Bill Sin Rostro'
+    assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
+    elie_0 = module_0.Elie()
+    assert elie_0.name == 'Moli Stark'
+    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
+    str_0 = None
+    character_0 = module_0.Character(str_0, str_0)
+    assert character_0.name is None
+    assert character_0.description is None

@@ -2,33 +2,31 @@
 import ui as module_0
 import pygame as module_1
 import game_rules as module_2
+import player as module_3
 
 
 def test_case_0():
     try:
-        dict_0 = {}
-        text_u_i_0 = module_0.TextUI(**dict_0)
-        str_0 = 'Nc&A&K<>iQf^n*Y1m\tQ1'
+        set_0 = None
         u_i_0 = module_0.UI()
-        dict_1 = {str_0: str_0}
-        list_0 = []
-        var_0 = text_u_i_0.display(list_0)
-        u_i_1 = module_0.UI(**dict_1)
+        var_0 = u_i_0.display(set_0)
+        surface_0 = module_1.Surface()
     except BaseException:
         pass
 
 
 def test_case_1():
     try:
-        surface_0 = None
-        str_0 = 'Wb{G@O'
-        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
-        assert graphical_u_i_0.surface is None
-        tuple_0 = str_0, graphical_u_i_0
-        dict_0 = {surface_0: surface_0, surface_0: tuple_0, surface_0:
-            graphical_u_i_0}
-        list_0 = [dict_0, surface_0]
-        surface_1 = module_1.Surface(*list_0)
+        text_u_i_0 = module_0.TextUI()
+        str_0 = None
+        u_i_0 = module_0.UI()
+        var_0 = text_u_i_0.display(u_i_0)
+        str_1 = 'dAA7m0Idj8-_'
+        var_1 = u_i_0.display(text_u_i_0)
+        var_2 = text_u_i_0.display(str_1)
+        u_i_1 = module_0.UI()
+        var_3 = u_i_1.inflate(text_u_i_0, str_0)
+        surface_0 = module_1.Surface()
     except BaseException:
         pass
 
@@ -36,33 +34,13 @@ def test_case_1():
 def test_case_2():
     try:
         surface_0 = None
-        u_i_0 = module_0.UI()
-        u_i_1 = module_0.UI()
-        var_0 = u_i_1.display(surface_0)
-        int_0 = -5466
-        bytes_0 = b'\x03\xcc\xf8\xccP\xf9_\x88E\x80'
-        set_0 = set()
-        var_1 = u_i_1.display(set_0)
-        player_0 = None
-        game_data_0 = module_2.GameData()
-        float_0 = -255.8103
-        tuple_0 = player_0, game_data_0, set_0, float_0
-        var_2 = u_i_1.inflate(int_0, tuple_0)
-        var_3 = u_i_1.inflate(int_0, bytes_0)
+        dict_0 = {}
+        text_u_i_0 = module_0.TextUI(**dict_0)
         graphical_u_i_0 = module_0.GraphicalUI(surface_0)
-        assert u_i_0 is not None
-        assert u_i_1 is not None
-        assert var_0 is None
-        assert var_1 is None
-        assert game_data_0.keys is None
-        assert game_data_0.arrows_left == 5
-        assert var_2 is None
-        assert var_3 is None
+        assert text_u_i_0 is not None
         assert graphical_u_i_0.surface is None
-        game_data_1 = module_2.GameData()
-        assert game_data_1.keys is None
-        assert game_data_1.arrows_left == 5
-        var_4 = graphical_u_i_0.draw_status(game_data_1)
+        list_0 = [graphical_u_i_0, graphical_u_i_0, surface_0]
+        surface_1 = module_1.Surface(*list_0)
     except BaseException:
         pass
 
@@ -70,28 +48,75 @@ def test_case_2():
 def test_case_3():
     try:
         surface_0 = None
-        str_0 = 'v~Hg8tB?ve'
-        int_0 = 379
         graphical_u_i_0 = module_0.GraphicalUI(surface_0)
         assert graphical_u_i_0.surface is None
-        var_0 = graphical_u_i_0.display(str_0, int_0)
+        str_0 = 'h2o'
+        graphical_u_i_1 = module_0.GraphicalUI(surface_0)
+        assert graphical_u_i_1.surface is None
+        var_0 = graphical_u_i_0.display(str_0)
     except BaseException:
         pass
 
 
 def test_case_4():
     try:
-        str_0 = 'XNpn>;'
-        surface_0 = None
-        str_1 = "g%HYscsI_)+'"
-        float_0 = -2439.655331
-        bytes_0 = b'\xc0\xc0\x1ck\x8dk\x88\x0e\n\xd0\\'
         game_data_0 = module_2.GameData()
-        tuple_0 = float_0, bytes_0, game_data_0
+        surface_0 = None
         graphical_u_i_0 = module_0.GraphicalUI(surface_0)
         assert game_data_0.keys is None
         assert game_data_0.arrows_left == 5
         assert graphical_u_i_0.surface is None
-        var_0 = graphical_u_i_0.draw_box(str_1, str_0, tuple_0, tuple_0)
+        str_0 = 'qTD@b/T'
+        player_0 = module_3.Player(str_0)
+        assert player_0.name == 'qTD@b/T'
+        assert player_0.life == 0
+        assert player_0.arrows == 0
+        assert player_0.dice_count == 6
+        assert player_0.status == 'alive'
+        assert player_0.dice_value == ['', '', '', '', '', '']
+        assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
+        assert player_0.character is None
+        assert player_0.role is None
+        assert module_3.Player.S_DEAD == 'dead'
+        assert module_3.Player.S_ALIVE == 'alive'
+        assert module_3.Player.S_GHOST == 'ghost'
+        tuple_0 = player_0,
+        tuple_1 = graphical_u_i_0.sum_vectors(tuple_0, tuple_0)
+    except BaseException:
+        pass
+
+
+def test_case_5():
+    try:
+        game_data_0 = module_2.GameData()
+        surface_0 = None
+        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
+        assert game_data_0.keys is None
+        assert game_data_0.arrows_left == 5
+        assert graphical_u_i_0.surface is None
+        var_0 = graphical_u_i_0.draw_status(game_data_0)
+    except BaseException:
+        pass
+
+
+def test_case_6():
+    try:
+        game_data_0 = module_2.GameData()
+        bytes_0 = b'\x87\xf4v\xd83e\xd1'
+        str_0 = '.UQSW(2@3CE$4.'
+        complex_0 = None
+        surface_0 = None
+        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
+        assert game_data_0.keys is None
+        assert game_data_0.arrows_left == 5
+        assert graphical_u_i_0.surface is None
+        str_1 = 'CL{m(:f/aB_i{<!'
+        list_0 = None
+        dict_0 = {complex_0: bytes_0, game_data_0: graphical_u_i_0, bytes_0:
+            str_0}
+        float_0 = -3517.26588
+        tuple_0 = list_0, dict_0, float_0
+        tuple_1 = tuple_0,
+        var_0 = graphical_u_i_0.draw_box(str_1, str_1, tuple_1)
     except BaseException:
         pass
