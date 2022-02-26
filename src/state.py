@@ -119,7 +119,7 @@ class Lobby(State):
         usage example:
 
         .. code-block:: python
-            :emphasize-lines: 1,4,5
+            :emphasize-lines: 1,3,4
 
             message, handler = self.handle_answer_add_user(game_data)
             return (self.get_state('Display')

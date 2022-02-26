@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pynguin coverage report</title>
+  <style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: #586e75; background-color: #073642; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: #586e75; background-color: #073642; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.highlight .hll { background-color: #073642 }
+.highlight { background: #002b36; color: #839496 }
+.highlight .c { color: #586e75; font-style: italic } /* Comment */
+.highlight .err { color: #839496; background-color: #dc322f } /* Error */
+.highlight .esc { color: #839496 } /* Escape */
+.highlight .g { color: #839496 } /* Generic */
+.highlight .k { color: #859900 } /* Keyword */
+.highlight .l { color: #839496 } /* Literal */
+.highlight .n { color: #839496 } /* Name */
+.highlight .o { color: #586e75 } /* Operator */
+.highlight .x { color: #839496 } /* Other */
+.highlight .p { color: #839496 } /* Punctuation */
+.highlight .ch { color: #586e75; font-style: italic } /* Comment.Hashbang */
+.highlight .cm { color: #586e75; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #d33682 } /* Comment.Preproc */
+.highlight .cpf { color: #586e75 } /* Comment.PreprocFile */
+.highlight .c1 { color: #586e75; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #586e75; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #dc322f } /* Generic.Deleted */
+.highlight .ge { color: #839496; font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #dc322f } /* Generic.Error */
+.highlight .gh { color: #839496; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #859900 } /* Generic.Inserted */
+.highlight .go { color: #839496 } /* Generic.Output */
+.highlight .gp { color: #268bd2; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { color: #839496; font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #839496; text-decoration: underline } /* Generic.Subheading */
+.highlight .gt { color: #268bd2 } /* Generic.Traceback */
+.highlight .kc { color: #2aa198 } /* Keyword.Constant */
+.highlight .kd { color: #2aa198 } /* Keyword.Declaration */
+.highlight .kn { color: #cb4b16 } /* Keyword.Namespace */
+.highlight .kp { color: #859900 } /* Keyword.Pseudo */
+.highlight .kr { color: #859900 } /* Keyword.Reserved */
+.highlight .kt { color: #b58900 } /* Keyword.Type */
+.highlight .ld { color: #839496 } /* Literal.Date */
+.highlight .m { color: #2aa198 } /* Literal.Number */
+.highlight .s { color: #2aa198 } /* Literal.String */
+.highlight .na { color: #839496 } /* Name.Attribute */
+.highlight .nb { color: #268bd2 } /* Name.Builtin */
+.highlight .nc { color: #268bd2 } /* Name.Class */
+.highlight .no { color: #268bd2 } /* Name.Constant */
+.highlight .nd { color: #268bd2 } /* Name.Decorator */
+.highlight .ni { color: #268bd2 } /* Name.Entity */
+.highlight .ne { color: #268bd2 } /* Name.Exception */
+.highlight .nf { color: #268bd2 } /* Name.Function */
+.highlight .nl { color: #268bd2 } /* Name.Label */
+.highlight .nn { color: #268bd2 } /* Name.Namespace */
+.highlight .nx { color: #839496 } /* Name.Other */
+.highlight .py { color: #839496 } /* Name.Property */
+.highlight .nt { color: #268bd2 } /* Name.Tag */
+.highlight .nv { color: #268bd2 } /* Name.Variable */
+.highlight .ow { color: #859900 } /* Operator.Word */
+.highlight .w { color: #839496 } /* Text.Whitespace */
+.highlight .mb { color: #2aa198 } /* Literal.Number.Bin */
+.highlight .mf { color: #2aa198 } /* Literal.Number.Float */
+.highlight .mh { color: #2aa198 } /* Literal.Number.Hex */
+.highlight .mi { color: #2aa198 } /* Literal.Number.Integer */
+.highlight .mo { color: #2aa198 } /* Literal.Number.Oct */
+.highlight .sa { color: #2aa198 } /* Literal.String.Affix */
+.highlight .sb { color: #2aa198 } /* Literal.String.Backtick */
+.highlight .sc { color: #2aa198 } /* Literal.String.Char */
+.highlight .dl { color: #2aa198 } /* Literal.String.Delimiter */
+.highlight .sd { color: #586e75 } /* Literal.String.Doc */
+.highlight .s2 { color: #2aa198 } /* Literal.String.Double */
+.highlight .se { color: #2aa198 } /* Literal.String.Escape */
+.highlight .sh { color: #2aa198 } /* Literal.String.Heredoc */
+.highlight .si { color: #2aa198 } /* Literal.String.Interpol */
+.highlight .sx { color: #2aa198 } /* Literal.String.Other */
+.highlight .sr { color: #cb4b16 } /* Literal.String.Regex */
+.highlight .s1 { color: #2aa198 } /* Literal.String.Single */
+.highlight .ss { color: #2aa198 } /* Literal.String.Symbol */
+.highlight .bp { color: #268bd2 } /* Name.Builtin.Pseudo */
+.highlight .fm { color: #268bd2 } /* Name.Function.Magic */
+.highlight .vc { color: #268bd2 } /* Name.Variable.Class */
+.highlight .vg { color: #268bd2 } /* Name.Variable.Global */
+.highlight .vi { color: #268bd2 } /* Name.Variable.Instance */
+.highlight .vm { color: #268bd2 } /* Name.Variable.Magic */
+.highlight .il { color: #2aa198 } /* Literal.Number.Integer.Long */
+
+body{
+    color: #c9d1d9;
+    background: #0d1117;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+td.lines span{
+    display: block;
+    padding-right: 8px;
+    line-height: 125%;
+}
+
+.notCovered{
+    border-right: 3px solid darkred;
+}
+.partiallyCovered{
+    border-right: 3px solid orangered;
+}
+.fullyCovered{
+    border-right: 3px solid darkgreen;
+}
+.notRelevant{
+    border-right: 3px solid transparent;
+}
+
+</style>
+</head>
+<body>
+<h1>Pynguin coverage report for module 'state'</h1>
+<p>Achieved 43.33% branch coverage.
+<p>32/32 branchless code objects covered.</p>
+<p>7/58 branches covered.</p>
+  <table>
+    <tbody>
+        <tr>
+            <td style="width: 40px; text-align: right;" class="lines">
+                <span class="fullyCovered" title="1/1 branchless code objects covered">1</span>
+                  <span class="notRelevant">2</span>
+                  <span class="notRelevant">3</span>
+                  <span class="notRelevant">4</span>
+                  <span class="notRelevant">5</span>
+                  <span class="notRelevant">6</span>
+                  <span class="notRelevant">7</span>
+                  <span class="notRelevant">8</span>
+                  <span class="notRelevant">9</span>
+                  <span class="notRelevant">10</span>
+                  <span class="notRelevant">11</span>
+                  <span class="notRelevant">12</span>
+                  <span class="notRelevant">13</span>
+                  <span class="notRelevant">14</span>
+                  <span class="notRelevant">15</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">16</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">17</span>
+                  <span class="notRelevant">18</span>
+                  <span class="notRelevant">19</span>
+                  <span class="notRelevant">20</span>
+                  <span class="notRelevant">21</span>
+                  <span class="notRelevant">22</span>
+                  <span class="notRelevant">23</span>
+                  <span class="notRelevant">24</span>
+                  <span class="notRelevant">25</span>
+                  <span class="notRelevant">26</span>
+                  <span class="notRelevant">27</span>
+                  <span class="notRelevant">28</span>
+                  <span class="fullyCovered" title="2/2 branches covered">29</span>
+                  <span class="notRelevant">30</span>
+                  <span class="notRelevant">31</span>
+                  <span class="notRelevant">32</span>
+                  <span class="notRelevant">33</span>
+                  <span class="notRelevant">34</span>
+                  <span class="notRelevant">35</span>
+                  <span class="notRelevant">36</span>
+                  <span class="notRelevant">37</span>
+                  <span class="notRelevant">38</span>
+                  <span class="notRelevant">39</span>
+                  <span class="notRelevant">40</span>
+                  <span class="notRelevant">41</span>
+                  <span class="notCovered" title="0/4 branches covered">42</span>
+                  <span class="notRelevant">43</span>
+                  <span class="notRelevant">44</span>
+                  <span class="notRelevant">45</span>
+                  <span class="notCovered" title="0/2 branches covered">46</span>
+                  <span class="notRelevant">47</span>
+                  <span class="notRelevant">48</span>
+                  <span class="notRelevant">49</span>
+                  <span class="notRelevant">50</span>
+                  <span class="notRelevant">51</span>
+                  <span class="notRelevant">52</span>
+                  <span class="notRelevant">53</span>
+                  <span class="notRelevant">54</span>
+                  <span class="notRelevant">55</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">56</span>
+                  <span class="notRelevant">57</span>
+                  <span class="notRelevant">58</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">59</span>
+                  <span class="notRelevant">60</span>
+                  <span class="notRelevant">61</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">62</span>
+                  <span class="notRelevant">63</span>
+                  <span class="notRelevant">64</span>
+                  <span class="notRelevant">65</span>
+                  <span class="notRelevant">66</span>
+                  <span class="notRelevant">67</span>
+                  <span class="notRelevant">68</span>
+                  <span class="notRelevant">69</span>
+                  <span class="notRelevant">70</span>
+                  <span class="notRelevant">71</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">72</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">73</span>
+                  <span class="notRelevant">74</span>
+                  <span class="notRelevant">75</span>
+                  <span class="notRelevant">76</span>
+                  <span class="notRelevant">77</span>
+                  <span class="notRelevant">78</span>
+                  <span class="fullyCovered" title="2/2 branches covered">79</span>
+                  <span class="notRelevant">80</span>
+                  <span class="notRelevant">81</span>
+                  <span class="notRelevant">82</span>
+                  <span class="notRelevant">83</span>
+                  <span class="notRelevant">84</span>
+                  <span class="notRelevant">85</span>
+                  <span class="notRelevant">86</span>
+                  <span class="notRelevant">87</span>
+                  <span class="notRelevant">88</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">89</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">90</span>
+                  <span class="notRelevant">91</span>
+                  <span class="notRelevant">92</span>
+                  <span class="notRelevant">93</span>
+                  <span class="notRelevant">94</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">95</span>
+                  <span class="notRelevant">96</span>
+                  <span class="notRelevant">97</span>
+                  <span class="notRelevant">98</span>
+                  <span class="notRelevant">99</span>
+                  <span class="notRelevant">100</span>
+                  <span class="notCovered" title="0/2 branches covered">101</span>
+                  <span class="notRelevant">102</span>
+                  <span class="notRelevant">103</span>
+                  <span class="notCovered" title="0/2 branches covered">104</span>
+                  <span class="notRelevant">105</span>
+                  <span class="notRelevant">106</span>
+                  <span class="notRelevant">107</span>
+                  <span class="notRelevant">108</span>
+                  <span class="notRelevant">109</span>
+                  <span class="notCovered" title="0/2 branches covered">110</span>
+                  <span class="notRelevant">111</span>
+                  <span class="notRelevant">112</span>
+                  <span class="notRelevant">113</span>
+                  <span class="notRelevant">114</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">115</span>
+                  <span class="notRelevant">116</span>
+                  <span class="notRelevant">117</span>
+                  <span class="notRelevant">118</span>
+                  <span class="notRelevant">119</span>
+                  <span class="notRelevant">120</span>
+                  <span class="notRelevant">121</span>
+                  <span class="notRelevant">122</span>
+                  <span class="notRelevant">123</span>
+                  <span class="notRelevant">124</span>
+                  <span class="notRelevant">125</span>
+                  <span class="notRelevant">126</span>
+                  <span class="notRelevant">127</span>
+                  <span class="notRelevant">128</span>
+                  <span class="notRelevant">129</span>
+                  <span class="notRelevant">130</span>
+                  <span class="notRelevant">131</span>
+                  <span class="notCovered" title="0/2 branches covered">132</span>
+                  <span class="notRelevant">133</span>
+                  <span class="notRelevant">134</span>
+                  <span class="notRelevant">135</span>
+                  <span class="notRelevant">136</span>
+                  <span class="notRelevant">137</span>
+                  <span class="notRelevant">138</span>
+                  <span class="notRelevant">139</span>
+                  <span class="notRelevant">140</span>
+                  <span class="notRelevant">141</span>
+                  <span class="notRelevant">142</span>
+                  <span class="notRelevant">143</span>
+                  <span class="notRelevant">144</span>
+                  <span class="notRelevant">145</span>
+                  <span class="notRelevant">146</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">147</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">148</span>
+                  <span class="notRelevant">149</span>
+                  <span class="notRelevant">150</span>
+                  <span class="notRelevant">151</span>
+                  <span class="notRelevant">152</span>
+                  <span class="notRelevant">153</span>
+                  <span class="notRelevant">154</span>
+                  <span class="notRelevant">155</span>
+                  <span class="partiallyCovered" title="1/2 branches covered">156</span>
+                  <span class="notCovered" title="0/2 branches covered">157</span>
+                  <span class="notRelevant">158</span>
+                  <span class="notRelevant">159</span>
+                  <span class="notRelevant">160</span>
+                  <span class="notRelevant">161</span>
+                  <span class="notRelevant">162</span>
+                  <span class="notRelevant">163</span>
+                  <span class="notRelevant">164</span>
+                  <span class="notCovered" title="0/2 branches covered">165</span>
+                  <span class="notRelevant">166</span>
+                  <span class="notRelevant">167</span>
+                  <span class="notCovered" title="0/2 branches covered">168</span>
+                  <span class="notRelevant">169</span>
+                  <span class="notRelevant">170</span>
+                  <span class="notRelevant">171</span>
+                  <span class="notRelevant">172</span>
+                  <span class="notRelevant">173</span>
+                  <span class="notRelevant">174</span>
+                  <span class="notRelevant">175</span>
+                  <span class="notRelevant">176</span>
+                  <span class="notRelevant">177</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">178</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">179</span>
+                  <span class="notRelevant">180</span>
+                  <span class="notRelevant">181</span>
+                  <span class="notRelevant">182</span>
+                  <span class="notRelevant">183</span>
+                  <span class="notRelevant">184</span>
+                  <span class="notRelevant">185</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">186</span>
+                  <span class="notRelevant">187</span>
+                  <span class="notRelevant">188</span>
+                  <span class="notRelevant">189</span>
+                  <span class="notRelevant">190</span>
+                  <span class="notRelevant">191</span>
+                  <span class="notCovered" title="0/2 branches covered">192</span>
+                  <span class="notRelevant">193</span>
+                  <span class="notRelevant">194</span>
+                  <span class="notCovered" title="0/2 branches covered">195</span>
+                  <span class="notRelevant">196</span>
+                  <span class="notRelevant">197</span>
+                  <span class="notCovered" title="0/2 branches covered">198</span>
+                  <span class="notRelevant">199</span>
+                  <span class="notRelevant">200</span>
+                  <span class="notRelevant">201</span>
+                  <span class="notRelevant">202</span>
+                  <span class="notRelevant">203</span>
+                  <span class="notRelevant">204</span>
+                  <span class="notRelevant">205</span>
+                  <span class="notRelevant">206</span>
+                  <span class="notRelevant">207</span>
+                  <span class="notRelevant">208</span>
+                  <span class="notRelevant">209</span>
+                  <span class="notRelevant">210</span>
+                  <span class="notRelevant">211</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">212</span>
+                  <span class="notRelevant">213</span>
+                  <span class="notRelevant">214</span>
+                  <span class="notRelevant">215</span>
+                  <span class="notRelevant">216</span>
+                  <span class="notRelevant">217</span>
+                  <span class="notRelevant">218</span>
+                  <span class="notRelevant">219</span>
+                  <span class="notRelevant">220</span>
+                  <span class="notRelevant">221</span>
+                  <span class="notRelevant">222</span>
+                  <span class="notRelevant">223</span>
+                  <span class="notRelevant">224</span>
+                  <span class="notRelevant">225</span>
+                  <span class="notRelevant">226</span>
+                  <span class="notRelevant">227</span>
+                  <span class="notRelevant">228</span>
+                  <span class="notRelevant">229</span>
+                  <span class="notCovered" title="0/2 branches covered">230</span>
+                  <span class="notRelevant">231</span>
+                  <span class="notRelevant">232</span>
+                  <span class="notCovered" title="0/2 branches covered">233</span>
+                  <span class="notRelevant">234</span>
+                  <span class="notRelevant">235</span>
+                  <span class="notRelevant">236</span>
+                  <span class="notRelevant">237</span>
+                  <span class="notCovered" title="0/2 branches covered">238</span>
+                  <span class="notRelevant">239</span>
+                  <span class="notRelevant">240</span>
+                  <span class="notRelevant">241</span>
+                  <span class="notRelevant">242</span>
+                  <span class="notRelevant">243</span>
+                  <span class="notRelevant">244</span>
+                  <span class="notRelevant">245</span>
+                  <span class="notRelevant">246</span>
+                  <span class="notRelevant">247</span>
+                  <span class="partiallyCovered" title="1/2 branches covered">248</span>
+                  <span class="notRelevant">249</span>
+                  <span class="notRelevant">250</span>
+                  <span class="notRelevant">251</span>
+                  <span class="notCovered" title="0/2 branches covered">252</span>
+                  <span class="notRelevant">253</span>
+                  <span class="notRelevant">254</span>
+                  <span class="notRelevant">255</span>
+                  <span class="notRelevant">256</span>
+                  <span class="notCovered" title="0/8 branches covered">257</span>
+                  <span class="notRelevant">258</span>
+                  <span class="notRelevant">259</span>
+                  <span class="notRelevant">260</span>
+                  <span class="notRelevant">261</span>
+                  <span class="notRelevant">262</span>
+                  <span class="notRelevant">263</span>
+                  <span class="notRelevant">264</span>
+                  <span class="notCovered" title="0/2 branches covered">265</span>
+                  <span class="notRelevant">266</span>
+                  <span class="notRelevant">267</span>
+                  <span class="notRelevant">268</span>
+                  <span class="notRelevant">269</span>
+                  <span class="notRelevant">270</span>
+                  <span class="notRelevant">271</span>
+                  <span class="notRelevant">272</span>
+                  <span class="notRelevant">273</span>
+                  <span class="notRelevant">274</span>
+                  <span class="notRelevant">275</span>
+                  <span class="notRelevant">276</span>
+                  <span class="notRelevant">277</span>
+                  <span class="notRelevant">278</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">279</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">280</span>
+                  <span class="notRelevant">281</span>
+                  <span class="notRelevant">282</span>
+                  <span class="notRelevant">283</span>
+                  <span class="notRelevant">284</span>
+                  <span class="notRelevant">285</span>
+                  <span class="notRelevant">286</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">287</span>
+                  <span class="notRelevant">288</span>
+                  <span class="notRelevant">289</span>
+                  <span class="notRelevant">290</span>
+                  <span class="notRelevant">291</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">292</span>
+                  <span class="notRelevant">293</span>
+                  <span class="notRelevant">294</span>
+                  <span class="notRelevant">295</span>
+                  <span class="notRelevant">296</span>
+                  <span class="notRelevant">297</span>
+                  <span class="notRelevant">298</span>
+                  <span class="notRelevant">299</span>
+                  <span class="notRelevant">300</span>
+                  <span class="notRelevant">301</span>
+                  <span class="notRelevant">302</span>
+                  <span class="notRelevant">303</span>
+                  <span class="notRelevant">304</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">305</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">306</span>
+                  <span class="notRelevant">307</span>
+                  <span class="notRelevant">308</span>
+                  <span class="notRelevant">309</span>
+                  <span class="notRelevant">310</span>
+                  <span class="notRelevant">311</span>
+                  <span class="notRelevant">312</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">313</span>
+                  <span class="notRelevant">314</span>
+                  <span class="notRelevant">315</span>
+                  <span class="notRelevant">316</span>
+                  <span class="notRelevant">317</span>
+                  <span class="notRelevant">318</span>
+                  <span class="notRelevant">319</span>
+                  <span class="notCovered" title="0/2 branches covered">320</span>
+                  <span class="notRelevant">321</span>
+                  <span class="notRelevant">322</span>
+                  <span class="notRelevant">323</span>
+                  <span class="notRelevant">324</span>
+                  <span class="notRelevant">325</span>
+                  <span class="notRelevant">326</span>
+                  <span class="notRelevant">327</span>
+                  <span class="notRelevant">328</span>
+                  <span class="notRelevant">329</span>
+                  <span class="notRelevant">330</span>
+                  <span class="notRelevant">331</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">332</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">333</span>
+                  <span class="notRelevant">334</span>
+                  <span class="notRelevant">335</span>
+                  <span class="notRelevant">336</span>
+                  <span class="notRelevant">337</span>
+                  <span class="notRelevant">338</span>
+                  <span class="notRelevant">339</span>
+                  <span class="notRelevant">340</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">341</span>
+                  <span class="notRelevant">342</span>
+                  <span class="notRelevant">343</span>
+                  <span class="notRelevant">344</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">345</span>
+                  <span class="notRelevant">346</span>
+                  <span class="notRelevant">347</span>
+                  <span class="notRelevant">348</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">349</span>
+                  <span class="notRelevant">350</span>
+                  <span class="notRelevant">351</span>
+                  <span class="notRelevant">352</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">353</span>
+                  <span class="notRelevant">354</span>
+                  <span class="notRelevant">355</span>
+                  <span class="notRelevant">356</span>
+                  <span class="fullyCovered" title="1/1 branchless code objects covered">357</span>
+                  <span class="notRelevant">358</span>
+                  <span class="notRelevant">359</span>
+                  <span class="notRelevant">360</span>
+                  <span class="notRelevant">361</span>
+                  <span class="notRelevant">362</span>
+                  <span class="partiallyCovered" title="1/2 branches covered">363</span>
+                  <span class="notRelevant">364</span>
+                  <span class="notCovered" title="0/2 branches covered">365</span>
+                  <span class="notRelevant">366</span>
+                  <span class="notRelevant">367</span>
+                  <span class="notRelevant">368</span>
+                  <span class="notRelevant">369</span>
+                  <span class="notRelevant">370</span>
+                  <span class="notRelevant">371</span>
+                  <span class="notRelevant">372</span>
+                  <span class="notRelevant">373</span>
+                  </td>
+            <td style="width: 100%;"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">import</span> <span class="nn">pygame</span>
+
+<span class="c1">#from ui import UI</span>
+<span class="kn">from</span> <span class="nn">player</span> <span class="kn">import</span> <span class="n">Player</span>
+<span class="kn">from</span> <span class="nn">game_rules</span> <span class="kn">import</span> <span class="n">GameRules</span><span class="p">,</span> <span class="n">GameData</span>
+
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: State </span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">State</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_id</span> <span class="o">=</span> <span class="s1">&#39;ST_GENERAL&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_states_pool</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transition_cooldown</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transition_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transitions_enabled</span> <span class="o">=</span> <span class="kc">False</span>
+
+        
+    <span class="k">def</span> <span class="nf">get_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_class_name</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;State&#39;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Returns a `State`:class: object with current game state ready to</span>
+<span class="sd">        execute next action.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">state_class_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states_pool</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="n">current_module</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="p">[</span><span class="vm">__name__</span><span class="p">]</span>
+            <span class="n">klass</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">current_module</span><span class="p">,</span> <span class="n">state_class_name</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_states_pool</span><span class="p">[</span><span class="n">state_class_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">klass</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_states_pool</span><span class="p">[</span><span class="n">state_class_name</span><span class="p">]</span>
+
+    
+   
+    <span class="k">def</span> <span class="nf">traverseState</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Performs current state actions, update players stats and </span>
+<span class="sd">        transitions to next state.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_transitions_enabled</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_transitionable</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span>    
+            <span class="n">transition</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitionate</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">transition</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># Implicitly return same state.</span>
+                <span class="c1">#print(f&quot;{self.__class__.__name__} -&gt; {self.__class__.__name__}&quot;)</span>
+                <span class="k">return</span> <span class="bp">self</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1">#print(f&quot;{self.__class__.__name__} -&gt; {transition.__class__.__name__}&quot;)</span>
+                <span class="k">return</span> <span class="n">transition</span>
+        
+        <span class="c1">#print(f&quot;(Default) {self.__class__.__name__} -&gt; {self.__class__.__name__}&quot;)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">transitionate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">set_transitionable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">enabled</span><span class="p">:</span><span class="nb">bool</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transitions_enabled</span> <span class="o">=</span> <span class="n">enabled</span>
+
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: Quit</span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">Quit</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_id</span> <span class="o">=</span> <span class="s1">&#39;ST_QUIT&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: Lobby </span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">Lobby</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_id</span> <span class="o">=</span> <span class="s1">&#39;ST_LOBBY&#39;</span>
+
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="k">pass</span>
+        
+
+
+    <span class="k">def</span> <span class="nf">transitionate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;Quit&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">players_count</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">message</span><span class="p">,</span> <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_answer_add_user</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;Display&#39;</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                <span class="o">.</span><span class="n">using</span><span class="p">(</span><span class="n">handler</span><span class="p">))</span>
+                
+        <span class="k">elif</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RIGHT</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;GameStart&#39;</span><span class="p">)</span>
+
+            
+        
+    <span class="k">def</span> <span class="nf">handle_answer_add_user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;High-order function, returns a message that should be shown to the</span>
+<span class="sd">        player and the function that should be used to handle player&#39;s response</span>
+<span class="sd">        to the displayed question.</span>
+<span class="sd">        usage example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+<span class="sd">            :emphasize-lines: 1,4,5</span>
+
+<span class="sd">            message, handler = self.handle_answer_add_user(game_data)</span>
+<span class="sd">            return (self.get_state(&#39;Display&#39;)</span>
+<span class="sd">                .message(self,message)</span>
+<span class="sd">                .using(handler))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Press Enter to add a default user: Player</span><span class="si">{</span><span class="n">game_data</span><span class="o">.</span><span class="n">players_count</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="n">display_state</span><span class="p">:</span><span class="n">Display</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RETURN</span><span class="p">]:</span>
+                <span class="n">player</span> <span class="o">=</span> <span class="n">Player</span><span class="p">()</span>
+                <span class="n">player</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Player</span><span class="si">{</span><span class="n">game_data</span><span class="o">.</span><span class="n">players_count</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">game_data</span><span class="o">.</span><span class="n">append_player</span><span class="p">(</span><span class="n">player</span><span class="p">)</span>
+            
+            <span class="k">return</span> <span class="bp">self</span>
+        
+        <span class="k">return</span> <span class="n">message</span><span class="p">,</span> <span class="n">handle</span>
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: GameStart </span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">GameStart</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_id</span> <span class="o">=</span> <span class="s1">&#39;ST_GAME_START&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span> <span class="o">=</span> <span class="n">GameRules</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">playr</span> <span class="ow">in</span> <span class="n">game_data</span><span class="o">.</span><span class="n">player_list</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span><span class="o">.</span><span class="n">visit_assign_character</span><span class="p">(</span><span class="n">playr</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span><span class="o">.</span><span class="n">visit_initialize_player</span><span class="p">(</span><span class="n">playr</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+    <span class="k">def</span> <span class="nf">transitionate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RETURN</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;PlayGame&#39;</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;Lobby&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: PlayGame </span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">PlayGame</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_id</span> <span class="o">=</span> <span class="s1">&#39;ST_TURN&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">re_rol</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span> <span class="o">=</span> <span class="n">GameRules</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">apply_rules</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span><span class="p">,</span> <span class="n">game_data</span><span class="p">)</span>
+
+
+
+    <span class="k">def</span> <span class="nf">transitionate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">current_player</span><span class="p">()</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Player</span><span class="o">.</span><span class="n">S_DEAD</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;GameOver&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;GameStart&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">re_rol</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># End of current player&#39;s turn</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">re_rol</span> <span class="o">=</span> <span class="mi">3</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span><span class="o">.</span><span class="n">visit_finish_turn</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;PerformActivity&#39;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">message</span><span class="p">,</span> <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handle_answer_rerol</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;Display&#39;</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">next_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+                        <span class="o">.</span><span class="n">using</span><span class="p">(</span><span class="n">handler</span><span class="p">))</span>
+            
+        
+    <span class="k">def</span> <span class="nf">handle_answer_rerol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;High-order function, returns a message that should be shown to the</span>
+<span class="sd">        player and the function that should be used to handle player&#39;s response</span>
+<span class="sd">        to the displayed question.</span>
+<span class="sd">        usage example:</span>
+
+<span class="sd">        .. code-block:: python</span>
+<span class="sd">            :emphasize-lines: 1,4,5</span>
+
+<span class="sd">            message, handler = self.handle_answer_rerol()</span>
+<span class="sd">            return (self.get_state(&#39;Display&#39;)</span>
+<span class="sd">                .next_state(self)</span>
+<span class="sd">                .message(message)</span>
+<span class="sd">                .using(handler))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">message</span> <span class="o">=</span> <span class="s2">&quot;Press up arrow to finish turn&quot;</span>
+        <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="n">display_state</span><span class="p">:</span><span class="n">Display</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_UP</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">re_rol</span> <span class="o">=</span> <span class="mi">3</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span><span class="o">.</span><span class="n">visit_finish_turn</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">current_player</span><span class="p">()</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Player</span><span class="o">.</span><span class="n">S_ALIVE</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;PerformActivity&#39;</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;GameOver&#39;</span><span class="p">)</span>
+
+            <span class="k">elif</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_RETURN</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="bp">self</span>
+            
+            <span class="k">return</span> <span class="n">display_state</span>
+        
+        <span class="k">return</span> <span class="n">message</span><span class="p">,</span> <span class="n">handle</span>
+        
+
+
+    <span class="k">def</span> <span class="nf">apply_rules</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_rules</span><span class="p">:</span><span class="n">GameRules</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">re_rol</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="c1"># No more re-roles.</span>
+
+        <span class="n">player</span> <span class="o">=</span> <span class="n">game_data</span><span class="o">.</span><span class="n">current_player</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">player</span><span class="o">.</span><span class="n">status</span> <span class="o">==</span> <span class="n">Player</span><span class="o">.</span><span class="n">S_ALIVE</span><span class="p">:</span>
+            <span class="n">end_player_turn</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="n">game_rules</span><span class="o">.</span><span class="n">visit_throw_dice</span><span class="p">(</span><span class="n">player</span><span class="p">,</span> <span class="n">brave</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">end_player_turn</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">game_rules</span><span class="o">.</span><span class="n">visit_life</span><span class="p">(</span><span class="n">player</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="n">game_rules</span><span class="o">.</span><span class="n">visit_shoot</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="n">game_rules</span><span class="o">.</span><span class="n">visit_bombs</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="n">game_rules</span><span class="o">.</span><span class="n">visit_arrows</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="c1">#game_rules.visit_status(player, game_data) or</span>
+                <span class="n">game_rules</span><span class="o">.</span><span class="n">visit_character_stats_rules</span><span class="p">(</span><span class="n">player</span><span class="p">))</span>
+
+            <span class="c1">#end_player_turn = game_rules.visit_status(player, game_data) or end_player_turn</span>
+            <span class="k">if</span> <span class="n">end_player_turn</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">re_rol</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">re_rol</span> <span class="o">-=</span> <span class="mi">1</span>
+        
+
+    
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: PerformActivity </span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">PerformActivity</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_id</span> <span class="o">=</span> <span class="s1">&#39;ST_ACTIVITY&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_transitions_enabled</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span> <span class="o">=</span> <span class="n">GameRules</span><span class="p">()</span>
+
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_game_rules</span><span class="o">.</span><span class="n">visit_character_counter_rules</span><span class="p">(</span><span class="n">game_data</span><span class="p">)</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">transitionate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">):</span>
+        <span class="c1">#</span>
+        <span class="c1"># Automatic return on activity complete.</span>
+        <span class="c1">#</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;PlayGame&#39;</span><span class="p">)</span>
+
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: GameOver</span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">GameOver</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_id</span> <span class="o">=</span> <span class="s1">&#39;ST_GAME_OVER&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_updated</span> <span class="o">=</span> <span class="kc">False</span>
+
+
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Game Over&#39;</span><span class="p">)</span>
+        <span class="k">pass</span>
+
+
+
+    <span class="k">def</span> <span class="nf">transitionate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">game_data</span><span class="o">.</span><span class="n">keys</span><span class="p">[</span><span class="n">pygame</span><span class="o">.</span><span class="n">K_ESCAPE</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s1">&#39;Lobby&#39;</span><span class="p">)</span>
+        
+
+    
+
+
+
+
+<span class="c1">#</span>
+<span class="c1"># Class: Display</span>
+<span class="c1">#==============================================================================</span>
+<span class="k">class</span> <span class="nc">Display</span><span class="p">(</span><span class="n">State</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>        
+        <span class="bp">self</span><span class="o">.</span><span class="n">_activity_performed</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_message</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_state</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_display_time</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_display_duration</span> <span class="o">=</span> <span class="mi">2000</span>
+
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+    <span class="k">def</span> <span class="nf">message</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">message</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;State&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_message</span> <span class="o">=</span> <span class="n">message</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">next_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">next_state</span><span class="p">:</span><span class="n">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;State&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_next_state</span> <span class="o">=</span> <span class="n">next_state</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">get_message</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_message</span>
+
+
+    <span class="k">def</span> <span class="nf">using</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">function</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">State</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span> <span class="o">=</span> <span class="n">function</span>
+        <span class="k">return</span> <span class="bp">self</span>
+        
+
+    <span class="k">def</span> <span class="nf">transitionate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">:</span><span class="n">GameData</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">next_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">game_data</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">next_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">self</span><span class="p">:</span>
+                <span class="c1"># Clean-up current state handler to avoid </span>
+                <span class="c1"># unwanted side effects.</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_handler</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="k">return</span> <span class="n">next_state</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+ 
+</pre></div>
+</td>
+        </tr>
+    </tbody>
+</table>
+<footer>
+  <p>Created at 2022-02-25 23:02:46.209531</p>
+</footer>
+</body>
+</html>
