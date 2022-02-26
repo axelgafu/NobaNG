@@ -21,11 +21,12 @@ class GameData:
         self._player_list = {}
         self._player_head = None
         self._current_player = None
+        self.arrows_left = settings.MAX_ARROWS_COUNT
         pygame.key.set_repeat(0)
 
 
 
-    def player_list(self) -> 'list':
+    def player_list(self) -> list:
         """Returns a `list` of `Player` objects where each element represents
         one of the players in the game.
         """
@@ -33,7 +34,7 @@ class GameData:
 
 
 
-    def next_player(self) -> 'Player':
+    def next_player(self) -> Player:
         """Returns a `Player` object with the information of the **next** player.
         Calling this function moves game state to the next player.
         """
@@ -44,7 +45,7 @@ class GameData:
 
 
 
-    def current_player(self) -> 'Player':
+    def current_player(self) -> Player:
         """Returns a `Player` object with the information of **current** player.
         Calling this function does not change game state.
         """
@@ -83,11 +84,15 @@ class GameData:
 
 
 
-    def players_count(self) -> 'int':
+    def players_count(self) -> int:
         """Returns an `int` that represents how many players are in the game.
         """
         return len(self._player_list)
 
+    def is_first_death(self) -> bool:
+        counts = [player.status for player in self.player_list()]
+        print(f"alive {counts}; deads {counts.count(Player.S_DEAD)}")
+        return counts.count('dead') == 1
 
 
 class GameRules:
@@ -109,16 +114,16 @@ class GameRules:
             'brave':['2x1','2x2', 'bomb','arrow','shoot','bullet'],
             'coward':['1','no_arrow', 'bomb','arrow','2xlife','life'],
         }
-        self.arrows_left = settings.MAX_ARROWS_COUNT
+        
 
-    def visitAssignCharacter(self, player:Player):
+    def visit_assign_character(self, player:Player):
         player.character = Elie()
 
-    def visitInitializePlayer(self, player:Player):
+    def visit_initialize_player(self, player:Player):
         if player.character is not None:
             player.character.initialize(player)
 
-    def visit_throw_dice(self, player:Player, brave:bool) -> 'bool':
+    def visit_throw_dice(self, player:Player, brave:bool) -> bool:
         """Update player statistics based on dice rule.
         :return: True if player's turn ends.
 
@@ -177,7 +182,7 @@ class GameRules:
 
 
 
-    def visit_life(self, player:Player) -> 'bool':
+    def visit_life(self, player:Player) -> bool:
         counts = {i:player.dice_value.count(i) for i in player.dice_value}
 
         if '2xlife' in counts.keys():
@@ -190,21 +195,21 @@ class GameRules:
 
 
 
-    def visit_character_stats_rules(self, player:Player) -> 'bool':
+    def visit_character_stats_rules(self, player:Player) -> bool:
         player.character.visit_character_stats_rules(player)
 
         return False
 
 
 
-    def visit_character_counter_rules(self, game_data:GameData) -> 'bool':
+    def visit_character_counter_rules(self, game_data:GameData) -> bool:
         game_data.current_player().character.visit_character_counter_rules(game_data, self)
 
         return False
 
 
     
-    def visit_bombs(self, player:Player) -> 'bool':
+    def visit_bombs(self, game_data:GameData) -> bool:
         """Update player statistics based on bombs rule.
         :return: True if player's turn ends.
 
@@ -212,17 +217,38 @@ class GameRules:
             **Rule**
             Life is reduced by 1 if player obtains three bombs.
         """
+        player = game_data.current_player()
         counts = {i:player.dice_value.count(i) for i in player.dice_value}
         
         if 'bomb' in counts.keys() and counts['bomb'] > 2:
-            player.life -= 1
+            return self.visit_update_life(player, game_data, -1)
+        
+        return False
+
+
+
+    def visit_update_life(self, player:Player, game_data:GameData, decrement:int = -1) -> bool:
+        """Updates life stat of current player by adding up the value specified.
+        use a positive number to increment life and a negative number to perform
+        a life decrement.
+
+        :return: True if player's life reaches zero.
+        """
+        player.life += decrement
+        
+        if player.life <= 0:
+            player.life = 0
+            if game_data.is_first_death():
+                player.status = Player.S_GHOST
+            else:
+                player.status = Player.S_DEAD
             return True
         
         return False
 
 
 
-    def visit_arrows(self, player:Player, player_list) -> 'bool':
+    def visit_arrows(self, game_data:GameData) -> bool:
         """Update player statistics based on arrows rule.
         :return: True if player's turn ends.
 
@@ -232,25 +258,26 @@ class GameRules:
             If the arrows in the stack run out then the rule is 
             applied to all the participants in the game.
         """
+        player = game_data.current_player()
         counts = {i:player.dice_value.count(i) for i in player.dice_value}
         
         if 'arrow' in counts.keys():
-            if counts['arrow'] > self.arrows_left:
-                player.arrows += self.arrows_left
-                self.arrows_left = settings.MAX_ARROWS_COUNT
-                for playr in player_list:                
-                    playr.life -= playr.arrows
+            if counts['arrow'] > game_data.arrows_left:
+                player.arrows += game_data.arrows_left
+                game_data.arrows_left = settings.MAX_ARROWS_COUNT
+                for playr in game_data.player_list():                
+                    self.visit_update_life(playr, game_data, -playr.arrows)
                     playr.arrows = 0
                 return True
             else:
-                self.arrows_left -= counts['arrow']
+                game_data.arrows_left -= counts['arrow']
                 player.arrows += counts['arrow']
         
         return False
 
 
 
-    def visit_shoot(self, player:Player) -> 'bool':
+    def visit_shoot(self, game_data:GameData) -> bool:
         """Update player statistics based on shoot rule.
         :return: True if player's turn ends.
 
@@ -258,17 +285,18 @@ class GameRules:
             **Rule**
             Life is reduced by 1 if player obtains a shoot.
         """
+        player = game_data.current_player()
         counts = {i:player.dice_value.count(i) for i in player.dice_value}
         
         if 'shoot' in counts.keys():
-            player.life -= counts['shoot']
+            return self.visit_update_life(player, game_data, -counts['shoot'])
         
-        return player.life < 1
+        return False
         
 
 
 
-    def visitHit(self, player:Player, attack_vector) -> 'bool':
+    def visitHit(self, game_data:GameData, attack_vector) -> bool:
         """attack_vector(dictionary):
         1st element:
         - clockwise: Traverse players towards the right.
@@ -283,6 +311,7 @@ class GameRules:
 
         }
         """
+        player = game_data.current_player()
         playr = None
 
         for i in attack_vector['clockwise']:
@@ -297,7 +326,7 @@ class GameRules:
 
 
 
-    def visit_status(self, player:Player, game_data:GameData) -> 'bool':
+    def visit_status(self, player:Player, game_data:GameData) -> bool:
         """Update player statistics based on status rule.
         :return: True if player's turn ends.
 
@@ -307,10 +336,10 @@ class GameRules:
         """
         if player.life <= 0:
             if not game_data.is_first_death():
-                player.status = 'dead'
+                player.status = Player.S_DEAD
                 return True
             else:
-                player.status = 'ghost'
+                player.status = Player.S_GHOST
         
         return False            
 

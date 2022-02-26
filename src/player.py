@@ -2,6 +2,10 @@ import string
 
 
 class Player:
+    S_DEAD = 'dead'
+    S_ALIVE = 'alive'
+    S_GHOST = 'ghost'
+
     def __init__(self, name:string="") -> None:
         self.name = name
         self.life = 0
@@ -23,12 +27,12 @@ class Character:
     def initialize(self):
         pass
 
-    def visit_character_stats_rules(self, player):
-        print("Applying character stats rules")
+    def visit_character_stats_rules(self, player:Player):
+        #print(f"Applying character stats rules {player.dice_value} - {player.status}")
         pass
 
     def visit_character_counter_rules(self, game_data, game_rules):
-        print("Applying character counter rules")
+        #print("Applying character counter rules")
         pass
         
 

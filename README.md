@@ -77,4 +77,5 @@ if __name__ == "__main__":
  * [Pipenv: A Guide to the New Python Packaging Tool](https://realpython.com/pipenv-guide/)
  * [PlantUML Visual Studio Code Extension](https://marketplace.visualstudio.com/items?itemName=jebbs.plantuml)
  * [PlantUML Tool](https://plantuml.com/)
- 
+ * [pytest-pythonpath](https://pypi.org/project/pytest-pythonpath/)
+ * [pyguin](https://pynguin.readthedocs.io/en/latest/api.html) 

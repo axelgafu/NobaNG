@@ -20,6 +20,7 @@ class State:
         self._transition_cooldown = 200
         self._transition_time = 0
         self._transitions_enabled = False
+
         
     def get_state(self, state_class_name) -> 'State':
         """Returns a `State`:class: object with current game state ready to
@@ -100,13 +101,13 @@ class Lobby(State):
         if game_data.keys[pygame.K_ESCAPE]:
             return self.get_state('Quit')
 
-        if ((game_data.keys[pygame.K_RIGHT] and game_data.players_count() < 1) or
-            game_data.keys[pygame.K_DOWN]):
+        if game_data.players_count() < 1:
             message, handler = self.handle_answer_add_user(game_data)
             return (self.get_state('Display')
                 .message(message)
                 .using(handler))
-        else:
+                
+        elif game_data.keys[pygame.K_RIGHT]:
             return self.get_state('GameStart')
 
             
@@ -154,8 +155,8 @@ class GameStart(State):
     def update(self, game_data:GameData):
         if not self._updated:
             for playr in game_data.player_list():
-                self._game_rules.visitAssignCharacter(playr)
-                self._game_rules.visitInitializePlayer(playr)
+                self._game_rules.visit_assign_character(playr)
+                self._game_rules.visit_initialize_player(playr)
             self._updated = True
 
 
@@ -187,7 +188,10 @@ class PlayGame(State):
 
 
 
-    def transitionate(self, game_data):
+    def transitionate(self, game_data:GameData):
+        if game_data.current_player().status == Player.S_DEAD:
+            return self.get_state('GameOver')
+
         if game_data.keys[pygame.K_ESCAPE]:
             return self.get_state('GameStart')
 
@@ -226,7 +230,10 @@ class PlayGame(State):
             if game_data.keys[pygame.K_UP]:
                 self.re_rol = 3
                 self._game_rules.visit_finish_turn(game_data)
-                return self.get_state('PerformActivity')
+                if game_data.current_player().status == Player.S_ALIVE:
+                    return self.get_state('PerformActivity')
+                else:
+                    return self.get_state('GameOver')
 
             elif game_data.keys[pygame.K_RETURN]:
                 return self
@@ -242,21 +249,23 @@ class PlayGame(State):
             return # No more re-roles.
 
         player = game_data.current_player()
-        end_player_turn = False
+        if player.status == Player.S_ALIVE:
+            end_player_turn = False
 
-        game_rules.visit_throw_dice(player, brave=False)
-        end_player_turn = (
-            game_rules.visit_shoot(player) or
-            game_rules.visit_bombs(player) or
-            game_rules.visit_arrows(player, game_data.player_list) or
-            game_rules.visit_status(player, game_data) or
-            game_rules.visit_life(player) or
-            game_rules.visit_character_stats_rules(player))
+            game_rules.visit_throw_dice(player, brave=False)
+            end_player_turn = (
+                game_rules.visit_life(player) or
+                game_rules.visit_shoot(game_data) or
+                game_rules.visit_bombs(game_data) or
+                game_rules.visit_arrows(game_data) or
+                #game_rules.visit_status(player, game_data) or
+                game_rules.visit_character_stats_rules(player))
 
-        if end_player_turn:
-            self.re_rol = 0
-        else:
-            self.re_rol -= 1
+            #end_player_turn = game_rules.visit_status(player, game_data) or end_player_turn
+            if end_player_turn:
+                self.re_rol = 0
+            else:
+                self.re_rol -= 1
         
 
     
@@ -271,7 +280,7 @@ class PerformActivity(State):
     def __init__(self):
         super().__init__()        
         self.state_id = 'ST_ACTIVITY'
-        self._activity_performed = False
+        self._transitions_enabled = True
         self._game_rules = GameRules()
 
 
@@ -285,6 +294,31 @@ class PerformActivity(State):
         # Automatic return on activity complete.
         #
         return self.get_state('PlayGame')
+
+
+
+
+
+#
+# Class: GameOver
+#==============================================================================
+class GameOver(State):
+    def __init__(self):
+        super().__init__()
+        self.state_id = 'ST_GAME_OVER'
+        self._updated = False
+
+
+
+    def update(self, game_data):
+        print('Game Over')
+        pass
+
+
+
+    def transitionate(self, game_data):
+        if game_data.keys[pygame.K_ESCAPE]:
+            return self.get_state('Lobby')
         
 
     
