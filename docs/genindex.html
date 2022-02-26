@@ -133,7 +133,9 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="ui.html#ui.GraphicalUI.draw_life">draw_life() (ui.GraphicalUI method)</a>
+      <li><a href="ui.html#ui.GraphicalUI.draw_box">draw_box() (ui.GraphicalUI method)</a>
+</li>
+      <li><a href="ui.html#ui.GraphicalUI.draw_status">draw_status() (ui.GraphicalUI method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -159,6 +161,8 @@
 </li>
       </ul></li>
       <li><a href="game_rules.html#game_rules.GameData">GameData (class in game_rules)</a>
+</li>
+      <li><a href="state.html#state.GameOver">GameOver (class in state)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -194,8 +198,6 @@
 </li>
       <li><a href="ui.html#ui.UI.inflate">inflate() (ui.UI method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="player.html#player.Bill.initialize">initialize() (player.Bill method)</a>
 
       <ul>
@@ -204,6 +206,10 @@
         <li><a href="player.html#player.Elie.initialize">(player.Elie method)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="game_rules.html#game_rules.GameData.is_first_death">is_first_death() (game_rules.GameData method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -303,8 +309,16 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="player.html#player.Player.S_ALIVE">S_ALIVE (player.Player attribute)</a>
+</li>
+      <li><a href="player.html#player.Player.S_DEAD">S_DEAD (player.Player attribute)</a>
+</li>
+      <li><a href="player.html#player.Player.S_GHOST">S_GHOST (player.Player attribute)</a>
+</li>
       <li><a href="state.html#state.State.set_transitionable">set_transitionable() (state.State method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     settings
 
@@ -312,8 +326,6 @@
         <li><a href="settings.html#module-settings">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     state
 
@@ -338,6 +350,8 @@
       <li><a href="state.html#state.Display.transitionate">transitionate() (state.Display method)</a>
 
       <ul>
+        <li><a href="state.html#state.GameOver.transitionate">(state.GameOver method)</a>
+</li>
         <li><a href="state.html#state.GameStart.transitionate">(state.GameStart method)</a>
 </li>
         <li><a href="state.html#state.Lobby.transitionate">(state.Lobby method)</a>
@@ -371,6 +385,8 @@
       <li><a href="state.html#state.Display.update">update() (state.Display method)</a>
 
       <ul>
+        <li><a href="state.html#state.GameOver.update">(state.GameOver method)</a>
+</li>
         <li><a href="state.html#state.GameStart.update">(state.GameStart method)</a>
 </li>
         <li><a href="state.html#state.Lobby.update">(state.Lobby method)</a>
@@ -398,6 +414,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="game_rules.html#game_rules.GameRules.visit_arrows">visit_arrows() (game_rules.GameRules method)</a>
 </li>
+      <li><a href="game_rules.html#game_rules.GameRules.visit_assign_character">visit_assign_character() (game_rules.GameRules method)</a>
+</li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_bombs">visit_bombs() (game_rules.GameRules method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_character_counter_rules">visit_character_counter_rules() (game_rules.GameRules method)</a>
@@ -412,10 +430,12 @@
         <li><a href="player.html#player.Character.visit_character_stats_rules">(player.Character method)</a>
 </li>
       </ul></li>
-      <li><a href="game_rules.html#game_rules.GameRules.visit_finish_turn">visit_finish_turn() (game_rules.GameRules method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="game_rules.html#game_rules.GameRules.visit_finish_turn">visit_finish_turn() (game_rules.GameRules method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.GameRules.visit_initialize_player">visit_initialize_player() (game_rules.GameRules method)</a>
+</li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_life">visit_life() (game_rules.GameRules method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_shoot">visit_shoot() (game_rules.GameRules method)</a>
@@ -424,11 +444,9 @@
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_throw_dice">visit_throw_dice() (game_rules.GameRules method)</a>
 </li>
-      <li><a href="game_rules.html#game_rules.GameRules.visitAssignCharacter">visitAssignCharacter() (game_rules.GameRules method)</a>
+      <li><a href="game_rules.html#game_rules.GameRules.visit_update_life">visit_update_life() (game_rules.GameRules method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visitHit">visitHit() (game_rules.GameRules method)</a>
-</li>
-      <li><a href="game_rules.html#game_rules.GameRules.visitInitializePlayer">visitInitializePlayer() (game_rules.GameRules method)</a>
 </li>
   </ul></td>
 </tr></table>

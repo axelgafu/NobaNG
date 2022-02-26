@@ -98,6 +98,11 @@ Calling this function does not change game state.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="game_rules.GameData.is_first_death">
+<span class="sig-name descname"><span class="pre">is_first_death</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameData.is_first_death" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameData.next_player">
 <span class="sig-name descname"><span class="pre">next_player</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></span><a class="headerlink" href="#game_rules.GameData.next_player" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a <cite>Player</cite> object with the information of the <strong>next</strong> player.
@@ -159,13 +164,8 @@ Throw just 2 dice.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="game_rules.GameRules.visitAssignCharacter">
-<span class="sig-name descname"><span class="pre">visitAssignCharacter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game_rules.GameRules.visitAssignCharacter" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visitHit">
-<span class="sig-name descname"><span class="pre">visitHit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visitHit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">visitHit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">attack_vector</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visitHit" title="Permalink to this definition"></a></dt>
 <dd><p>attack_vector(dictionary):
 1st element:
 - clockwise: Traverse players towards the right.
@@ -180,13 +180,8 @@ attack_vector = {
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="game_rules.GameRules.visitInitializePlayer">
-<span class="sig-name descname"><span class="pre">visitInitializePlayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game_rules.GameRules.visitInitializePlayer" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_arrows">
-<span class="sig-name descname"><span class="pre">visit_arrows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">player_list</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_arrows" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">visit_arrows</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_arrows" title="Permalink to this definition"></a></dt>
 <dd><p>Update player statistics based on arrows rule.
 :return: True if player’s turn ends.</p>
 <div class="admonition note">
@@ -199,8 +194,13 @@ applied to all the participants in the game.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="game_rules.GameRules.visit_assign_character">
+<span class="sig-name descname"><span class="pre">visit_assign_character</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game_rules.GameRules.visit_assign_character" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_bombs">
-<span class="sig-name descname"><span class="pre">visit_bombs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_bombs" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">visit_bombs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_bombs" title="Permalink to this definition"></a></dt>
 <dd><p>Update player statistics based on bombs rule.
 :return: True if player’s turn ends.</p>
 <div class="admonition note">
@@ -233,13 +233,18 @@ Life is reduced by 1 if player obtains three bombs.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="game_rules.GameRules.visit_initialize_player">
+<span class="sig-name descname"><span class="pre">visit_initialize_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game_rules.GameRules.visit_initialize_player" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_life">
 <span class="sig-name descname"><span class="pre">visit_life</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_life" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_shoot">
-<span class="sig-name descname"><span class="pre">visit_shoot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_shoot" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">visit_shoot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_shoot" title="Permalink to this definition"></a></dt>
 <dd><p>Update player statistics based on shoot rule.
 :return: True if player’s turn ends.</p>
 <div class="admonition note">
@@ -272,6 +277,19 @@ Player lost the game if his or her life goes to zero.</p>
 If player is alive, use <cite>throw_alive</cite>.
 If plaier is ghost, use <cite>throw_ghost</cite>.</p>
 </div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="game_rules.GameRules.visit_update_life">
+<span class="sig-name descname"><span class="pre">visit_update_life</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">decrement</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_update_life" title="Permalink to this definition"></a></dt>
+<dd><p>Updates life stat of current player by adding up the value specified.
+use a positive number to increment life and a negative number to perform
+a life decrement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if player’s life reaches zero.</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
