@@ -13,36 +13,12 @@ def test_case_0():
 
 def test_case_1():
     try:
-        game_rules_0 = module_0.GameRules()
-        player_0 = module_1.Player()
-        var_0 = game_rules_0.visit_initialize_player(player_0)
-        assert game_rules_0 is not None
-        assert player_0.name == ''
-        assert player_0.life == 0
-        assert player_0.arrows == 0
-        assert player_0.dice_count == 6
-        assert player_0.status == 'alive'
-        assert player_0.dice_value == ['', '', '', '', '', '']
-        assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
-        assert player_0.character is None
-        assert player_0.role is None
-        assert var_0 is None
-        assert module_1.Player.S_DEAD == 'dead'
-        assert module_1.Player.S_ALIVE == 'alive'
-        assert module_1.Player.S_GHOST == 'ghost'
         game_data_0 = module_0.GameData()
     except BaseException:
         pass
 
 
 def test_case_2():
-    try:
-        game_data_0 = module_0.GameData()
-    except BaseException:
-        pass
-
-
-def test_case_3():
     try:
         player_0 = module_1.Player()
         game_rules_0 = module_0.GameRules()
@@ -51,134 +27,25 @@ def test_case_3():
         pass
 
 
-def test_case_4():
+def test_case_3():
     try:
-        game_rules_0 = module_0.GameRules()
-        player_0 = module_1.Player()
-        var_0 = game_rules_0.visit_initialize_player(player_0)
-        assert game_rules_0 is not None
-        assert player_0.name == ''
-        assert player_0.life == 0
-        assert player_0.arrows == 0
-        assert player_0.dice_count == 6
-        assert player_0.status == 'alive'
-        assert player_0.dice_value == ['', '', '', '', '', '']
-        assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
-        assert player_0.character is None
-        assert player_0.role is None
-        assert var_0 is None
-        assert module_1.Player.S_DEAD == 'dead'
-        assert module_1.Player.S_ALIVE == 'alive'
-        assert module_1.Player.S_GHOST == 'ghost'
-        set_0 = None
-        game_rules_1 = module_0.GameRules()
-        assert game_rules_1 is not None
-        var_1 = game_rules_1.throw_alive(player_0, set_0)
-        assert var_1 is None
-        game_data_0 = module_0.GameData()
-    except BaseException:
-        pass
-
-
-def test_case_5():
-    try:
-        player_0 = module_1.Player()
-        game_rules_0 = module_0.GameRules()
+        str_0 = 'i'
+        player_0 = module_1.Player(str_0)
         game_data_0 = None
-        var_0 = game_rules_0.visit_finish_turn(game_data_0)
-    except BaseException:
-        pass
-
-
-def test_case_6():
-    try:
-        player_0 = module_1.Player()
-        str_0 = '2uK.`Ru&#'
-        bool_0 = True
         game_rules_0 = module_0.GameRules()
-        bool_1 = game_rules_0.visit_throw_dice(player_0, bool_0)
-        assert bool_1 is False
-        assert player_0.name == ''
-        assert player_0.life == 0
-        assert player_0.arrows == 0
-        assert player_0.dice_count == 6
-        assert player_0.status == 'alive'
-        assert player_0.character is None
-        assert player_0.role is None
-        assert game_rules_0 is not None
-        assert module_1.Player.S_DEAD == 'dead'
-        assert module_1.Player.S_ALIVE == 'alive'
-        assert module_1.Player.S_GHOST == 'ghost'
-        game_rules_1 = module_0.GameRules()
-        assert game_rules_1 is not None
-        player_1 = module_1.Player()
-        assert player_1.name == ''
-        assert player_1.life == 0
-        assert player_1.arrows == 0
-        assert player_1.dice_count == 6
-        assert player_1.status == 'alive'
-        assert player_1.dice_value == ['', '', '', '', '', '']
-        assert player_1.dice_re_roll == [3, 3, 3, 3, 3, 3]
-        assert player_1.character is None
-        assert player_1.role is None
-        var_0 = game_rules_1.visit_initialize_player(player_1)
-        assert var_0 is None
-        var_1 = game_rules_1.throw_alive(player_0, str_0)
-        assert var_1 is None
-        game_data_0 = module_0.GameData()
-    except BaseException:
-        pass
-
-
-def test_case_7():
-    try:
-        game_rules_0 = module_0.GameRules()
-        game_data_0 = None
-        player_0 = module_1.Player()
         bool_0 = game_rules_0.visit_update_life(player_0, game_data_0)
     except BaseException:
         pass
 
 
-def test_case_8():
+def test_case_4():
     try:
         player_0 = module_1.Player()
         game_rules_0 = module_0.GameRules()
-        bool_0 = True
-        bool_1 = game_rules_0.visit_throw_dice(player_0, bool_0)
-        assert bool_1 is False
-        assert player_0.name == ''
-        assert player_0.life == 0
-        assert player_0.arrows == 0
-        assert player_0.dice_count == 6
-        assert player_0.status == 'alive'
-        assert player_0.character is None
-        assert player_0.role is None
-        assert game_rules_0 is not None
-        assert module_1.Player.S_DEAD == 'dead'
-        assert module_1.Player.S_ALIVE == 'alive'
-        assert module_1.Player.S_GHOST == 'ghost'
-        bool_2 = False
-        var_0 = game_rules_0.throw_ghost(player_0)
-        assert var_0 is None
-        bool_3 = game_rules_0.visit_life(player_0)
-        assert bool_3 is False
-        assert player_0.life == 1
-        bool_4 = game_rules_0.visit_throw_dice(player_0, bool_2)
-        assert bool_4 is False
-        game_data_0 = module_0.GameData()
-    except BaseException:
-        pass
-
-
-def test_case_9():
-    try:
-        player_0 = module_1.Player()
-        game_rules_0 = module_0.GameRules()
-        bool_0 = False
         var_0 = game_rules_0.throw_ghost(player_0)
         assert player_0.name == ''
         assert player_0.life == 0
+        assert player_0.max_life == 0
         assert player_0.arrows == 0
         assert player_0.dice_count == 6
         assert player_0.status == 'alive'
@@ -190,25 +57,69 @@ def test_case_9():
         assert module_1.Player.S_DEAD == 'dead'
         assert module_1.Player.S_ALIVE == 'alive'
         assert module_1.Player.S_GHOST == 'ghost'
-        bool_1 = game_rules_0.visit_life(player_0)
-        assert bool_1 is False
-        bool_2 = game_rules_0.visit_throw_dice(player_0, bool_0)
-        assert bool_2 is False
-        game_data_0 = None
-        bool_3 = game_rules_0.visit_status(player_0, game_data_0)
-        var_1 = game_rules_0.__call__()
+        game_data_0 = module_0.GameData()
     except BaseException:
         pass
 
 
-def test_case_10():
+def test_case_5():
+    try:
+        str_0 = 'sH&-Fj\r<z'
+        player_0 = module_1.Player(str_0)
+        bool_0 = True
+        game_rules_0 = module_0.GameRules()
+        var_0 = game_rules_0.visit_assign_character(player_0)
+        bool_1 = game_rules_0.visit_throw_dice(player_0, bool_0)
+        assert bool_1 is False
+        assert player_0.name == 'sH&-Fj\r<z'
+        assert player_0.life == 0
+        assert player_0.max_life == 0
+        assert player_0.arrows == 0
+        assert player_0.dice_count == 6
+        assert player_0.status == 'alive'
+        assert player_0.role is None
+        assert game_rules_0 is not None
+        assert var_0 is None
+        assert module_1.Player.S_DEAD == 'dead'
+        assert module_1.Player.S_ALIVE == 'alive'
+        assert module_1.Player.S_GHOST == 'ghost'
+        game_data_0 = None
+        game_rules_1 = module_0.GameRules()
+        assert game_rules_1 is not None
+        var_1 = game_rules_1.visit_initialize_player(player_0)
+        assert player_0.dice_count == 5
+        assert var_1 is None
+        game_rules_2 = module_0.GameRules()
+        assert game_rules_2 is not None
+        bool_2 = game_rules_2.visit_update_life(player_0, game_data_0)
+        assert bool_2 is False
+        var_2 = game_rules_0.visit_assign_character(player_0)
+        assert var_2 is None
+        game_data_1 = module_0.GameData()
+    except BaseException:
+        pass
+
+
+def test_case_6():
     try:
         player_0 = module_1.Player()
         game_rules_0 = module_0.GameRules()
+        game_data_0 = None
+        var_0 = game_rules_0.visit_finish_turn(game_data_0)
+    except BaseException:
+        pass
+
+
+def test_case_7():
+    try:
+        game_rules_0 = module_0.GameRules()
+        player_0 = module_1.Player()
         bool_0 = game_rules_0.visit_life(player_0)
         assert bool_0 is False
+        assert game_rules_0 is not None
         assert player_0.name == ''
         assert player_0.life == 0
+        assert player_0.max_life == 0
         assert player_0.arrows == 0
         assert player_0.dice_count == 6
         assert player_0.status == 'alive'
@@ -216,35 +127,9 @@ def test_case_10():
         assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
         assert player_0.character is None
         assert player_0.role is None
-        assert game_rules_0 is not None
         assert module_1.Player.S_DEAD == 'dead'
         assert module_1.Player.S_ALIVE == 'alive'
         assert module_1.Player.S_GHOST == 'ghost'
-        game_data_0 = None
-        bool_1 = game_rules_0.visit_status(player_0, game_data_0)
-    except BaseException:
-        pass
-
-
-def test_case_11():
-    try:
-        player_0 = module_1.Player()
-        game_rules_0 = module_0.GameRules()
-        var_0 = game_rules_0.throw_ghost(player_0)
-        assert player_0.name == ''
-        assert player_0.life == 0
-        assert player_0.arrows == 0
-        assert player_0.dice_count == 6
-        assert player_0.status == 'alive'
-        assert player_0.character is None
-        assert player_0.role is None
-        assert game_rules_0 is not None
-        assert var_0 is None
-        assert module_1.Player.S_DEAD == 'dead'
-        assert module_1.Player.S_ALIVE == 'alive'
-        assert module_1.Player.S_GHOST == 'ghost'
-        bool_0 = game_rules_0.visit_life(player_0)
-        assert bool_0 is False
         game_data_0 = None
         bool_1 = game_rules_0.visit_character_counter_rules(game_data_0)
     except BaseException:

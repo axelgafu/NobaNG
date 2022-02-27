@@ -5,13 +5,10 @@ import game_rules as module_1
 
 def test_case_0():
     try:
-        float_0 = -5253.8334
-        str_0 = 'I[,\\d}0r"|\'%UQ['
-        display_0 = module_0.Display()
-        assert display_0.state_id == 'ST_GENERAL'
-        state_0 = display_0.message(str_0)
+        str_0 = ''
+        state_0 = module_0.State()
         assert state_0.state_id == 'ST_GENERAL'
-        state_1 = state_0.get_state(float_0)
+        state_1 = state_0.get_state(str_0)
     except BaseException:
         pass
 
@@ -20,14 +17,38 @@ def test_case_1():
     try:
         quit_0 = module_0.Quit()
         assert quit_0.state_id == 'ST_QUIT'
-        game_data_0 = None
-        int_0 = -666
-        var_0 = quit_0.update(int_0)
+        lobby_0 = module_0.Lobby()
+        assert lobby_0.state_id == 'ST_LOBBY'
+        list_0 = None
+        var_0 = quit_0.update(list_0)
         assert var_0 is None
+        var_1 = quit_0.update(list_0)
+        assert var_1 is None
+        str_0 = '0:"xo'
+        var_2 = quit_0.update(str_0)
+        assert var_2 is None
+        game_data_0 = None
+        game_start_0 = module_0.GameStart()
+        assert game_start_0.state_id == 'ST_GAME_START'
+        perform_activity_0 = module_0.PerformActivity()
+        assert perform_activity_0.state_id == 'ST_ACTIVITY'
         play_game_0 = module_0.PlayGame()
         assert play_game_0.state_id == 'ST_TURN'
         assert play_game_0.re_rol == 3
-        var_1 = play_game_0.update(game_data_0)
+        var_3 = perform_activity_0.transitionate(game_start_0)
+        assert var_3.state_id == 'ST_TURN'
+        assert var_3.re_rol == 3
+        play_game_1 = module_0.PlayGame()
+        assert play_game_1.state_id == 'ST_TURN'
+        assert play_game_1.re_rol == 3
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        bool_0 = False
+        var_4 = play_game_1.handle_answer_rerol()
+        assert len(var_4) == 2
+        var_5 = quit_0.update(bool_0)
+        assert var_5 is None
+        var_6 = play_game_1.update(game_data_0)
     except BaseException:
         pass
 
@@ -36,98 +57,29 @@ def test_case_2():
     try:
         quit_0 = module_0.Quit()
         assert quit_0.state_id == 'ST_QUIT'
-        game_data_0 = None
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        var_0 = play_game_0.update(game_data_0)
+        state_0 = module_0.State()
+        assert state_0.state_id == 'ST_GENERAL'
+        game_start_0 = module_0.GameStart()
+        assert game_start_0.state_id == 'ST_GAME_START'
+        var_0 = quit_0.update(quit_0)
+        assert var_0 is None
+        var_1 = game_start_0.transitionate(state_0)
     except BaseException:
         pass
 
 
 def test_case_3():
     try:
-        lobby_0 = module_0.Lobby()
-        assert lobby_0.state_id == 'ST_LOBBY'
+        state_0 = module_0.State()
+        assert state_0.state_id == 'ST_GENERAL'
         game_data_0 = None
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        game_start_0 = module_0.GameStart()
-        assert game_start_0.state_id == 'ST_GAME_START'
-        var_0 = game_start_0.update(game_data_0)
+        var_0 = state_0.update(game_data_0)
+        var_1 = state_0.traverseState(game_data_0)
     except BaseException:
         pass
 
 
 def test_case_4():
-    try:
-        game_data_0 = None
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        var_0 = play_game_0.handle_answer_rerol()
-        var_1 = play_game_0.update(game_data_0)
-    except BaseException:
-        pass
-
-
-def test_case_5():
-    try:
-        display_0 = module_0.Display()
-        assert display_0.state_id == 'ST_GENERAL'
-        game_data_0 = None
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        var_0 = play_game_0.handle_answer_rerol()
-        perform_activity_0 = module_0.PerformActivity()
-        assert perform_activity_0.state_id == 'ST_ACTIVITY'
-        var_1 = perform_activity_0.update(game_data_0)
-    except BaseException:
-        pass
-
-
-def test_case_6():
-    try:
-        game_data_0 = None
-        display_0 = None
-        perform_activity_0 = module_0.PerformActivity()
-        assert perform_activity_0.state_id == 'ST_ACTIVITY'
-        var_0 = perform_activity_0.transitionate(display_0)
-        assert var_0.state_id == 'ST_TURN'
-        assert var_0.re_rol == 3
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        var_1 = play_game_0.update(game_data_0)
-    except BaseException:
-        pass
-
-
-def test_case_7():
-    try:
-        game_data_0 = None
-        display_0 = module_0.Display()
-        assert display_0.state_id == 'ST_GENERAL'
-        state_0 = display_0.using(game_data_0)
-        assert state_0.state_id == 'ST_GENERAL'
-        var_0 = state_0.transitionate(game_data_0)
-        assert var_0.state_id == 'ST_GENERAL'
-        set_0 = {var_0, state_0}
-        state_1 = display_0.using(set_0)
-        assert state_1.state_id == 'ST_GENERAL'
-        var_1 = state_0.update(game_data_0)
-        assert var_1 is None
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        var_2 = play_game_0.update(game_data_0)
-    except BaseException:
-        pass
-
-
-def test_case_8():
     try:
         str_0 = "?@Wd\r/d,m'9V1_LY^Vx"
         display_0 = module_0.Display()
@@ -149,23 +101,126 @@ def test_case_8():
         pass
 
 
-def test_case_9():
+def test_case_5():
     try:
-        game_data_0 = None
-        game_over_0 = module_0.GameOver()
-        assert game_over_0.state_id == 'ST_GAME_OVER'
-        bytes_0 = b'&Q\xd8B\x8b\xf3j\xe5'
+        lobby_0 = module_0.Lobby()
+        assert lobby_0.state_id == 'ST_LOBBY'
+        lobby_1 = module_0.Lobby()
+        assert lobby_1.state_id == 'ST_LOBBY'
+    except BaseException:
+        pass
+
+
+def test_case_6():
+    try:
+        bytes_0 = b'\xdaU}\xa85t\xd1\xe2\xda\xa1!'
+        game_start_0 = module_0.GameStart()
+        assert game_start_0.state_id == 'ST_GAME_START'
+        var_0 = game_start_0.transitionate(bytes_0)
+    except BaseException:
+        pass
+
+
+def test_case_7():
+    try:
         display_0 = module_0.Display()
         assert display_0.state_id == 'ST_GENERAL'
+        bytes_0 = None
         state_0 = display_0.using(bytes_0)
         assert state_0.state_id == 'ST_GENERAL'
-        var_0 = display_0.transitionate(game_data_0)
+        game_data_0 = None
+        var_0 = state_0.transitionate(game_data_0)
+        assert var_0.state_id == 'ST_GENERAL'
+        play_game_0 = module_0.PlayGame()
+        assert play_game_0.state_id == 'ST_TURN'
+        assert play_game_0.re_rol == 3
+        var_1 = play_game_0.handle_answer_rerol()
+        assert len(var_1) == 2
+        state_1 = display_0.next_state(state_0)
+        assert state_1.state_id == 'ST_GENERAL'
+        state_2 = state_1.get_state(bytes_0)
+    except BaseException:
+        pass
+
+
+def test_case_8():
+    try:
+        perform_activity_0 = module_0.PerformActivity()
+        assert perform_activity_0.state_id == 'ST_ACTIVITY'
+        game_data_0 = None
+        var_0 = perform_activity_0.update(game_data_0)
+    except BaseException:
+        pass
+
+
+def test_case_9():
+    try:
+        quit_0 = module_0.Quit()
+        assert quit_0.state_id == 'ST_QUIT'
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        str_0 = display_0.get_message()
+        assert str_0 == ''
+        perform_activity_0 = module_0.PerformActivity()
+        assert perform_activity_0.state_id == 'ST_ACTIVITY'
+        state_0 = module_0.State()
+        assert state_0.state_id == 'ST_GENERAL'
+        state_1 = display_0.next_state(state_0)
+        assert state_1.state_id == 'ST_GENERAL'
+        var_0 = perform_activity_0.transitionate(quit_0)
+        assert var_0.state_id == 'ST_TURN'
+        assert var_0.re_rol == 3
+        game_data_0 = module_1.GameData()
     except BaseException:
         pass
 
 
 def test_case_10():
     try:
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        bytes_0 = None
+        state_0 = display_0.using(bytes_0)
+        assert state_0.state_id == 'ST_GENERAL'
+        game_data_0 = None
+        state_1 = display_0.next_state(state_0)
+        assert state_1.state_id == 'ST_GENERAL'
+        var_0 = state_0.transitionate(game_data_0)
+        assert var_0.state_id == 'ST_GENERAL'
+        game_rules_0 = module_1.GameRules()
+        assert game_rules_0 is not None
+        str_0 = 'CZ|6k`.zLPjz6-Tz@V'
+        var_1 = display_0.update(str_0)
+        assert var_1 is None
+        state_2 = display_0.next_state(state_0)
+        assert state_2.state_id == 'ST_GENERAL'
+        state_3 = state_2.get_state(bytes_0)
+    except BaseException:
+        pass
+
+
+def test_case_11():
+    try:
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        bytes_0 = None
+        state_0 = display_0.using(bytes_0)
+        assert state_0.state_id == 'ST_GENERAL'
+        game_data_0 = None
+        state_1 = display_0.next_state(state_0)
+        assert state_1.state_id == 'ST_GENERAL'
+        var_0 = state_0.transitionate(game_data_0)
+        assert var_0.state_id == 'ST_GENERAL'
+        state_2 = display_0.next_state(state_0)
+        assert state_2.state_id == 'ST_GENERAL'
+        state_3 = state_2.get_state(bytes_0)
+    except BaseException:
+        pass
+
+
+def test_case_12():
+    try:
+        game_rules_0 = module_1.GameRules()
         game_data_0 = None
         game_start_0 = module_0.GameStart()
         assert game_start_0.state_id == 'ST_GAME_START'
@@ -174,156 +229,166 @@ def test_case_10():
         pass
 
 
-def test_case_11():
-    try:
-        quit_0 = module_0.Quit()
-        assert quit_0.state_id == 'ST_QUIT'
-        perform_activity_0 = module_0.PerformActivity()
-        assert perform_activity_0.state_id == 'ST_ACTIVITY'
-        state_0 = module_0.State()
-        assert state_0.state_id == 'ST_GENERAL'
-        var_0 = perform_activity_0.transitionate(quit_0)
-        assert var_0.state_id == 'ST_TURN'
-        assert var_0.re_rol == 3
-        lobby_0 = module_0.Lobby()
-        assert lobby_0.state_id == 'ST_LOBBY'
-        var_1 = perform_activity_0.transitionate(lobby_0)
-        assert var_1.state_id == 'ST_TURN'
-        assert var_1.re_rol == 3
-        game_data_0 = module_1.GameData()
-    except BaseException:
-        pass
-
-
-def test_case_12():
-    try:
-        quit_0 = module_0.Quit()
-        assert quit_0.state_id == 'ST_QUIT'
-        game_data_0 = None
-        int_0 = -666
-        float_0 = 1415.452705
-        var_0 = quit_0.update(float_0)
-        assert var_0 is None
-        var_1 = quit_0.update(int_0)
-        assert var_1 is None
-        game_rules_0 = module_1.GameRules()
-        assert game_rules_0 is not None
-        var_2 = quit_0.update(game_rules_0)
-        assert var_2 is None
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        set_0 = set()
-        bool_0 = True
-        display_0 = module_0.Display()
-        assert display_0.state_id == 'ST_GENERAL'
-        state_0 = display_0.using(bool_0)
-        assert state_0.state_id == 'ST_GENERAL'
-        display_1 = module_0.Display()
-        assert display_1.state_id == 'ST_GENERAL'
-        state_1 = display_1.using(set_0)
-        assert state_1.state_id == 'ST_GENERAL'
-        perform_activity_0 = module_0.PerformActivity()
-        assert perform_activity_0.state_id == 'ST_ACTIVITY'
-        var_3 = display_1.transitionate(game_data_0)
-    except BaseException:
-        pass
-
-
 def test_case_13():
     try:
+        game_rules_0 = module_1.GameRules()
         game_data_0 = None
         play_game_0 = module_0.PlayGame()
         assert play_game_0.state_id == 'ST_TURN'
         assert play_game_0.re_rol == 3
-        var_0 = play_game_0.update(game_data_0)
+        var_0 = play_game_0.apply_rules(game_rules_0, game_data_0)
     except BaseException:
         pass
 
 
 def test_case_14():
     try:
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        state_0 = module_0.State()
+        assert state_0.state_id == 'ST_GENERAL'
         game_data_0 = None
+        state_1 = display_0.next_state(state_0)
+        assert state_1.state_id == 'ST_GENERAL'
+        var_0 = state_0.transitionate(game_data_0)
+        game_rules_0 = module_1.GameRules()
         play_game_0 = module_0.PlayGame()
         assert play_game_0.state_id == 'ST_TURN'
         assert play_game_0.re_rol == 3
-        sequence_0 = None
-        lobby_0 = module_0.Lobby()
-        assert lobby_0.state_id == 'ST_LOBBY'
-        var_0 = lobby_0.update(game_data_0)
-        var_1 = game_data_0.update_keys(sequence_0)
+        var_1 = play_game_0.apply_rules(game_rules_0, game_data_0)
     except BaseException:
         pass
 
 
 def test_case_15():
     try:
-        game_rules_0 = module_1.GameRules()
         game_data_0 = None
         lobby_0 = module_0.Lobby()
         assert lobby_0.state_id == 'ST_LOBBY'
-        var_0 = lobby_0.handle_answer_add_user(game_data_0)
+        var_0 = lobby_0.update(game_data_0)
+        str_0 = 'Boi"AHQB(Lv'
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        state_0 = display_0.message(str_0)
+        assert state_0.state_id == 'ST_GENERAL'
+        tuple_0 = ()
+        state_1 = state_0.get_state(tuple_0)
     except BaseException:
         pass
 
 
 def test_case_16():
     try:
+        lobby_0 = module_0.Lobby()
+        assert lobby_0.state_id == 'ST_LOBBY'
         game_data_0 = None
-        display_0 = module_0.Display()
-        assert display_0.state_id == 'ST_GENERAL'
-        state_0 = module_0.State()
-        assert state_0.state_id == 'ST_GENERAL'
-        var_0 = state_0.transitionate(game_data_0)
-        display_1 = module_0.Display()
-        assert display_1.state_id == 'ST_GENERAL'
-        int_0 = 4172
-        state_1 = display_1.using(int_0)
-        assert state_1.state_id == 'ST_GENERAL'
-        perform_activity_0 = module_0.PerformActivity()
-        assert perform_activity_0.state_id == 'ST_ACTIVITY'
         game_start_0 = module_0.GameStart()
         assert game_start_0.state_id == 'ST_GAME_START'
-        var_1 = display_1.transitionate(game_data_0)
+        perform_activity_0 = module_0.PerformActivity()
+        assert perform_activity_0.state_id == 'ST_ACTIVITY'
+        play_game_0 = module_0.PlayGame()
+        assert play_game_0.state_id == 'ST_TURN'
+        assert play_game_0.re_rol == 3
+        var_0 = perform_activity_0.transitionate(game_start_0)
+        assert var_0.state_id == 'ST_TURN'
+        assert var_0.re_rol == 3
+        play_game_1 = module_0.PlayGame()
+        assert play_game_1.state_id == 'ST_TURN'
+        assert play_game_1.re_rol == 3
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        var_1 = play_game_1.handle_answer_rerol()
+        assert len(var_1) == 2
+        var_2 = play_game_1.update(game_data_0)
     except BaseException:
         pass
 
 
 def test_case_17():
     try:
-        game_data_0 = None
-        display_0 = module_0.Display()
-        assert display_0.state_id == 'ST_GENERAL'
+        quit_0 = module_0.Quit()
+        assert quit_0.state_id == 'ST_QUIT'
         state_0 = module_0.State()
         assert state_0.state_id == 'ST_GENERAL'
-        var_0 = state_0.transitionate(game_data_0)
-        set_0 = {var_0, state_0}
-        state_1 = display_0.using(set_0)
+        game_start_0 = module_0.GameStart()
+        assert game_start_0.state_id == 'ST_GAME_START'
+        game_data_0 = None
+        bool_0 = False
+        var_0 = state_0.set_transitionable(bool_0)
+        state_1 = module_0.State()
         assert state_1.state_id == 'ST_GENERAL'
-        var_1 = state_0.update(game_data_0)
-        play_game_0 = module_0.PlayGame()
-        assert play_game_0.state_id == 'ST_TURN'
-        assert play_game_0.re_rol == 3
-        var_2 = play_game_0.update(game_data_0)
+        var_1 = state_1.traverseState(game_data_0)
     except BaseException:
         pass
 
 
 def test_case_18():
     try:
-        game_data_0 = None
         display_0 = module_0.Display()
         assert display_0.state_id == 'ST_GENERAL'
-        state_0 = display_0.using(game_data_0)
+        state_0 = display_0.using(display_0)
         assert state_0.state_id == 'ST_GENERAL'
-        var_0 = state_0.transitionate(game_data_0)
-        assert var_0.state_id == 'ST_GENERAL'
-        set_0 = {var_0, state_0}
-        state_1 = display_0.using(set_0)
+        game_data_0 = None
+        state_1 = display_0.next_state(state_0)
         assert state_1.state_id == 'ST_GENERAL'
+        var_0 = state_0.transitionate(game_data_0)
+    except BaseException:
+        pass
+
+
+def test_case_19():
+    try:
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        state_0 = module_0.State()
+        assert state_0.state_id == 'ST_GENERAL'
+        game_data_0 = None
+        state_1 = display_0.next_state(state_0)
+        assert state_1.state_id == 'ST_GENERAL'
+        var_0 = state_0.transitionate(game_data_0)
+        lobby_0 = module_0.Lobby()
+        assert lobby_0.state_id == 'ST_LOBBY'
+        var_1 = lobby_0.handle_answer_add_user(game_data_0)
+    except BaseException:
+        pass
+
+
+def test_case_20():
+    try:
+        perform_activity_0 = module_0.PerformActivity()
+        assert perform_activity_0.state_id == 'ST_ACTIVITY'
+        quit_0 = module_0.Quit()
+        assert quit_0.state_id == 'ST_QUIT'
+        lobby_0 = module_0.Lobby()
+        assert lobby_0.state_id == 'ST_LOBBY'
+        list_0 = None
+        var_0 = quit_0.update(list_0)
+        assert var_0 is None
+        str_0 = '0:"xo'
+        var_1 = quit_0.update(str_0)
+        assert var_1 is None
+        game_data_0 = None
+        var_2 = perform_activity_0.transitionate(list_0)
+        assert var_2.state_id == 'ST_TURN'
+        assert var_2.re_rol == 3
+        game_start_0 = module_0.GameStart()
+        assert game_start_0.state_id == 'ST_GAME_START'
         play_game_0 = module_0.PlayGame()
         assert play_game_0.state_id == 'ST_TURN'
         assert play_game_0.re_rol == 3
-        var_1 = play_game_0.update(game_data_0)
+        var_3 = perform_activity_0.transitionate(game_start_0)
+        assert var_3.state_id == 'ST_TURN'
+        assert var_3.re_rol == 3
+        play_game_1 = module_0.PlayGame()
+        assert play_game_1.state_id == 'ST_TURN'
+        assert play_game_1.re_rol == 3
+        display_0 = module_0.Display()
+        assert display_0.state_id == 'ST_GENERAL'
+        bool_0 = False
+        var_4 = play_game_1.handle_answer_rerol()
+        assert len(var_4) == 2
+        var_5 = quit_0.update(bool_0)
+        assert var_5 is None
+        var_6 = play_game_1.update(game_data_0)
     except BaseException:
         pass

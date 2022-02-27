@@ -7,6 +7,6 @@ def test_case_0():
 
 
 def test_case_1():
-    float_0 = -898.6
-    text_u_i_0 = module_0.TextUI()
-    var_0 = text_u_i_0.display(float_0)
+    surface_0 = None
+    graphical_u_i_0 = module_0.GraphicalUI(surface_0)
+    assert graphical_u_i_0.surface is None
