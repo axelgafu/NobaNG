@@ -46,21 +46,31 @@ if "%1" == "docs" (
 )
 
 if "%1" == "test" (
-	rem 
+	rem execute doctests.
+	pytest --doctest-modules src
+
+	rem Beautify source code by using 'black' and 'autopep8' tools
+	black src
+	autopep8.exe src\ --recursive --in-place --pep8-passes 2000 --verbose
+	
+	rem https://breadcrumbscollector.tech/how-to-use-code-coverage-in-python-with-pytest/
+	rem https://medium.com/swlh/unit-testing-in-python-basics-21a9a57418a0
+	rem pytest --flake8 --black src
 	coverage run -m pytest test --html=docs/_static/test_report.html --mypy --mccabe --cov-branch --cov-report term-missing
 	coverage report -m 
 
 	rem https://pypi.org/project/docstr-coverage/
-	docstr-coverage --skip-file-doc --exclude ".*/docs" src
+	docstr-coverage --skip-file-doc --skip-init --exclude ".*/docs" --badge=docsrc/image/docstr-cov.svg src
 
     goto end
 )
 
 if "%1" == "generate_test" (
-	pynguin.exe --project_path ./src --output_path ./test --module_name game_rules --create_coverage_report true --budget 10 --seed 20220225
-    pynguin.exe --project_path ./src --output_path ./test --module_name player --create_coverage_report true --budget 10 --seed 20220225
-    pynguin.exe --project_path ./src --output_path ./test --module_name ui --create_coverage_report true --budget 10 --seed 20220225
-    pynguin.exe --project_path ./src --output_path ./test --module_name state --create_coverage_report true --budget 10 --seed 20220225
+	rem https://www.youtube.com/watch?v=hLA9Q4tSkMU
+	pynguin.exe --project_path ./src --output_path ./test --module_name game_rules --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+    pynguin.exe --project_path ./src --output_path ./test --module_name player --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+    pynguin.exe --project_path ./src --output_path ./test --module_name ui --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+    pynguin.exe --project_path ./src --output_path ./test --module_name state --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
 
     goto end
 )
