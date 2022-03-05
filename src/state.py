@@ -73,12 +73,19 @@ class State:
 # Class: Quit
 # ==============================================================================
 class Quit(State):
+    """This state is reached from Lobby state when the player wants to end the
+    game.
+    """
+
     def __init__(self):
         super().__init__()
         self.state_id = "ST_QUIT"
         self._updated = False
 
     def update(self, game_data):
+        """Gracefully closes connections stablished during the game and releases
+        claimed resources before closing the game.
+        """
         if not self._updated:
             self._updated = True
 
@@ -87,14 +94,38 @@ class Quit(State):
 # Class: Lobby
 # ==============================================================================
 class Lobby(State):
+    """Reached at the very begining of the game start and it is used to register
+    players in the game.
+    """
+
     def __init__(self):
         super().__init__()
         self.state_id = "ST_LOBBY"
 
     def update(self, game_data: GameData):
+        """Lobby just waits for the players to be registered.
+        Future implementations will add options to create new play rooms and
+        options to allow users to register in those game rooms.
+        .. todo:: Implement cooperative mode.
+        """
         pass
 
     def transitionate(self, game_data):
+        """Lobby transitions are the following:
+            =============== ==============
+               Transition     New State
+            =============== ==============
+               K_ESCAPE      :class:`Quit`
+              Players < 1    :class:`Display`
+               K_RIGHT       :class:`GameStart`
+            =============== ==============
+
+        :param game_data:
+            Holds the game state data.
+
+        .. note::
+            Players should be added manually.
+        """
         if game_data.keys[pygame.K_ESCAPE]:
             return self.get_state("Quit")
 
@@ -125,6 +156,9 @@ class Lobby(State):
         )
 
         def handle(display_state: Display, game_data: GameData) -> State:
+            """Use this function to register a new player in the local machine by
+            using enter key and assigning a default player name.
+            """
             if game_data.keys[pygame.K_RETURN]:
                 player = Player()
                 player.name = f"Player{game_data.players_count()+1}"
@@ -139,6 +173,11 @@ class Lobby(State):
 # Class: GameStart
 # ==============================================================================
 class GameStart(State):
+    """This state is reached after players are registered and the players group
+    is ready to start the game. During this state, roles and characters are
+    randomly assigned.
+    """
+
     def __init__(self):
         super().__init__()
         self.state_id = "ST_GAME_START"
@@ -146,6 +185,10 @@ class GameStart(State):
         self._game_rules = GameRules()
 
     def update(self, game_data: GameData):
+        """Uses the game data infrastructure to assign characters and roles to
+        players.
+        """
+
         if not self._updated:
             for playr in game_data.player_list():
                 self._game_rules.visit_assign_character(playr)
@@ -153,6 +196,20 @@ class GameStart(State):
             self._updated = True
 
     def transitionate(self, game_data):
+        """Moves the game to a different state depending on the state transitions.
+
+        :param game_data:
+            Holds the game state data.
+
+        GameStart transitions are the following:
+            =============== ==============
+               Transition     New State
+            =============== ==============
+               K_RETURN      :class:`PlayGame`
+               K_ESCAPE      :class:`Lobby`
+            =============== ==============
+
+        """
         self._updated = False
         if game_data.keys[pygame.K_RETURN]:
             return self.get_state("PlayGame")
@@ -166,6 +223,11 @@ class GameStart(State):
 # Class: PlayGame
 # ==============================================================================
 class PlayGame(State):
+    """This state is reached after roles and characters have been assigned. During
+    this state, players throw the dice until their turns end and current player
+    gets ready to execute actions.
+    """
+
     def __init__(self):
         super().__init__()
         self.state_id = "ST_TURN"
@@ -173,9 +235,30 @@ class PlayGame(State):
         self._game_rules = GameRules()
 
     def update(self, game_data: GameData):
+        """Applies dice rules as required after each dice throw."""
         self.apply_rules(self._game_rules, game_data)
 
     def transitionate(self, game_data: GameData):
+        """Moves the game to a different state depending on the state transitions.
+
+        :param game_data:
+            Holds the game state data (:class:`GameData`).
+
+        PlayGame transitions are the following:
+            ========================== ==============
+               Transition                 New State
+            ========================== ==============
+               Player is dead           :class:`GameOver`
+               K_ESCAPE                 :class:`GameStart`
+               Dice re-roll ends        :class:`PerformActivity`
+               Dice re-roll available   :class:`Display`
+            ========================== ==============
+
+        .. note::
+            Display class will ask the player to choose between end turn or
+            throw the dice again.
+
+        """
         if game_data.current_player().status == Player.S_DEAD:
             return self.get_state("GameOver")
 
@@ -217,6 +300,23 @@ class PlayGame(State):
         message = "Press up arrow to finish turn"
 
         def handle(display_state: Display, game_data: GameData) -> State:
+            """Display class will ask the player to choose between end turn or
+            throw the dice again.
+
+            Potential transitions are the following:
+            ========================== ==============
+               Transition                 New State
+            ========================== ==============
+               K_UP & player is alive   :class:`PerformActivity`
+               K_UP & player is dead    :class:`GameStart`
+               K_RETURN                 :class:`Display`
+            ========================== ==============
+
+            .. note::
+                Transition when K_RETURN is pressed is actually to the same
+                Display instance itself.
+
+            """
             if game_data.keys[pygame.K_UP]:
                 self.re_rol = 3
                 self._game_rules.visit_finish_turn(game_data)
@@ -233,6 +333,10 @@ class PlayGame(State):
         return message, handle
 
     def apply_rules(self, game_rules: GameRules, game_data: GameData):
+        """This method uses the infrastructure of :class:`GameRules` class to
+        apply the game rules to the players in the game.
+        """
+
         if self.re_rol <= 0:
             return  # No more re-roles.
 
@@ -262,6 +366,13 @@ class PlayGame(State):
 # Class: PerformActivity
 # ==============================================================================
 class PerformActivity(State):
+    """This state is reached when player has thrown the dice and has made the
+    decision about what actions should be performed. It is important to remark
+    that there are actions available for other players that have been given by
+    the specific role or character each player is assigned to. So, players may
+    decide to activate those actions and this is the state where that occur.
+    """
+
     def __init__(self):
         super().__init__()
         self.state_id = "ST_ACTIVITY"
@@ -269,10 +380,28 @@ class PerformActivity(State):
         self._game_rules = GameRules()
 
     def update(self, game_data: GameData):
+        """This method will enable character specific and role specific actions
+        and will execute the actions that any given player has decided to use.
+        Only the first player that claims the action will be allowed.
+        """
         self._game_rules.visit_character_counter_rules(game_data)
         pass
 
     def transitionate(self, game_data):
+        """Moves the game to a different state depending on the state transitions.
+
+        :param game_data:
+            Holds the game state data (:class:`GameData`).
+
+        PerformActivity transitions are the following:
+            ========================== ==============
+               Transition                 New State
+            ========================== ==============
+               Always                  :class:`PlayGame`
+            ========================== ==============
+
+        Note that transition to PlayGame state is automatic.
+        """
         #
         # Automatic return on activity complete.
         #
@@ -283,16 +412,33 @@ class PerformActivity(State):
 # Class: GameOver
 # ==============================================================================
 class GameOver(State):
+    """This state is reached when player has died in the game."""
+
     def __init__(self):
         super().__init__()
         self.state_id = "ST_GAME_OVER"
         self._updated = False
 
     def update(self, game_data):
-        print("Game Over")
+        """There are no updates for game data from this state."""
         pass
 
     def transitionate(self, game_data):
+        """Moves the game to a different state depending on the state transitions.
+
+        :param game_data:
+            Holds the game state data (:class:`GameData`).
+
+        PerformActivity transitions are the following:
+            ========================== ==============
+               Transition                 New State
+            ========================== ==============
+               K_ESCAPE                  :class:`Lobby`
+            ========================== ==============
+
+        Players going back to the Looby state from GameOver state should wait
+        for the next game round.
+        """
         if game_data.keys[pygame.K_ESCAPE]:
             return self.get_state("Lobby")
 
@@ -301,6 +447,22 @@ class GameOver(State):
 # Class: Display
 # ==============================================================================
 class Display(State):
+    """This state is reached from any state that requests showing a message.
+
+    .. image:: image/diagram/display-state_sequence/display-state_sequence.png
+
+    usage example:
+
+    .. code-block:: python
+        :emphasize-lines: 1,3,4
+
+        message, handler = self.handle_answer_rerol()
+        return (self.get_state('Display')
+            .message(message)
+            .using(handler))
+
+    """
+
     def __init__(self):
         super().__init__()
         self._activity_performed = False
@@ -310,9 +472,14 @@ class Display(State):
         self._display_duration = 2000
 
     def update(self, game_data):
+        """Does nothing still"""
         pass
 
     def message(self, message: str) -> "State":
+        """Sets the message that should be shown to the player.
+        :return: this state. Use it to chain setup calls.
+        :rtype: State
+        """
         self._message = message
         return self
 
@@ -321,13 +488,29 @@ class Display(State):
         return self
 
     def get_message(self) -> str:
+        """
+        :return: message to be displayed
+        :rtype: str
+        """
         return self._message
 
     def using(self, function) -> State:
+        """Use this method to define the **callback** function to be used
+        during this display execution.
+
+        :return: this state. Use it to chain setup calls.
+        :rtype: State
+        """
         self._handler = function
         return self
 
     def transitionate(self, game_data: GameData):
+        """Uses the **callback** function defined in the `uses` function to
+        perform the transitionate step.
+
+        :param game_data: Game information.
+        :type game_date: GameData
+        """
         if self._handler is not None:
             next_state = self._handler(self, game_data)
             if next_state is not self:

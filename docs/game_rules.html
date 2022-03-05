@@ -82,7 +82,7 @@
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">game_rules.</span></span><span class="sig-name descname"><span class="pre">GameData</span></span><a class="headerlink" href="#game_rules.GameData" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Holds game state meta-data.</p>
-<p>This class represents the overall game moderator and it is updated by the 
+<p>This class represents the overall game moderator and it is updated by the
 game states.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameData.append_player">
@@ -100,7 +100,9 @@ Calling this function does not change game state.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameData.is_first_death">
 <span class="sig-name descname"><span class="pre">is_first_death</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameData.is_first_death" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>This function returns True when only a single player has status
+equals to <code class="docutils literal notranslate"><span class="pre">Player.S_DEAD</span></code></p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameData.next_player">
@@ -139,6 +141,8 @@ refer to the specific game states (<cite>State</cite> class)</p>
 <dt class="sig sig-object py" id="game_rules.GameRules">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">game_rules.</span></span><span class="sig-name descname"><span class="pre">GameRules</span></span><a class="headerlink" href="#game_rules.GameRules" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is intended to hold all the algorithms that rule the game
+interactions with game players.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.throw_alive">
 <span class="sig-name descname"><span class="pre">throw_alive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">brave</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game_rules.GameRules.throw_alive" title="Permalink to this definition"></a></dt>
@@ -188,7 +192,7 @@ attack_vector = {
 <p class="admonition-title">Note</p>
 <p><strong>Rule</strong>
 Life is reduced by the number of arrows the player has.
-If the arrows in the stack run out then the rule is 
+If the arrows in the stack run out then the rule is
 applied to all the participants in the game.</p>
 </div>
 </dd></dl>
@@ -196,7 +200,8 @@ applied to all the participants in the game.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_assign_character">
 <span class="sig-name descname"><span class="pre">visit_assign_character</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game_rules.GameRules.visit_assign_character" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Randomly assign a character to the given player.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_bombs">
@@ -235,12 +240,23 @@ Life is reduced by 1 if player obtains three bombs.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_initialize_player">
 <span class="sig-name descname"><span class="pre">visit_initialize_player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#game_rules.GameRules.visit_initialize_player" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Applies the boosts and effects of the assigned character and role
+to the given player</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_life">
 <span class="sig-name descname"><span class="pre">visit_life</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="player.html#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#game_rules.GameRules.visit_life" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Update player statistics based on life rule.
+:return: True if player’s turn ends.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Rule</strong>
+Whenever it is within the character limits:
+* If ‘2xlife’ is obtained player gains two life points.
+* If ‘life’ is obtained player gains one life points.</p>
+</div>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="game_rules.GameRules.visit_shoot">

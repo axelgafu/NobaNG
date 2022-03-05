@@ -17,10 +17,21 @@ font = pygame.font.Font(None, 30)
 # Class: UI
 # ==============================================================================
 class UI:
+    """General class to handle game user interface. The resource where the user
+    interface will be displayed should be controlled by the specific implementation
+    of the class. Some examples of those user interface resources are (but not
+    limitted to): a file, text on the screen, a database, the network or a
+    graphical interface.
+    """
+
     def display(self, text):
+        """Overwrite this method to show a message in the output resource."""
         pass
 
     def inflate(self, state, player):
+        """Overwrite this method to update the output resource based on game
+        state and player data.
+        """
         pass
 
 
@@ -28,7 +39,12 @@ class UI:
 # Class: TextUI
 # ==============================================================================
 class TextUI(UI):
+    """This class implements a user interface based on text."""
+
     def display(self, text):
+        """Use this method to output the message to the standard outoput (i.e.
+        the screen).
+        """
         print(text)
 
 
@@ -36,6 +52,8 @@ class TextUI(UI):
 # Class: GraphicalUI
 # ==============================================================================
 class GraphicalUI(UI):
+    """This class implements a user interface based on graphics."""
+
     def __init__(self, surface: pygame.Surface) -> None:
         super().__init__()
         self.surface = surface
@@ -43,16 +61,23 @@ class GraphicalUI(UI):
     # mypy, overloaded function.
     @dispatch(state.State, GameData)  # type: ignore
     def inflate(self, state: state.State, game_data: GameData):
+        """Base user interface update on a generic game state."""
         self.surface.fill("Black")
 
     # mypy, overloaded function.
     @dispatch(state.Quit, GameData)  # type: ignore
     def inflate(self, state: state.Quit, game_data: GameData):
+        """Base user interface update on the "Quit" state.
+        Graphical interface will show a thank you message before ending the game.
+        """
         self.display("Quit - Thanks for playing NobaNG")
 
     # mypy, overloaded function.
     @dispatch(state.Lobby, GameData)  # type: ignore
     def inflate(self, state: state.Lobby, game_data: GameData):
+        """Base user interface update on the "Lobby" state.
+        The game directs the player on how to add users to the game round.
+        """
         self.display(
             "Lobby - Waiting in lobby for players to join the\
              game (Down:add player; Right: continue)."
@@ -61,21 +86,38 @@ class GraphicalUI(UI):
     # mypy, overloaded function.
     @dispatch(state.GameStart, GameData)  # type: ignore
     def inflate(self, state: state.GameStart, game_data: GameData):
+        """Base user interface update on the "GameStart" state.
+        Game start is when the game players are assigned with a role and a
+        character, so the GUI presents those data.
+
+        Everybody can see each player character but at this point game
+        players can only see their own role.
+        """
         self.display("GameStart - Starting game...")
 
     # mypy, overloaded function.
     @dispatch(state.PlayGame, GameData)  # type: ignore
     def inflate(self, state: state.PlayGame, game_data: GameData):
+        """Base user interface update on the "PlayGame" state.
+        User stats are played and dice values for each player turn.
+        """
         player = game_data.current_player()
 
         self.display(
-            f"PlayGame - {player.name}'s turn, {state.re_rol} remaining (press left to end turn)"
+            f"PlayGame - {player.name}'s turn, {state.re_rol}\
+                 remaining (press left to end turn)"
         )
         self.draw_status(game_data)
 
     # mypy, overloaded function.
     @dispatch(state.PerformActivity, GameData)  # type: ignore
     def inflate(self, state: state.PerformActivity, game_data: GameData):
+        """Base user interface update on the "PerformActivity" state.
+        Current player selections are made effective int this state but
+        depending on other player's roles and characters someone could
+        counterattack. All those animations should occur during this
+        state.
+        """
         player = game_data.current_player()
 
         self.display("PerformActivity - Applying actions")
@@ -86,14 +128,24 @@ class GraphicalUI(UI):
     # mypy, overloaded function.
     @dispatch(state.GameOver, GameData)  # type: ignore
     def inflate(self, state: state.GameOver, game_data: GameData):
+        """Base user interface update on the "GameOver" state.
+        Graphical interface only show the game over message while
+        playing the animations of the other players.
+        """
         self.display("Game Over")
 
     # mypy, overloaded function.
     @dispatch(state.Display, GameData)  # type: ignore
     def inflate(self, state: state.Display, game_data: GameData):
+        """Base user interface update on the "Display" state.
+        This state is intentended to show information to the player and
+        the game can get here from any state. Graphical interface retrieves
+        the message to display from the "Display" state object.
+        """
         self.display(state.get_message())
 
     def draw_status(self, game_data: GameData):
+        """Use this function to update the game status on the screen."""
         player = game_data.current_player()
         w, _ = self.surface.get_size()
 
@@ -111,8 +163,18 @@ class GraphicalUI(UI):
         return tuple(map(sum, zip(a, b)))
 
     def draw_box(
-        self, text: str, image_path: str, coordinate: Tuple, size: Tuple = (64, 64)
+        self, text: str, image_path: str, coordinate: tuple, size: tuple = (64, 64)
     ):
+        """Use this function to show a square card with the text in the upper left
+        corner and the image in the background.
+
+        :param: text is a short message 2-3 characters length.
+        :param: image_path is the place where the background image is.
+        :param: coordinate is the location where the upper-left corner of the
+            card should be drawn.
+        :param: size is the dimention of the card (width, height),
+            i.e. (64, 64) by default.
+        """
         x, y = coordinate
         width, height = size
         local_font = pygame.font.Font(None, 50)
@@ -136,6 +198,9 @@ class GraphicalUI(UI):
             128, 128, 128, 0), box_area, 2)
 
     def display(self, text: str, x: int = 10, y: int = 10):
+        """Use this function to show a text in the area designated as
+        output for the game.
+        """
         display_surface = pygame.display.get_surface()
         w, h = display_surface.get_size()
         x = w - 20

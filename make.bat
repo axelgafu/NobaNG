@@ -16,7 +16,7 @@ if "%1" == "github" (
 	coverage run -m pytest test --html=docs/_static/test_report.html
 	
 	%SPHINXBUILD% -b html %SOURCEDIR% %SOURCEDIR% %BUILDDIR%
-    sphinx-apidoc -o docsrc src
+    sphinx-apidoc --ext-autodoc -f -o docsrc src
     %SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
     robocopy %BUILDDIR%/html ../docs /E > nul
     echo.Generated files copied to ../docs
@@ -35,11 +35,12 @@ if "%1" == "help" (
 )
 
 if "%1" == "docs" (
-	%SPHINXBUILD% -v -b coverage %SOURCEDIR% %BUILDDIR%/coverage
-	%SPHINXBUILD% -b html %SOURCEDIR% %SOURCEDIR% %BUILDDIR%
-    sphinx-apidoc -o docsrc src
-    %SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
-    robocopy %BUILDDIR%/html ../docs /E > nul
+	rem %SPHINXBUILD% -v -b coverage %SOURCEDIR% %BUILDDIR%/coverage
+    sphinx-apidoc --ext-autodoc -f -o docsrc src
+    %SPHINXBUILD% -a -b html %SOURCEDIR% %BUILDDIR%
+    rem %SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
+    
+	robocopy %BUILDDIR% docs /MIR /IT /IS > nul
     echo.Generated files copied to ../docs
 
     goto end

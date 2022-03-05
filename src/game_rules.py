@@ -210,8 +210,8 @@ class GameRules:
         .. note::
             **Rule**
             Whenever it is within the character limits:
-             - If '2xlife' is obtained player gains two life points.
-             - If 'life' is obtained player gains one life points.
+            * If '2xlife' is obtained player gains two life points.
+            * If 'life' is obtained player gains one life points.
         """
         counts = {i: player.dice_value.count(i) for i in player.dice_value}
 

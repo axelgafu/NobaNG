@@ -1,0 +1,48 @@
+@startuml display-state_sequence
+skinparam sequenceMessageAlign right
+
+participant "Game Engine" as game
+participant "Initial State" as State
+participant "Final State" as sN
+
+activate game
+activate State
+
+...
+
+State -> Display : creates an instance
+activate Display
+State <- Display
+
+State -> Display : message(prompt text)
+State <- Display
+
+note over State #LightYellow
+Display takes a callback function 
+that is to be called by Display after
+prompting the message.
+
+Callback can be defined inside the 
+State class.
+end note
+State -> Display : using(**callback**)
+State <- Display
+
+note over State #LightYellow: State.transitionate returs "Display" class
+game <- State
+deactivate State
+
+game -> Display: Display.transitionate
+Display -> Display: **callback**
+game <- Display: **callback** returns next state.
+deactivate Display
+
+game -> sN: update
+activate sN
+game <- sN
+
+game -> sN: transitionate
+game <- sN
+...
+
+@enduml

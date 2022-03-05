@@ -81,10 +81,29 @@
 <dt class="sig sig-object py" id="player.Bill">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Bill</span></span><a class="headerlink" href="#player.Bill" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#player.Character" title="player.Character"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.Character</span></code></a></p>
+<p>Bill Sin Rostro’s card</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Bill.initialize">
 <span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Bill.initialize" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Moly uses the following values for the game:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 54%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stat</p></td>
+<td><p>Value</p></td>
+</tr>
+<tr class="row-even"><td><p>life</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dice</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -92,20 +111,58 @@
 <dt class="sig sig-object py" id="player.Character">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Character</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generic class to group all the characters in the game. This class will
+be used in python to find all the different characters in the game.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Character.initialize">
-<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#player.Character.initialize" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Generic implementation. It does nothing unless it is overwritten
+in the children classes.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Character.visit_character_counter_rules">
 <span class="sig-name descname"><span class="pre">visit_character_counter_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">game_rules</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character.visit_character_counter_rules" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generic implementation. It does nothing unless it is overwritten
+in the children classes.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Character.visit_character_stats_rules">
 <span class="sig-name descname"><span class="pre">visit_character_stats_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Character.visit_character_stats_rules" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Generic implementation. It does nothing unless it is overwritten
+in the children classes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="player.Doc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Doc</span></span><a class="headerlink" href="#player.Doc" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#player.Character" title="player.Character"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.Character</span></code></a></p>
+<p>Doc Holiday’s card</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="player.Doc.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Doc.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Moly uses the following values for the game:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 54%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stat</p></td>
+<td><p>Value</p></td>
+</tr>
+<tr class="row-even"><td><p>life</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dice</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -113,17 +170,69 @@
 <dt class="sig sig-object py" id="player.Elie">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Elie</span></span><a class="headerlink" href="#player.Elie" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <a class="reference internal" href="#player.Character" title="player.Character"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.Character</span></code></a></p>
+<p>Moli Stark’s card</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="player.Elie.initialize">
 <span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Elie.initialize" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Moly uses the following values for the game:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 54%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stat</p></td>
+<td><p>Value</p></td>
+</tr>
+<tr class="row-even"><td><p>life</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dice</p></td>
+<td><p>5</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="player.Jose">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Jose</span></span><a class="headerlink" href="#player.Jose" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#player.Character" title="player.Character"><code class="xref py py-class docutils literal notranslate"><span class="pre">player.Character</span></code></a></p>
+<p>Jose Delgado’s card</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="player.Jose.initialize">
+<span class="sig-name descname"><span class="pre">initialize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">player</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#player.Player" title="player.Player"><span class="pre">player.Player</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Jose.initialize" title="Permalink to this definition"></a></dt>
+<dd><p>Moly uses the following values for the game:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 54%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Stat</p></td>
+<td><p>Value</p></td>
+</tr>
+<tr class="row-even"><td><p>life</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dice</p></td>
+<td><p>6</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="player.Player">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name:</span> <span class="pre">&lt;module</span> <span class="pre">'string'</span> <span class="pre">from</span> <span class="pre">'C:\\Users\\axe1_\\AppData\\Local\\Programs\\Python\\Python310\\lib\\string.py'&gt;</span> <span class="pre">=</span> <span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Player" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">player.</span></span><span class="sig-name descname"><span class="pre">Player</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#player.Player" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Data class that holds player’s information.
+It is intended that this class only have variables (data). GameRules
+has the algorithms that updates player’s data(visitor design pattern).</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="player.Player.S_ALIVE">
 <span class="sig-name descname"><span class="pre">S_ALIVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'alive'</span></em><a class="headerlink" href="#player.Player.S_ALIVE" title="Permalink to this definition"></a></dt>

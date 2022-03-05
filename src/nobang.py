@@ -7,13 +7,13 @@ from settings import *
 
 class Game:
     """The following state diagram shows the behavior of the game screens:
-    .. image:: ../docsrc/image/diagram/state_diagram/StateMachine.png
 
-    .. image:: ../docsrc/image/docstr-cov.svg
+    .. image:: image/diagram/state_diagram/StateMachine.png
+
+    .. image:: image/docstr-cov.svg
 
     Report of unit testing generated with pynguin cab be seen in the following
-    link
-    `Test Report <../_static/test_report.html>`
+    link `Test Report <_static/test_report.html>`_
 
     """
 
