@@ -1,1 +1,5 @@
-theme: jekyll-theme-dinky
+remote_theme: pages-themes/dinky@v0.2.0
+title: NobaNG
+description: Test and experiment of Python's gaming libraries and Amazon's cloud platforms.
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
