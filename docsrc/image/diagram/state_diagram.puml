@@ -1,0 +1,20 @@
+@startuml StateMachine
+[*] --> Lobby
+Lobby -left-> [*]: KEY_ESC
+Lobby : Players are added to the game here.
+
+Lobby -down-> GameStart: KEY_RIGHT
+Lobby <-- GameStart: KEY_ESC
+GameStart : Characters and Roles are\nassigned in this stage.
+
+GameStart -right-> PlayGame: KEY_RETURN
+GameStart <-- PlayGame: KEY_ESC
+PlayGame:Players choose their\nstrategy by turns.
+
+PlayGame -up-> PeformActivity: KEY_RETURN
+PlayGame <-- PeformActivity: On activity complete.
+PeformActivity:\
+   Update other player's stats based\n\
+   on current player's chosen actions.
+
+@enduml

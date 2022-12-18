@@ -1,0 +1,7 @@
+#remote_theme: pages-themes/dinky@v0.2.0
+#theme: minima
+title: The NobaNG Game
+description: Test and experiment of Python's gaming libraries and Amazon's cloud platforms.
+url: ""
+plugins:
+- jekyll-remote-theme # add this line to the plugins list if you already have one
