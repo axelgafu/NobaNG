@@ -284,7 +284,6 @@ class GameRules:
         - backwards: Traverse players towards the left.
         2nd element:
         - Integer list with how many shoots should be applied.
-
         e.g.:
         attack_vector = {
         'clockwise':[1,0,1], # Hit the first and third player on the right.
