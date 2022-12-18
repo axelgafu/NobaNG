@@ -14,7 +14,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -63,8 +65,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>src</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">src</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -75,15 +77,195 @@
            <div itemprop="articleBody">
              
   <section id="src">
-<h1>src<a class="headerlink" href="#src" title="Permalink to this headline"></a></h1>
+<h1>src<a class="headerlink" href="#src" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="game_rules.html">game_rules module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nobang.html">nobang module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="player.html">player module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game_rules.html">game_rules module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html#game_rules.Die"><code class="docutils literal notranslate"><span class="pre">Die</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.assign"><code class="docutils literal notranslate"><span class="pre">Die.assign()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.execute"><code class="docutils literal notranslate"><span class="pre">Die.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.get_available_targets"><code class="docutils literal notranslate"><span class="pre">Die.get_available_targets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.get_dice"><code class="docutils literal notranslate"><span class="pre">Die.get_dice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.get_selected_targets"><code class="docutils literal notranslate"><span class="pre">Die.get_selected_targets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.identify_targets"><code class="docutils literal notranslate"><span class="pre">Die.identify_targets()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.is_skippable"><code class="docutils literal notranslate"><span class="pre">Die.is_skippable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.lock"><code class="docutils literal notranslate"><span class="pre">Die.lock()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.shuffle"><code class="docutils literal notranslate"><span class="pre">Die.shuffle()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.visit_arrows"><code class="docutils literal notranslate"><span class="pre">Die.visit_arrows()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.visit_character_stats_rules"><code class="docutils literal notranslate"><span class="pre">Die.visit_character_stats_rules()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.Die.visit_update_life"><code class="docutils literal notranslate"><span class="pre">Die.visit_update_life()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html#game_rules.DieBrave"><code class="docutils literal notranslate"><span class="pre">DieBrave</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.DieBrave.execute"><code class="docutils literal notranslate"><span class="pre">DieBrave.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.DieBrave.get_dice"><code class="docutils literal notranslate"><span class="pre">DieBrave.get_dice()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html#game_rules.DieCoward"><code class="docutils literal notranslate"><span class="pre">DieCoward</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.DieCoward.execute"><code class="docutils literal notranslate"><span class="pre">DieCoward.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.DieCoward.get_dice"><code class="docutils literal notranslate"><span class="pre">DieCoward.get_dice()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html#game_rules.DieRegular"><code class="docutils literal notranslate"><span class="pre">DieRegular</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.DieRegular.execute"><code class="docutils literal notranslate"><span class="pre">DieRegular.execute()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.DieRegular.get_dice"><code class="docutils literal notranslate"><span class="pre">DieRegular.get_dice()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html#game_rules.GameData"><code class="docutils literal notranslate"><span class="pre">GameData</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.append_player"><code class="docutils literal notranslate"><span class="pre">GameData.append_player()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.current_player"><code class="docutils literal notranslate"><span class="pre">GameData.current_player()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.get_dice"><code class="docutils literal notranslate"><span class="pre">GameData.get_dice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.is_first_death"><code class="docutils literal notranslate"><span class="pre">GameData.is_first_death()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.is_key_held"><code class="docutils literal notranslate"><span class="pre">GameData.is_key_held()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.is_key_pressed"><code class="docutils literal notranslate"><span class="pre">GameData.is_key_pressed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.is_key_released"><code class="docutils literal notranslate"><span class="pre">GameData.is_key_released()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.lock_dice"><code class="docutils literal notranslate"><span class="pre">GameData.lock_dice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.next_player"><code class="docutils literal notranslate"><span class="pre">GameData.next_player()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.player_list"><code class="docutils literal notranslate"><span class="pre">GameData.player_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.players_count"><code class="docutils literal notranslate"><span class="pre">GameData.players_count()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.shuffle_dice"><code class="docutils literal notranslate"><span class="pre">GameData.shuffle_dice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameData.update_keys"><code class="docutils literal notranslate"><span class="pre">GameData.update_keys()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="game_rules.html#game_rules.GameRules"><code class="docutils literal notranslate"><span class="pre">GameRules</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.throw_alive"><code class="docutils literal notranslate"><span class="pre">GameRules.throw_alive()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.throw_ghost"><code class="docutils literal notranslate"><span class="pre">GameRules.throw_ghost()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_apply_dice_actions"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_apply_dice_actions()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_assign_character"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_assign_character()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_character_counter_rules"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_character_counter_rules()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_finish_turn"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_finish_turn()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_hit"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_hit()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_initialize_player"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_initialize_player()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_life"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_life()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_lock_dice"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_lock_dice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_status"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="game_rules.html#game_rules.GameRules.visit_throw_dice"><code class="docutils literal notranslate"><span class="pre">GameRules.visit_throw_dice()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="nobang.html">nobang module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nobang.html#nobang.Game"><code class="docutils literal notranslate"><span class="pre">Game</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="nobang.html#nobang.Game.run"><code class="docutils literal notranslate"><span class="pre">Game.run()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="player.html">player module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="player.html#player.Bill"><code class="docutils literal notranslate"><span class="pre">Bill</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Bill.initialize"><code class="docutils literal notranslate"><span class="pre">Bill.initialize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="player.html#player.Character"><code class="docutils literal notranslate"><span class="pre">Character</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Character.initialize"><code class="docutils literal notranslate"><span class="pre">Character.initialize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Character.visit_character_counter_rules"><code class="docutils literal notranslate"><span class="pre">Character.visit_character_counter_rules()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Character.visit_character_stats_rules"><code class="docutils literal notranslate"><span class="pre">Character.visit_character_stats_rules()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Character.visit_recognize_hit1"><code class="docutils literal notranslate"><span class="pre">Character.visit_recognize_hit1()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Character.visit_recognize_hit2"><code class="docutils literal notranslate"><span class="pre">Character.visit_recognize_hit2()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="player.html#player.Doc"><code class="docutils literal notranslate"><span class="pre">Doc</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Doc.initialize"><code class="docutils literal notranslate"><span class="pre">Doc.initialize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Doc.visit_character_stats_rules"><code class="docutils literal notranslate"><span class="pre">Doc.visit_character_stats_rules()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="player.html#player.Elie"><code class="docutils literal notranslate"><span class="pre">Elie</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Elie.initialize"><code class="docutils literal notranslate"><span class="pre">Elie.initialize()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Elie.visit_character_counter_rules"><code class="docutils literal notranslate"><span class="pre">Elie.visit_character_counter_rules()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="player.html#player.Jose"><code class="docutils literal notranslate"><span class="pre">Jose</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Jose.initialize"><code class="docutils literal notranslate"><span class="pre">Jose.initialize()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="player.html#player.Player"><code class="docutils literal notranslate"><span class="pre">Player</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Player.S_ALIVE"><code class="docutils literal notranslate"><span class="pre">Player.S_ALIVE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Player.S_DEAD"><code class="docutils literal notranslate"><span class="pre">Player.S_DEAD</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="player.html#player.Player.S_GHOST"><code class="docutils literal notranslate"><span class="pre">Player.S_GHOST</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="settings.html">settings module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="state.html">state module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ui.html">ui module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="state.html">state module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.Display"><code class="docutils literal notranslate"><span class="pre">Display</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Display.get_message"><code class="docutils literal notranslate"><span class="pre">Display.get_message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Display.message"><code class="docutils literal notranslate"><span class="pre">Display.message()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Display.next_state"><code class="docutils literal notranslate"><span class="pre">Display.next_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Display.transitionate"><code class="docutils literal notranslate"><span class="pre">Display.transitionate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Display.update"><code class="docutils literal notranslate"><span class="pre">Display.update()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Display.using"><code class="docutils literal notranslate"><span class="pre">Display.using()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.GameOver"><code class="docutils literal notranslate"><span class="pre">GameOver</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.GameOver.transitionate"><code class="docutils literal notranslate"><span class="pre">GameOver.transitionate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.GameOver.update"><code class="docutils literal notranslate"><span class="pre">GameOver.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.GameStart"><code class="docutils literal notranslate"><span class="pre">GameStart</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.GameStart.transitionate"><code class="docutils literal notranslate"><span class="pre">GameStart.transitionate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.GameStart.update"><code class="docutils literal notranslate"><span class="pre">GameStart.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.Lobby"><code class="docutils literal notranslate"><span class="pre">Lobby</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Lobby.handle_answer_add_user"><code class="docutils literal notranslate"><span class="pre">Lobby.handle_answer_add_user()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Lobby.transitionate"><code class="docutils literal notranslate"><span class="pre">Lobby.transitionate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Lobby.update"><code class="docutils literal notranslate"><span class="pre">Lobby.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.PerformActivity"><code class="docutils literal notranslate"><span class="pre">PerformActivity</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PerformActivity.transitionate"><code class="docutils literal notranslate"><span class="pre">PerformActivity.transitionate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PerformActivity.update"><code class="docutils literal notranslate"><span class="pre">PerformActivity.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.PlayGame"><code class="docutils literal notranslate"><span class="pre">PlayGame</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.STATE_ENDING_TURN"><code class="docutils literal notranslate"><span class="pre">PlayGame.STATE_ENDING_TURN</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.STATE_PLAYER_DECIDING"><code class="docutils literal notranslate"><span class="pre">PlayGame.STATE_PLAYER_DECIDING</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.STATE_THROWING_DICE"><code class="docutils literal notranslate"><span class="pre">PlayGame.STATE_THROWING_DICE</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.apply_rules"><code class="docutils literal notranslate"><span class="pre">PlayGame.apply_rules()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.handle_answer_rerol"><code class="docutils literal notranslate"><span class="pre">PlayGame.handle_answer_rerol()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.set_player_choices"><code class="docutils literal notranslate"><span class="pre">PlayGame.set_player_choices()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.transitionate"><code class="docutils literal notranslate"><span class="pre">PlayGame.transitionate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.PlayGame.update"><code class="docutils literal notranslate"><span class="pre">PlayGame.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.Quit"><code class="docutils literal notranslate"><span class="pre">Quit</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.Quit.update"><code class="docutils literal notranslate"><span class="pre">Quit.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="state.html#state.State"><code class="docutils literal notranslate"><span class="pre">State</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.State.get_state"><code class="docutils literal notranslate"><span class="pre">State.get_state()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.State.set_transitionable"><code class="docutils literal notranslate"><span class="pre">State.set_transitionable()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.State.transitionate"><code class="docutils literal notranslate"><span class="pre">State.transitionate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.State.traverseState"><code class="docutils literal notranslate"><span class="pre">State.traverseState()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="state.html#state.State.update"><code class="docutils literal notranslate"><span class="pre">State.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ui.html">ui module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ui.html#ui.GraphicalUI"><code class="docutils literal notranslate"><span class="pre">GraphicalUI</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.display"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.display()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.draw_box"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.draw_box()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.draw_select_box"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.draw_select_box()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.draw_status"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.draw_status()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.inflate"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.inflate</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.show_dice"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.show_dice()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.sum_vectors"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.sum_vectors()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.GraphicalUI.visit_assign_dice"><code class="docutils literal notranslate"><span class="pre">GraphicalUI.visit_assign_dice()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html#ui.TextUI"><code class="docutils literal notranslate"><span class="pre">TextUI</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.TextUI.display"><code class="docutils literal notranslate"><span class="pre">TextUI.display()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ui.html#ui.UI"><code class="docutils literal notranslate"><span class="pre">UI</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.UI.display"><code class="docutils literal notranslate"><span class="pre">UI.display()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ui.html#ui.UI.inflate"><code class="docutils literal notranslate"><span class="pre">UI.inflate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

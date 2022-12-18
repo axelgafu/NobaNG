@@ -43,7 +43,7 @@ class State:
                 # print(f"{self.__class__.__name__} -> {self.__class__.__name__}")
                 return self
             else:
-                # print(f"{self.__class__.__name__} -> {transition.__class__.__name__}")
+                # print(f"{self.__class__.__name__}:{self} -> {transition.__class__.__name__}:{transition}")
                 return transition
 
         # print(f"(Default) {self.__class__.__name__} -> {self.__class__.__name__}")
@@ -228,15 +228,25 @@ class PlayGame(State):
     gets ready to execute actions.
     """
 
+    _STATE_GEN = 0
+    STATE_THROWING_DICE = _STATE_GEN + 1
+    STATE_PLAYER_DECIDING = _STATE_GEN + 2
+    STATE_ENDING_TURN = _STATE_GEN + 3
+
     def __init__(self):
         super().__init__()
         self.state_id = "ST_TURN"
         self.re_rol = 3
         self._game_rules = GameRules()
+        self.sub_state = self.STATE_THROWING_DICE
 
     def update(self, game_data: GameData):
         """Applies dice rules as required after each dice throw."""
+        # Wait for player choices from UI
         self.apply_rules(self._game_rules, game_data)
+
+    def set_player_choices(self):
+        pass
 
     def transitionate(self, game_data: GameData):
         """Moves the game to a different state depending on the state transitions.
@@ -265,21 +275,32 @@ class PlayGame(State):
         if game_data.keys[pygame.K_ESCAPE]:
             return self.get_state("GameStart")
 
-        if self.re_rol <= 0:
+        if self.sub_state == PlayGame.STATE_THROWING_DICE:
+            if self.re_rol <= 0:
+                self.sub_state = PlayGame.STATE_PLAYER_DECIDING
+                print("State -> PlayGame.STATE_PLAYER_DECIDING")
+                return self  # Continue in this state.
+            else:
+                message, handler = self.handle_answer_rerol()
+                return (
+                    self.get_state("Display")
+                    # type: ignore # mypy, polymorphic function (see state.Display).
+                    .next_state(self)
+                    .message(message)
+                    .using(handler)
+                )
+
+        elif self.sub_state == PlayGame.STATE_PLAYER_DECIDING:
+            # User is deciding actions, see User Interface code.
+            return self
+
+        elif self.sub_state == PlayGame.STATE_ENDING_TURN:
             # End of current player's turn
             self.re_rol = 3
             self._game_rules.visit_finish_turn(game_data)
+            self.sub_state = PlayGame.STATE_THROWING_DICE
+            print("State -> PlayGame.STATE_THROWING_DICE")
             return self.get_state("PerformActivity")
-
-        else:
-            message, handler = self.handle_answer_rerol()
-            return (
-                self.get_state("Display")
-                # type: ignore # mypy, polymorphic function (see state.Display).
-                .next_state(self)
-                .message(message)
-                .using(handler)
-            )
 
     def handle_answer_rerol(self):
         """High-order function, returns a message that should be shown to the
@@ -321,14 +342,17 @@ class PlayGame(State):
                 self.re_rol = 3
                 self._game_rules.visit_finish_turn(game_data)
                 if game_data.current_player().status == Player.S_ALIVE:
-                    return self.get_state("PerformActivity")
+                    # return self.get_state("PerformActivity")
+                    self.sub_state = PlayGame.STATE_PLAYER_DECIDING
+                    return self
                 else:
                     return self.get_state("GameOver")
 
             elif game_data.keys[pygame.K_RETURN]:
                 return self
 
-            return display_state
+            # return display_state
+            return self.get_state("PlayGame")
 
         return message, handle
 
@@ -344,16 +368,19 @@ class PlayGame(State):
         if player.status == Player.S_ALIVE:
             end_player_turn = False
 
-            game_rules.visit_throw_dice(player, brave=False)
-            end_player_turn = (
-                game_rules.visit_life(player)
-                or game_rules.visit_shoot(game_data)
-                or game_rules.visit_bombs(game_data)
-                or game_rules.visit_arrows(game_data)
-                or
-                # game_rules.visit_status(player, game_data) or
-                game_rules.visit_character_stats_rules(player)
-            )
+            dice = game_rules.visit_throw_dice(game_data, brave=False)
+            # TODO add here logic to assign dice
+
+            # TODO
+            # end_player_turn = (
+            #     game_rules.visit_life(player)
+            #     or game_rules.visit_shoot(game_data)
+            #     or game_rules.visit_bombs(game_data)
+            #     or game_rules.visit_arrows(game_data)
+            #     or
+            #     # game_rules.visit_status(player, game_data) or
+            #     game_rules.visit_character_stats_rules(player)
+            # )
 
             # end_player_turn = game_rules.visit_status(player, game_data) or end_player_turn
             if end_player_turn:
@@ -385,6 +412,7 @@ class PerformActivity(State):
         Only the first player that claims the action will be allowed.
         """
         self._game_rules.visit_character_counter_rules(game_data)
+        self._game_rules.visit_apply_dice_actions(game_data)
         pass
 
     def transitionate(self, game_data):

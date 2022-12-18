@@ -3,13 +3,6 @@ import player as module_0
 
 
 def test_case_0():
-    str_0 = '{8t-g58Mm|5'
-    character_0 = module_0.Character(str_0, str_0)
-    assert character_0.name == '{8t-g58Mm|5'
-    assert character_0.description == '{8t-g58Mm|5'
-
-
-def test_case_1():
     player_0 = module_0.Player()
     assert player_0.name == ''
     assert player_0.life == 0
@@ -18,62 +11,89 @@ def test_case_1():
     assert player_0.dice_count == 6
     assert player_0.status == 'alive'
     assert player_0.dice_value == ['', '', '', '', '', '']
-    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
     assert player_0.character is None
     assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    doc_0 = module_0.Doc()
-    assert doc_0.name == 'Doc Holyday'
-    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' tambièn recuperas 2 puntos de vida."
-    var_0 = doc_0.initialize(player_0)
-    assert player_0.life == 8
-    assert player_0.max_life == 8
-    assert player_0.dice_count == 5
-    assert var_0 is None
+    str_0 = '\ne'
+    character_0 = module_0.Character(player_0, str_0, str_0)
+    assert character_0.name == '\ne'
+    assert character_0.description == '\ne'
+    bool_0 = character_0.visit_recognize_hit1(str_0)
+    assert bool_0 is False
 
 
-def test_case_2():
-    str_0 = 'Z'
-    player_0 = module_0.Player(str_0)
-    assert player_0.name == 'Z'
+def test_case_1():
+    str_0 = None
+    player_0 = module_0.Player()
+    assert player_0.name == ''
     assert player_0.life == 0
     assert player_0.max_life == 0
     assert player_0.arrows == 0
     assert player_0.dice_count == 6
     assert player_0.status == 'alive'
     assert player_0.dice_value == ['', '', '', '', '', '']
-    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
     assert player_0.character is None
     assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    str_1 = 'Gef,\x0bZAS,b`j4'
-    character_0 = module_0.Character(str_0, str_1)
-    assert character_0.name == 'Z'
-    assert character_0.description == 'Gef,\x0bZAS,b`j4'
-    var_0 = character_0.initialize(player_0)
-    str_2 = 'XpY9|Cmqj1bjq<d Y;'
-    doc_0 = module_0.Doc()
-    assert var_0 is None
+    var_0 = player_0.__eq__(str_0)
+    str_1 = 'T$")G"/~\x0bjUWH'
+    character_0 = module_0.Character(player_0, str_1, str_1)
+    assert character_0.name == 'T$")G"/~\x0bjUWH'
+    assert character_0.description == 'T$")G"/~\x0bjUWH'
+    var_1 = player_0.__repr__()
+    bool_0 = character_0.visit_recognize_hit2(str_0)
+    assert bool_0 is False
+
+
+def test_case_2():
+    str_0 = '\x0c:@\x0b$A[xxfq?hI#\x0c'
+    player_0 = module_0.Player()
+    assert player_0.name == ''
+    assert player_0.life == 0
+    assert player_0.max_life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.character is None
+    assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    str_1 = '7\t)DowR/)Vs/d|E'
+    player_1 = module_0.Player(str_1)
+    assert player_1.name == '7\t)DowR/)Vs/d|E'
+    assert player_1.life == 0
+    assert player_1.max_life == 0
+    assert player_1.arrows == 0
+    assert player_1.dice_count == 6
+    assert player_1.status == 'alive'
+    assert player_1.dice_value == ['', '', '', '', '', '']
+    assert player_1.character is None
+    assert player_1.role is None
+    assert player_1.attack_vector == {'clockwise': [], 'backwards': []}
+    bool_0 = True
+    var_0 = player_0.__eq__(bool_0)
+    doc_0 = module_0.Doc(player_0)
     assert doc_0.name == 'Doc Holyday'
-    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' tambièn recuperas 2 puntos de vida."
-    var_1 = doc_0.initialize(player_0)
-    assert player_0.life == 8
-    assert player_0.max_life == 8
-    assert player_0.dice_count == 5
+    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' también recuperas 2 puntos de vida."
+    var_1 = doc_0.visit_character_stats_rules(str_0)
     assert var_1 is None
-    var_2 = character_0.visit_character_stats_rules(player_0)
-    assert var_2 is None
-    character_1 = module_0.Character(str_2, str_2)
-    assert character_1.name == 'XpY9|Cmqj1bjq<d Y;'
-    assert character_1.description == 'XpY9|Cmqj1bjq<d Y;'
-    var_3 = character_1.initialize(player_0)
-    assert var_3 is None
-    var_4 = character_1.initialize(player_0)
-    assert var_4 is None
+    doc_1 = module_0.Doc(player_1)
+    assert doc_1.name == 'Doc Holyday'
+    assert doc_1.description == "Cada vez que uses 3 o más disparos '1' y/o '2' también recuperas 2 puntos de vida."
+    character_0 = module_0.Character(player_0, str_0, str_0)
+    assert character_0.name == '\x0c:@\x0b$A[xxfq?hI#\x0c'
+    assert character_0.description == '\x0c:@\x0b$A[xxfq?hI#\x0c'
+    bool_1 = character_0.visit_recognize_hit2(str_0)
+    assert bool_1 is False
 
 
 def test_case_3():
@@ -85,47 +105,15 @@ def test_case_3():
     assert player_0.dice_count == 6
     assert player_0.status == 'alive'
     assert player_0.dice_value == ['', '', '', '', '', '']
-    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
     assert player_0.character is None
     assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    elie_0 = module_0.Elie()
-    assert elie_0.name == 'Moli Stark'
-    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
-    bill_0 = module_0.Bill()
-    assert bill_0.name == 'Bill Sin Rostro'
-    assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
-    str_0 = ''
-    str_1 = '>V4LkXF3&x>0\x0c>='
-    character_0 = module_0.Character(str_0, str_1)
-    assert character_0.name == ''
-    assert character_0.description == '>V4LkXF3&x>0\x0c>='
-    var_0 = character_0.visit_character_counter_rules(elie_0, bill_0)
-    assert var_0 is None
-    doc_0 = module_0.Doc()
-    assert doc_0.name == 'Doc Holyday'
-    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' tambièn recuperas 2 puntos de vida."
-    var_1 = doc_0.initialize(player_0)
-    assert player_0.life == 8
-    assert player_0.max_life == 8
-    assert player_0.dice_count == 5
-    assert var_1 is None
-    str_2 = None
-    var_2 = elie_0.initialize(player_0)
-    assert var_2 is None
-    character_1 = module_0.Character(str_2, str_2)
-    assert character_1.name is None
-    assert character_1.description is None
-    var_3 = elie_0.initialize(player_0)
-    assert var_3 is None
 
 
 def test_case_4():
-    jose_0 = module_0.Jose()
-    assert jose_0.name == 'José Delgado'
-    assert jose_0.description == 'Puedes usar el dado del Bocazas sin que sustituyan un dado básico (lanza 6 dados en total).'
     player_0 = module_0.Player()
     assert player_0.name == ''
     assert player_0.life == 0
@@ -134,30 +122,15 @@ def test_case_4():
     assert player_0.dice_count == 6
     assert player_0.status == 'alive'
     assert player_0.dice_value == ['', '', '', '', '', '']
-    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
     assert player_0.character is None
     assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    str_0 = None
-    var_0 = player_0.__repr__()
-    assert var_0 == 'Player()'
-    str_1 = "UBbD2'`\\x2-lDNNC"
-    character_0 = module_0.Character(str_0, str_1)
-    assert character_0.name is None
-    assert character_0.description == "UBbD2'`\\x2-lDNNC"
-    elie_0 = module_0.Elie()
-    assert elie_0.name == 'Moli Stark'
-    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
-    var_1 = elie_0.initialize(player_0)
-    assert player_0.life == 8
-    assert player_0.max_life == 8
-    assert player_0.dice_count == 5
-    assert var_1 is None
-    elie_1 = module_0.Elie()
-    assert elie_1.name == 'Moli Stark'
-    assert elie_1.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
+    bill_0 = module_0.Bill(player_0)
+    assert bill_0.name == 'Bill Sin Rostro'
+    assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
 
 
 def test_case_5():
@@ -169,66 +142,45 @@ def test_case_5():
     assert player_0.dice_count == 6
     assert player_0.status == 'alive'
     assert player_0.dice_value == ['', '', '', '', '', '']
-    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
     assert player_0.character is None
     assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    doc_0 = module_0.Doc()
-    assert doc_0.name == 'Doc Holyday'
-    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' tambièn recuperas 2 puntos de vida."
-    var_0 = doc_0.initialize(player_0)
+    elie_0 = module_0.Elie(player_0)
+    assert elie_0.name == 'Moli Stark'
+    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
+    str_0 = '1/L'
+    character_0 = module_0.Character(player_0, str_0, str_0)
+    assert character_0.name == '1/L'
+    assert character_0.description == '1/L'
+    var_0 = character_0.initialize()
+    assert var_0 is None
+    var_1 = elie_0.initialize()
     assert player_0.life == 8
     assert player_0.max_life == 8
     assert player_0.dice_count == 5
-    assert var_0 is None
-    elie_0 = module_0.Elie()
-    assert elie_0.name == 'Moli Stark'
-    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
-    str_0 = 'Ze 3Gg]#K{_y.D'
-    player_1 = module_0.Player(str_0)
-    assert player_1.name == 'Ze 3Gg]#K{_y.D'
-    assert player_1.life == 0
-    assert player_1.max_life == 0
-    assert player_1.arrows == 0
-    assert player_1.dice_count == 6
-    assert player_1.status == 'alive'
-    assert player_1.dice_value == ['', '', '', '', '', '']
-    assert player_1.dice_re_roll == [3, 3, 3, 3, 3, 3]
-    assert player_1.character is None
-    assert player_1.role is None
-    var_1 = elie_0.initialize(player_1)
-    assert player_1.life == 8
-    assert player_1.max_life == 8
-    assert player_1.dice_count == 5
     assert var_1 is None
-    player_2 = module_0.Player()
-    assert player_2.name == ''
-    assert player_2.life == 0
-    assert player_2.max_life == 0
-    assert player_2.arrows == 0
-    assert player_2.dice_count == 6
-    assert player_2.status == 'alive'
-    assert player_2.dice_value == ['', '', '', '', '', '']
-    assert player_2.dice_re_roll == [3, 3, 3, 3, 3, 3]
-    assert player_2.character is None
-    assert player_2.role is None
-    bill_0 = module_0.Bill()
+    bill_0 = module_0.Bill(player_0)
     assert bill_0.name == 'Bill Sin Rostro'
     assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
-    var_2 = bill_0.initialize(player_2)
-    assert player_2.life == 9
-    assert player_2.max_life == 9
-    assert player_2.dice_count == 5
+    var_2 = bill_0.initialize()
+    assert player_0.life == 9
+    assert player_0.max_life == 9
     assert var_2 is None
-    var_3 = elie_0.initialize(player_2)
-    assert player_2.life == 8
-    assert player_2.max_life == 8
+    jose_0 = module_0.Jose(player_0)
+    assert jose_0.name == 'José Delgado'
+    assert jose_0.description == 'Puedes usar el dado del Bocazas sin que sustituyan un dado básico (lanza 6 dados en total).'
+    var_3 = jose_0.initialize()
+    assert player_0.life == 7
+    assert player_0.max_life == 7
+    assert player_0.dice_count == 6
     assert var_3 is None
 
 
 def test_case_6():
+    str_0 = 'K_E'
     player_0 = module_0.Player()
     assert player_0.name == ''
     assert player_0.life == 0
@@ -237,50 +189,20 @@ def test_case_6():
     assert player_0.dice_count == 6
     assert player_0.status == 'alive'
     assert player_0.dice_value == ['', '', '', '', '', '']
-    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
     assert player_0.character is None
     assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
     assert module_0.Player.S_DEAD == 'dead'
     assert module_0.Player.S_ALIVE == 'alive'
     assert module_0.Player.S_GHOST == 'ghost'
-    doc_0 = module_0.Doc()
-    assert doc_0.name == 'Doc Holyday'
-    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' tambièn recuperas 2 puntos de vida."
-    var_0 = doc_0.initialize(player_0)
-    assert player_0.life == 8
-    assert player_0.max_life == 8
+    bill_0 = module_0.Bill(player_0)
+    assert bill_0.name == 'Bill Sin Rostro'
+    assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
+    var_0 = bill_0.initialize()
+    assert player_0.life == 9
+    assert player_0.max_life == 9
     assert player_0.dice_count == 5
     assert var_0 is None
-    jose_0 = module_0.Jose()
-    assert jose_0.name == 'José Delgado'
-    assert jose_0.description == 'Puedes usar el dado del Bocazas sin que sustituyan un dado básico (lanza 6 dados en total).'
-
-
-def test_case_7():
-    elie_0 = module_0.Elie()
-    assert elie_0.name == 'Moli Stark'
-    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
-    player_0 = module_0.Player()
-    assert player_0.name == ''
-    assert player_0.life == 0
-    assert player_0.max_life == 0
-    assert player_0.arrows == 0
-    assert player_0.dice_count == 6
-    assert player_0.status == 'alive'
-    assert player_0.dice_value == ['', '', '', '', '', '']
-    assert player_0.dice_re_roll == [3, 3, 3, 3, 3, 3]
-    assert player_0.character is None
-    assert player_0.role is None
-    assert module_0.Player.S_DEAD == 'dead'
-    assert module_0.Player.S_ALIVE == 'alive'
-    assert module_0.Player.S_GHOST == 'ghost'
-    str_0 = ':vc-6z\rC{+2e/fo5Gg'
-    var_0 = player_0.__eq__(str_0)
-    var_1 = elie_0.initialize(player_0)
-    assert player_0.life == 8
-    assert player_0.max_life == 8
-    assert player_0.dice_count == 5
-    assert var_1 is None
     player_1 = module_0.Player()
     assert player_1.name == ''
     assert player_1.life == 0
@@ -289,15 +211,246 @@ def test_case_7():
     assert player_1.dice_count == 6
     assert player_1.status == 'alive'
     assert player_1.dice_value == ['', '', '', '', '', '']
-    assert player_1.dice_re_roll == [3, 3, 3, 3, 3, 3]
     assert player_1.character is None
     assert player_1.role is None
-    bytes_0 = b'A\xaf[\xab\x9c\x020u\x07\xdf\xcf'
-    var_2 = player_1.__eq__(bytes_0)
-    jose_0 = module_0.Jose()
+    assert player_1.attack_vector == {'clockwise': [], 'backwards': []}
+    str_1 = '\n*wgms\n.ei2-'
+    character_0 = module_0.Character(player_1, str_1, str_1)
+    assert character_0.name == '\n*wgms\n.ei2-'
+    assert character_0.description == '\n*wgms\n.ei2-'
+    var_1 = character_0.visit_character_stats_rules(str_0)
+    assert var_1 is None
+
+
+def test_case_7():
+    player_0 = module_0.Player()
+    assert player_0.name == ''
+    assert player_0.life == 0
+    assert player_0.max_life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.character is None
+    assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    float_0 = -351.930849
+    var_0 = player_0.__eq__(float_0)
+    str_0 = '\n7%tDp8m:\x0btwXY#o|hI:'
+    player_1 = module_0.Player(str_0)
+    assert player_1.name == '\n7%tDp8m:\x0btwXY#o|hI:'
+    assert player_1.life == 0
+    assert player_1.max_life == 0
+    assert player_1.arrows == 0
+    assert player_1.dice_count == 6
+    assert player_1.status == 'alive'
+    assert player_1.dice_value == ['', '', '', '', '', '']
+    assert player_1.character is None
+    assert player_1.role is None
+    assert player_1.attack_vector == {'clockwise': [], 'backwards': []}
+    str_1 = '/"Uk&0OE~N=MkjT'
+    str_2 = 'FZ9)*2,Ksy'
+    character_0 = module_0.Character(player_1, str_0, str_2)
+    assert character_0.name == '\n7%tDp8m:\x0btwXY#o|hI:'
+    assert character_0.description == 'FZ9)*2,Ksy'
+    bool_0 = character_0.visit_recognize_hit1(str_1)
+    assert bool_0 is False
+    character_1 = module_0.Character(player_1, str_1, str_1)
+    assert character_1.name == '/"Uk&0OE~N=MkjT'
+    assert character_1.description == '/"Uk&0OE~N=MkjT'
+    var_1 = character_1.visit_character_counter_rules(player_0, float_0)
+    var_2 = player_0.__repr__()
+    str_3 = '[!m:SVj|-\x0b#XDg~jQ#'
+    dict_0 = {}
+    var_3 = character_1.visit_character_counter_rules(player_0, dict_0)
+    var_4 = player_0.__eq__(str_3)
+
+
+def test_case_8():
+    player_0 = module_0.Player()
+    assert player_0.name == ''
+    assert player_0.life == 0
+    assert player_0.max_life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.character is None
+    assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    elie_0 = module_0.Elie(player_0)
+    assert elie_0.name == 'Moli Stark'
+    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
+    var_0 = elie_0.initialize()
+    assert player_0.life == 8
+    assert player_0.max_life == 8
+    assert player_0.dice_count == 5
+    assert var_0 is None
+
+
+def test_case_9():
+    str_0 = 'FeqM``Qli*u'
+    player_0 = module_0.Player(str_0)
+    assert player_0.name == 'FeqM``Qli*u'
+    assert player_0.life == 0
+    assert player_0.max_life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.character is None
+    assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    bill_0 = module_0.Bill(player_0)
+    assert bill_0.name == 'Bill Sin Rostro'
+    assert bill_0.description == 'Aplica los resultados de flechas sólo después de tu última tirada.'
+    var_0 = bill_0.initialize()
+    assert player_0.life == 9
+    assert player_0.max_life == 9
+    assert player_0.dice_count == 5
+    assert var_0 is None
+
+
+def test_case_10():
+    str_0 = 'd Y;4Z<G,Z{|dF6Ze\'"'
+    player_0 = module_0.Player()
+    assert player_0.name == ''
+    assert player_0.life == 0
+    assert player_0.max_life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.character is None
+    assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    var_0 = player_0.__repr__()
+    player_1 = module_0.Player()
+    assert player_1.name == ''
+    assert player_1.life == 0
+    assert player_1.max_life == 0
+    assert player_1.arrows == 0
+    assert player_1.dice_count == 6
+    assert player_1.status == 'alive'
+    assert player_1.dice_value == ['', '', '', '', '', '']
+    assert player_1.character is None
+    assert player_1.role is None
+    assert player_1.attack_vector == {'clockwise': [], 'backwards': []}
+    str_1 = 'Y9|Cmq'
+    jose_0 = module_0.Jose(player_1)
     assert jose_0.name == 'José Delgado'
     assert jose_0.description == 'Puedes usar el dado del Bocazas sin que sustituyan un dado básico (lanza 6 dados en total).'
-    var_3 = jose_0.initialize(player_1)
-    assert player_1.life == 7
-    assert player_1.max_life == 7
-    assert var_3 is None
+    doc_0 = module_0.Doc(player_1)
+    assert doc_0.name == 'Doc Holyday'
+    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' también recuperas 2 puntos de vida."
+    var_1 = doc_0.visit_character_stats_rules(str_1)
+    assert var_1 is None
+    character_0 = module_0.Character(player_1, str_1, str_1)
+    assert character_0.name == 'Y9|Cmq'
+    assert character_0.description == 'Y9|Cmq'
+    var_2 = doc_0.initialize()
+    assert player_1.life == 8
+    assert player_1.max_life == 8
+    assert player_1.dice_count == 5
+    assert var_2 is None
+    var_3 = player_0.__eq__(character_0)
+    bool_0 = character_0.visit_recognize_hit1(str_0)
+    assert bool_0 is False
+
+
+def test_case_11():
+    player_0 = module_0.Player()
+    assert player_0.name == ''
+    assert player_0.life == 0
+    assert player_0.max_life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.character is None
+    assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    jose_0 = module_0.Jose(player_0)
+    assert jose_0.name == 'José Delgado'
+    assert jose_0.description == 'Puedes usar el dado del Bocazas sin que sustituyan un dado básico (lanza 6 dados en total).'
+    var_0 = jose_0.initialize()
+    assert player_0.life == 7
+    assert player_0.max_life == 7
+    assert var_0 is None
+
+
+def test_case_12():
+    str_0 = '?7W0~U'
+    player_0 = module_0.Player(str_0)
+    assert player_0.name == '?7W0~U'
+    assert player_0.life == 0
+    assert player_0.max_life == 0
+    assert player_0.arrows == 0
+    assert player_0.dice_count == 6
+    assert player_0.status == 'alive'
+    assert player_0.dice_value == ['', '', '', '', '', '']
+    assert player_0.character is None
+    assert player_0.role is None
+    assert player_0.attack_vector == {'clockwise': [], 'backwards': []}
+    assert module_0.Player.S_DEAD == 'dead'
+    assert module_0.Player.S_ALIVE == 'alive'
+    assert module_0.Player.S_GHOST == 'ghost'
+    elie_0 = module_0.Elie(player_0)
+    assert elie_0.name == 'Moli Stark'
+    assert elie_0.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
+    var_0 = elie_0.initialize()
+    assert player_0.life == 8
+    assert player_0.max_life == 8
+    assert player_0.dice_count == 5
+    assert var_0 is None
+    str_1 = 'x-s69o,GEf'
+    player_1 = module_0.Player(str_1)
+    assert player_1.name == 'x-s69o,GEf'
+    assert player_1.life == 0
+    assert player_1.max_life == 0
+    assert player_1.arrows == 0
+    assert player_1.dice_count == 6
+    assert player_1.status == 'alive'
+    assert player_1.dice_value == ['', '', '', '', '', '']
+    assert player_1.character is None
+    assert player_1.role is None
+    assert player_1.attack_vector == {'clockwise': [], 'backwards': []}
+    doc_0 = module_0.Doc(player_1)
+    assert doc_0.name == 'Doc Holyday'
+    assert doc_0.description == "Cada vez que uses 3 o más disparos '1' y/o '2' también recuperas 2 puntos de vida."
+    str_2 = '2'
+    var_1 = doc_0.visit_character_stats_rules(str_2)
+    assert player_1.life == 2
+    assert var_1 is None
+    str_3 = "'\x0co"
+    player_2 = module_0.Player(str_3)
+    assert player_2.name == "'\x0co"
+    assert player_2.life == 0
+    assert player_2.max_life == 0
+    assert player_2.arrows == 0
+    assert player_2.dice_count == 6
+    assert player_2.status == 'alive'
+    assert player_2.dice_value == ['', '', '', '', '', '']
+    assert player_2.character is None
+    assert player_2.role is None
+    assert player_2.attack_vector == {'clockwise': [], 'backwards': []}
+    elie_1 = module_0.Elie(player_1)
+    assert elie_1.name == 'Moli Stark'
+    assert elie_1.description == 'Cada vez que otro jugador deba perder 1 o más puntos de vida puedes perderlos en su lugar'
+    var_2 = player_0.__repr__()
+    assert var_2 == 'Player()'

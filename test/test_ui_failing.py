@@ -6,25 +6,35 @@ import game_rules as module_2
 
 def test_case_0():
     try:
-        str_0 = None
-        set_0 = set()
-        u_i_0 = module_0.UI()
-        var_0 = u_i_0.display(set_0)
-        list_0 = [str_0, str_0, str_0]
-        surface_0 = module_1.Surface(*list_0)
+        surface_0 = None
+        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
+        assert graphical_u_i_0.surface is None
+        assert graphical_u_i_0.dice_selection == 0
+        dict_0 = {graphical_u_i_0: surface_0, surface_0: graphical_u_i_0}
+        text_u_i_0 = module_0.TextUI()
+        assert text_u_i_0 is not None
+        var_0 = text_u_i_0.display(dict_0)
+        assert var_0 is None
+        surface_1 = module_1.Surface()
     except BaseException:
         pass
 
 
 def test_case_1():
     try:
+        surface_0 = None
         list_0 = []
-        list_1 = [list_0, list_0]
-        u_i_0 = module_0.UI()
-        u_i_1 = module_0.UI()
-        var_0 = u_i_1.inflate(list_1, u_i_0)
-        dict_0 = {}
-        surface_0 = module_1.Surface(**dict_0)
+        text_u_i_0 = module_0.TextUI(*list_0)
+        var_0 = text_u_i_0.display(text_u_i_0)
+        tuple_0 = surface_0,
+        str_0 = '-x0oQO{\rBhz'
+        str_1 = '\t5|Bk_v.}>FW'
+        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
+        assert text_u_i_0 is not None
+        assert var_0 is None
+        assert graphical_u_i_0.surface is None
+        assert graphical_u_i_0.dice_selection == 0
+        var_1 = graphical_u_i_0.draw_box(str_0, str_1, tuple_0)
     except BaseException:
         pass
 
@@ -32,32 +42,12 @@ def test_case_1():
 def test_case_2():
     try:
         surface_0 = None
-        tuple_0 = ()
-        dict_0 = {}
-        text_u_i_0 = module_0.TextUI(**dict_0)
-        var_0 = text_u_i_0.display(tuple_0)
-        list_0 = [surface_0, surface_0, surface_0, surface_0]
-        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
-        assert text_u_i_0 is not None
-        assert var_0 is None
-        assert graphical_u_i_0.surface is None
-        str_0 = ''
-        str_1 = '.6")oV? \nM8'
-        graphical_u_i_1 = module_0.GraphicalUI(surface_0)
-        assert graphical_u_i_1.surface is None
-        str_2 = '0!'
-        dict_1 = {str_0: str_0, str_1: str_1, str_1: graphical_u_i_1, str_2:
-            str_1}
-        text_u_i_1 = module_0.TextUI(*list_0, **dict_1)
-    except BaseException:
-        pass
-
-
-def test_case_3():
-    try:
-        surface_0 = None
         graphical_u_i_0 = module_0.GraphicalUI(surface_0)
         assert graphical_u_i_0.surface is None
+        assert graphical_u_i_0.dice_selection == 0
+        list_0 = []
+        u_i_0 = module_0.UI(*list_0)
+        assert u_i_0 is not None
         game_data_0 = module_2.GameData()
         assert game_data_0.keys is None
         assert game_data_0.arrows_left == 5
@@ -66,45 +56,34 @@ def test_case_3():
         pass
 
 
+def test_case_3():
+    try:
+        surface_0 = None
+        list_0 = []
+        text_u_i_0 = module_0.TextUI(*list_0)
+        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
+        assert text_u_i_0 is not None
+        assert graphical_u_i_0.surface is None
+        assert graphical_u_i_0.dice_selection == 0
+        var_0 = text_u_i_0.display(text_u_i_0)
+        assert var_0 is None
+        str_0 = "'_/c"
+        var_1 = graphical_u_i_0.display(str_0)
+    except BaseException:
+        pass
+
+
 def test_case_4():
     try:
         surface_0 = None
-        list_0 = [surface_0, surface_0, surface_0, surface_0]
-        tuple_0 = list_0,
         graphical_u_i_0 = module_0.GraphicalUI(surface_0)
         assert graphical_u_i_0.surface is None
-        tuple_1 = graphical_u_i_0.sum_vectors(tuple_0, tuple_0)
-    except BaseException:
-        pass
-
-
-def test_case_5():
-    try:
-        surface_0 = None
-        text_u_i_0 = module_0.TextUI()
-        str_0 = 'ef[[.&\x0bYfhGw>{~,}'
-        bytes_0 = b'\x9b\x01\xe5n\x8e\xbbf8s\xfd\xe9\xa1\xcc\xdcMQS\x95\xf1'
-        game_data_0 = module_2.GameData()
-        dict_0 = {game_data_0: game_data_0, surface_0: game_data_0, str_0:
-            text_u_i_0}
+        assert graphical_u_i_0.dice_selection == 0
         list_0 = []
-        tuple_0 = bytes_0, game_data_0, dict_0, list_0
-        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
-        assert text_u_i_0 is not None
-        assert game_data_0.keys is None
-        assert game_data_0.arrows_left == 5
-        assert graphical_u_i_0.surface is None
-        var_0 = graphical_u_i_0.draw_box(str_0, str_0, tuple_0, tuple_0)
-    except BaseException:
-        pass
-
-
-def test_case_6():
-    try:
-        surface_0 = None
-        str_0 = '>\x0cPl"-9'
-        graphical_u_i_0 = module_0.GraphicalUI(surface_0)
-        assert graphical_u_i_0.surface is None
-        var_0 = graphical_u_i_0.display(str_0)
+        u_i_0 = module_0.UI(*list_0)
+        assert u_i_0 is not None
+        surface_1 = None
+        tuple_0 = surface_1,
+        tuple_1 = graphical_u_i_0.sum_vectors(tuple_0, tuple_0)
     except BaseException:
         pass

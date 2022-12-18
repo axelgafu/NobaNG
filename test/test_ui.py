@@ -3,10 +3,19 @@ import ui as module_0
 
 
 def test_case_0():
-    text_u_i_0 = module_0.TextUI()
+    u_i_0 = module_0.UI()
 
 
 def test_case_1():
-    surface_0 = None
-    graphical_u_i_0 = module_0.GraphicalUI(surface_0)
-    assert graphical_u_i_0.surface is None
+    tuple_0 = None
+    u_i_0 = module_0.UI()
+    var_0 = u_i_0.display(tuple_0)
+
+
+def test_case_2():
+    dict_0 = {}
+    u_i_0 = module_0.UI(**dict_0)
+    u_i_1 = module_0.UI()
+    list_0 = [u_i_1]
+    u_i_2 = module_0.UI()
+    var_0 = u_i_2.inflate(u_i_0, list_0)

@@ -1,3 +1,6 @@
+from dataclasses import dataclass
+from random import randint
+
 import settings
 import pygame
 import player as player_module
@@ -7,27 +10,28 @@ from player import Character, Player
 from random import randint
 
 # seed(2022-2-10)
+
+
 #
 # Class: GameData
 # ==============================================================================
-
-
 class GameData:
     """Holds game state meta-data.
 
     This class represents the overall game moderator and it is updated by the
     game states.
+
+    It implements Singleton design pattern from `refactoring.guru <https://www.geeksforgeeks.org/singleton-pattern-in-python-a-complete-guide/>`_
+
     """
 
     _instance = None
 
-    def __call__(self, *args, **kwargs):
-        """Implements Singleton design pattern from
-        `refactoring.guru
-        <https://refactoring.guru/es/design-patterns/singleton/python/example>`
-        """
+    def __new__(self):
+        """Implements singleton design pattern."""
         if self._instance is None:
-            self._instance = super().__call__(*args, **kwargs)
+            self._instance = super(GameData, self).__new__(
+                self)  # (*args, **kwargs)
 
         return self._instance
 
@@ -37,13 +41,15 @@ class GameData:
         throughout the game.
         """
         self.keys = None
+        self._prev_keys = None
+        self._curr_keys = None
         self._player_list = {}
         self._player_head = None
         self._current_player = None
         self.arrows_left = settings.MAX_ARROWS_COUNT
         pygame.key.set_repeat(0)
 
-    def player_list(self) -> list:
+    def player_list(self) -> list[Player]:
         """Returns a `list` of `Player` objects where each element represents
         one of the players in the game.
         """
@@ -78,7 +84,24 @@ class GameData:
         For more information about how user input may change game state, please
         refer to the specific game states (`State` class)
         """
+        self._prev_keys = self._curr_keys
+        self._curr_keys = [k for k in keys]
         self.keys = keys
+
+    def is_key_pressed(self, key: int) -> bool:
+        """ "Use this method to test if the key pressed status has changed.
+        :return: True if previous status is different and False otherwise.
+        """
+        key &= 0xFF
+        return not self._prev_keys[key] and self._curr_keys[key]
+
+    def is_key_released(self, key: int) -> bool:
+        key &= 0xFF
+        return self._prev_keys[key] and not self._curr_keys[key]
+
+    def is_key_held(self, key: int) -> bool:
+        key &= 0xFF
+        return self._prev_keys[key] and self._curr_keys[key]
 
     def append_player(self, player: Player):
         """Adds a new player to the game room."""
@@ -104,21 +127,41 @@ class GameData:
 
         return counts.count("dead") == 1
 
+    def shuffle_dice(self, dice_playing: int = 100, brave: bool = False) -> list:
+        rolling_player = self.current_player()
+        self._dice = []
+
+        for i in range(0, min(dice_playing, rolling_player.dice_count - 2)):
+            self._dice.append(DieRegular(self).shuffle())
+
+        if brave:
+            self._dice.append(DieBrave(self).shuffle())
+        else:
+            self._dice.append(DieCoward(self).shuffle())
+
+        return self._dice
+
+    def get_dice(self) -> list:
+        return self._dice
+
+    def lock_dice(self, lock_value: str):
+        [die.lock(lock_value) for die in self.get_dice()]
+
 
 class GameRules:
     """This class is intended to hold all the algorithms that rule the game
     interactions with game players.
+    It implements Singleton design pattern from `refactoring.guru <https://www.geeksforgeeks.org/singleton-pattern-in-python-a-complete-guide/>`_
+
     """
 
     _instance = None
 
-    def __call__(self, *args, **kwargs):
-        """Implements Singleton design pattern from
-        `refactoring.guru
-        <https://refactoring.guru/es/design-patterns/singleton/python/example>`
-        """
+    def __new__(self):
+        """Implements singleton design pattern."""
         if self._instance is None:
-            self._instance = super().__call__(*args, **kwargs)
+            self._instance = super(GameRules, self).__new__(
+                self)  # (*args, **kwargs)
 
         return self._instance
 
@@ -140,31 +183,34 @@ class GameRules:
         # Load class from name
         class_name = characters[randint(0, options)].__name__
         clazz = getattr(player_module, class_name)
-        player.character = clazz()
+        player.character = clazz(player)
 
     def visit_initialize_player(self, player: Player):
         """Applies the boosts and effects of the assigned character and role
         to the given player"""
         if player.character is not None:
-            player.character.initialize(player)
+            player.character.initialize()
 
-    def visit_throw_dice(self, player: Player, brave: bool) -> bool:
+    def visit_throw_dice(self, game_data: GameData, brave: bool) -> list:
         """Update player statistics based on dice rule.
-        :return: True if player's turn ends.
+        :return: False.
 
         .. note::
             **Rule**
             If player is alive, use `throw_alive`.
             If plaier is ghost, use `throw_ghost`.
         """
-        if player.status == "ghost":
-            self.throw_ghost(player)
+        result = []
+
+        if game_data.current_player().status == Player.S_GHOST:
+            result = self.throw_ghost(game_data)
         else:
-            self.throw_alive(player, brave)
+            result = self.throw_alive(game_data, brave)
 
-        return False
+        self.visit_lock_dice(game_data)
+        return result
 
-    def throw_alive(self, player: Player, brave):
+    def throw_alive(self, game_data: GameData, brave) -> list:
         """Update player statistics based on alive dice rule.
         :return: True if player's turn ends.
 
@@ -172,22 +218,9 @@ class GameRules:
             **Rule**
             Throw dice with full character capacity.
         """
-        if player.dice_re_roll[0] > 0:
-            if brave:
-                player.dice_value[0] = self._dice_list["brave"][randint(0, 5)]
-            else:
-                player.dice_value[0] = self._dice_list["coward"][randint(0, 5)]
-            player.dice_re_roll[0] -= 1
+        return game_data.shuffle_dice()
 
-        for i in range(1, player.dice_count):
-            if player.dice_re_roll[i] > 0:
-                player.dice_re_roll[i] -= 1
-                player.dice_value[i] = self._dice_list["regular"][randint(
-                    0, 5)]
-                if player.dice_value[i] == "bomb":
-                    player.dice_re_roll[i] = 0
-
-    def throw_ghost(self, player: Player):
+    def throw_ghost(self, game_data: GameData) -> list:
         """Update player statistics based on alive dice rule.
         :return: True if player's turn ends.
 
@@ -195,13 +228,17 @@ class GameRules:
             **Rule**
             Throw just 2 dice.
         """
-        for i in range(0, 1):
-            if player.dice_re_roll[i] > 0:
-                player.dice_re_roll[0] -= 1
-                player.dice_value[i] = self._dice_list["regular"][randint(
-                    0, 5)]
-                if player.dice_value[i] == "bomb":
-                    player.dice_re_roll[i] = 0
+        return game_data.shuffle_dice(2)
+
+    def visit_lock_dice(self, game_data: GameData) -> bool:
+        """Use this method to update re-roll state of player's dice.
+        :param player: Game player to be updated.
+        :type player: Player
+        :return: False
+        """
+        game_data.lock_dice("bomb")
+
+        return False
 
     def visit_life(self, player: Player) -> bool:
         """Update player statistics based on life rule.
@@ -224,10 +261,15 @@ class GameRules:
         player.life = min(player.max_life, player.life)
         return False
 
-    def visit_character_stats_rules(self, player: Player) -> bool:
-        player.character.visit_character_stats_rules(player)
+    # def visit_character_stats_rules(self, player: Player) -> bool:
+    #     player.character.visit_character_stats_rules(player)
 
-        return False
+    #     return False
+
+    def visit_apply_dice_actions(self, game_data: GameData):
+        for xdie in game_data.get_dice():
+            die: Die = xdie
+            die.execute()
 
     def visit_character_counter_rules(self, game_data: GameData) -> bool:
         player: Player = game_data.current_player()
@@ -235,87 +277,7 @@ class GameRules:
 
         return False
 
-    def visit_bombs(self, game_data: GameData) -> bool:
-        """Update player statistics based on bombs rule.
-        :return: True if player's turn ends.
-
-        .. note::
-            **Rule**
-            Life is reduced by 1 if player obtains three bombs.
-        """
-        player = game_data.current_player()
-        counts = {i: player.dice_value.count(i) for i in player.dice_value}
-
-        if "bomb" in counts.keys() and counts["bomb"] > 2:
-            return self.visit_update_life(player, game_data, -1)
-
-        return False
-
-    def visit_update_life(
-        self, player: Player, game_data: GameData, decrement: int = -1
-    ) -> bool:
-        """Updates life stat of current player by adding up the value specified.
-        use a positive number to increment life and a negative number to perform
-        a life decrement.
-
-        :return: True if player's life reaches zero.
-        """
-        player.life += decrement
-
-        if player.life <= 0:
-            player.life = 0
-            if game_data.is_first_death():
-                player.status = Player.S_GHOST
-            else:
-                player.status = Player.S_DEAD
-            return True
-
-        return False
-
-    def visit_arrows(self, game_data: GameData) -> bool:
-        """Update player statistics based on arrows rule.
-        :return: True if player's turn ends.
-
-        .. note::
-            **Rule**
-            Life is reduced by the number of arrows the player has.
-            If the arrows in the stack run out then the rule is
-            applied to all the participants in the game.
-        """
-        player = game_data.current_player()
-        counts = {i: player.dice_value.count(i) for i in player.dice_value}
-
-        if "arrow" in counts.keys():
-            if counts["arrow"] > game_data.arrows_left:
-                player.arrows += game_data.arrows_left
-                game_data.arrows_left = settings.MAX_ARROWS_COUNT
-                for playr in game_data.player_list():
-                    self.visit_update_life(playr, game_data, -playr.arrows)
-                    playr.arrows = 0
-                return True
-            else:
-                game_data.arrows_left -= counts["arrow"]
-                player.arrows += counts["arrow"]
-
-        return False
-
-    def visit_shoot(self, game_data: GameData) -> bool:
-        """Update player statistics based on shoot rule.
-        :return: True if player's turn ends.
-
-        .. note::
-            **Rule**
-            Life is reduced by 1 if player obtains a shoot.
-        """
-        player = game_data.current_player()
-        counts = {i: player.dice_value.count(i) for i in player.dice_value}
-
-        if "shoot" in counts.keys():
-            return self.visit_update_life(player, game_data, -counts["shoot"])
-
-        return False
-
-    def visitHit(self, game_data: GameData, attack_vector) -> bool:
+    def visit_hit(self, game_data: GameData, attack_vector: dict) -> bool:
         """attack_vector(dictionary):
         1st element:
         - clockwise: Traverse players towards the right.
@@ -327,8 +289,8 @@ class GameRules:
         attack_vector = {
         'clockwise':[1,0,1], # Hit the first and third player on the right.
         'backwards':[0,2]    # Hit twice the second player on the left.
-
         }
+
         """
         player = game_data.current_player()
         playr = None
@@ -369,5 +331,182 @@ class GameRules:
         player = game_data.current_player()
 
         player.dice_value = ["", "", "", "", "", ""]
-        player.dice_re_roll = [3, 3, 3, 3, 3, 3]
+        # player.dice_re_roll = [3, 3, 3, 3, 3, 3]
         game_data.next_player()
+
+
+#
+# Class: Die
+# ==============================================================================
+
+
+class Die:
+    def __init__(self, game_data: GameData) -> None:
+        self.value: str = ""
+        self._target: Player
+        self._game_data = game_data
+        self._locked = False
+
+    def get_dice(self) -> list[str]:
+        return []
+
+    def is_skippable(self) -> bool:
+        return False
+
+    def shuffle(self):
+        """Use this method to "throw" the dice.
+        :return Die: This Die.
+        """
+        if not self._locked:
+            self.value = self.get_dice()[randint(0, 5)]
+        return self
+
+    def assign(self, target: Player) -> None:
+        self._target = target
+
+    def execute(self):
+        """Implement this effect in concrete class."""
+        self.visit_character_stats_rules()
+
+    def get_available_targets(self, game_data: GameData) -> list[Player]:
+        return self.identify_targets(game_data)
+
+    def get_selected_targets(self) -> Player:
+        return self._target
+
+    def identify_targets(self, game_data: GameData) -> list[Player]:
+        """Determines what players may be affected by this die."""
+        rolling_player = game_data.current_player()
+
+        if self.value in ["life", "no_arrow"]:
+            return game_data.player_list()
+        elif self.value in ["1", "2", "2x1", "2x2"]:
+            result = []
+            if rolling_player.character.visit_recognize_hit1(self.value):
+                result.append(rolling_player.right_hand_player)
+                result.append(rolling_player.left_hand_player)
+
+            if rolling_player.character.visit_recognize_hit2(self.value):
+                result.append(
+                    rolling_player.right_hand_player.right_hand_player)
+                result.append(rolling_player.left_hand_player.left_hand_player)
+
+            return result
+        elif self.value in ["bomb", "arrow", "shoot"]:
+            return [rolling_player]
+        else:
+            raise RuntimeError(
+                f"Unhandled die option {self.value}, implement handler.")
+
+    def visit_arrows(self, decrement: int = -1) -> bool:
+        """
+        Update player statistics based on arrows rule.
+
+        :param decrement: A negative number implies an arrow has been taken
+            from the stack. A positive number means an arrow removal action
+            was used.
+
+        :type decrement: int
+        :return: True if player's turn ends.
+
+        .. note::
+            **Rule**
+            Life is reduced by the number of arrows the player has.
+            If the arrows in the stack run out then the rule is
+            applied to all the participants in the game.
+        """
+        self._game_data.arrows_left += decrement
+
+        if self._game_data.arrows_left <= 0:
+            self._target.arrows -= decrement
+            self._game_data.arrows_left = settings.MAX_ARROWS_COUNT
+            for player in self._game_data.player_list():
+                self.visit_update_life(-player.arrows)
+                player.arrows = 0
+            return True
+        else:
+            self._game_data.arrows_left += decrement
+            self._target.arrows -= decrement
+
+        return False
+
+    def visit_update_life(self, decrement: int = -1) -> bool:
+        """Updates life stat of current player by adding up the value specified.
+        use a positive number to increment life and a negative number to perform
+        a life decrement.
+
+        :return: True if player's life reaches zero.
+        """
+        self._target.life += decrement
+
+        if self._target.life <= 0:
+            self._target.life = 0
+            if self._game_data.is_first_death():
+                self._target.status = Player.S_GHOST
+            else:
+                self._target.status = Player.S_DEAD
+            return True
+
+        return False
+
+    def lock(self, lock_value: str):
+        self._locked = self.value == lock_value
+
+    def visit_character_stats_rules(self):
+        """."""
+        self._target.character.visit_character_stats_rules(self.value)
+
+
+class DieRegular(Die):
+    def __init__(self, game_data: GameData) -> None:
+        super().__init__(game_data)
+
+    def get_dice(self) -> list[str]:
+        return ["1", "2", "shoot", "arrow", "bomb", "life"]
+
+    def execute(self):
+        """Apply effects of Regular die."""
+        if self.value in ["shoot", "1", "2"]:
+            self.visit_update_life(-1)
+        elif self.value in ["arrow"]:
+            self.visit_arrows(-1)
+        elif self.value in ["life"]:
+            self.visit_update_life(+1)
+
+        super().execute()
+
+
+class DieBrave(Die):
+    def __init__(self, game_data: GameData) -> None:
+        super().__init__(game_data)
+
+    def get_dice(self) -> list[str]:
+        return ["2x1", "2x2", "bomb", "arrow", "shoot", "bullet"]
+
+    def execute(self):
+        """Apply effects of Brave die."""
+        if self.value in ["2x1", "2x2"]:
+            self.visit_update_life(-2)
+        elif self.value in ["arrow"]:
+            self.visit_arrows(-1)
+        elif self.value in ["shoot", "bullet"]:
+            self.visit_update_life(-1)
+
+
+class DieCoward(Die):
+    def __init__(self, game_data: GameData) -> None:
+        super().__init__(game_data)
+
+    def get_dice(self) -> list[str]:
+        return ["1", "no_arrow", "bomb", "arrow", "2xlife", "life"]
+
+    def execute(self):
+        """Apply effects of Brave die."""
+        if self.value in ["1"]:
+            self.visit_update_life(-1)
+        elif self.value in ["no_arrow"]:
+            self.visit_arrows(+1)
+        elif self.value in ["2xlife"]:
+            self.visit_update_life(+2)
+        elif self.value in ["life"]:
+            self.visit_update_life(+1)

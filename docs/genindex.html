@@ -13,7 +13,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" /> 
@@ -52,8 +54,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Index</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -96,6 +98,8 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="state.html#state.PlayGame.apply_rules">apply_rules() (state.PlayGame method)</a>
 </li>
+      <li><a href="game_rules.html#game_rules.Die.assign">assign() (game_rules.Die method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -122,6 +126,14 @@
 <h2 id="D">D</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="game_rules.html#game_rules.Die">Die (class in game_rules)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.DieBrave">DieBrave (class in game_rules)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.DieCoward">DieCoward (class in game_rules)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.DieRegular">DieRegular (class in game_rules)</a>
+</li>
       <li><a href="state.html#state.Display">Display (class in state)</a>
 </li>
       <li><a href="ui.html#ui.GraphicalUI.display">display() (ui.GraphicalUI method)</a>
@@ -138,6 +150,8 @@
 </li>
       <li><a href="ui.html#ui.GraphicalUI.draw_box">draw_box() (ui.GraphicalUI method)</a>
 </li>
+      <li><a href="ui.html#ui.GraphicalUI.draw_select_box">draw_select_box() (ui.GraphicalUI method)</a>
+</li>
       <li><a href="ui.html#ui.GraphicalUI.draw_status">draw_status() (ui.GraphicalUI method)</a>
 </li>
   </ul></td>
@@ -148,6 +162,16 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="player.html#player.Elie">Elie (class in player)</a>
 </li>
+      <li><a href="game_rules.html#game_rules.Die.execute">execute() (game_rules.Die method)</a>
+
+      <ul>
+        <li><a href="game_rules.html#game_rules.DieBrave.execute">(game_rules.DieBrave method)</a>
+</li>
+        <li><a href="game_rules.html#game_rules.DieCoward.execute">(game_rules.DieCoward method)</a>
+</li>
+        <li><a href="game_rules.html#game_rules.DieRegular.execute">(game_rules.DieRegular method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -167,13 +191,29 @@
 </li>
       <li><a href="state.html#state.GameOver">GameOver (class in state)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="game_rules.html#game_rules.GameRules">GameRules (class in game_rules)</a>
 </li>
       <li><a href="state.html#state.GameStart">GameStart (class in state)</a>
 </li>
+      <li><a href="game_rules.html#game_rules.Die.get_available_targets">get_available_targets() (game_rules.Die method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="game_rules.html#game_rules.Die.get_dice">get_dice() (game_rules.Die method)</a>
+
+      <ul>
+        <li><a href="game_rules.html#game_rules.DieBrave.get_dice">(game_rules.DieBrave method)</a>
+</li>
+        <li><a href="game_rules.html#game_rules.DieCoward.get_dice">(game_rules.DieCoward method)</a>
+</li>
+        <li><a href="game_rules.html#game_rules.DieRegular.get_dice">(game_rules.DieRegular method)</a>
+</li>
+        <li><a href="game_rules.html#game_rules.GameData.get_dice">(game_rules.GameData method)</a>
+</li>
+      </ul></li>
       <li><a href="state.html#state.Display.get_message">get_message() (state.Display method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.Die.get_selected_targets">get_selected_targets() (game_rules.Die method)</a>
 </li>
       <li><a href="state.html#state.State.get_state">get_state() (state.State method)</a>
 </li>
@@ -197,6 +237,8 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="game_rules.html#game_rules.Die.identify_targets">identify_targets() (game_rules.Die method)</a>
+</li>
       <li><a href="ui.html#ui.GraphicalUI.inflate">inflate (ui.GraphicalUI attribute)</a>
 </li>
       <li><a href="ui.html#ui.UI.inflate">inflate() (ui.UI method)</a>
@@ -217,6 +259,14 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="game_rules.html#game_rules.GameData.is_first_death">is_first_death() (game_rules.GameData method)</a>
 </li>
+      <li><a href="game_rules.html#game_rules.GameData.is_key_held">is_key_held() (game_rules.GameData method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.GameData.is_key_pressed">is_key_pressed() (game_rules.GameData method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.GameData.is_key_released">is_key_released() (game_rules.GameData method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.Die.is_skippable">is_skippable() (game_rules.Die method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -232,6 +282,12 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="state.html#state.Lobby">Lobby (class in state)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="game_rules.html#game_rules.Die.lock">lock() (game_rules.Die method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.GameData.lock_dice">lock_dice() (game_rules.GameData method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -330,6 +386,8 @@
 </li>
       <li><a href="player.html#player.Player.S_GHOST">S_GHOST (player.Player attribute)</a>
 </li>
+      <li><a href="state.html#state.PlayGame.set_player_choices">set_player_choices() (state.PlayGame method)</a>
+</li>
       <li><a href="state.html#state.State.set_transitionable">set_transitionable() (state.State method)</a>
 </li>
       <li>
@@ -339,8 +397,14 @@
         <li><a href="settings.html#module-settings">module</a>
 </li>
       </ul></li>
+      <li><a href="ui.html#ui.GraphicalUI.show_dice">show_dice() (ui.GraphicalUI method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="game_rules.html#game_rules.Die.shuffle">shuffle() (game_rules.Die method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.GameData.shuffle_dice">shuffle_dice() (game_rules.GameData method)</a>
+</li>
       <li>
     state
 
@@ -349,6 +413,12 @@
 </li>
       </ul></li>
       <li><a href="state.html#state.State">State (class in state)</a>
+</li>
+      <li><a href="state.html#state.PlayGame.STATE_ENDING_TURN">STATE_ENDING_TURN (state.PlayGame attribute)</a>
+</li>
+      <li><a href="state.html#state.PlayGame.STATE_PLAYER_DECIDING">STATE_PLAYER_DECIDING (state.PlayGame attribute)</a>
+</li>
+      <li><a href="state.html#state.PlayGame.STATE_THROWING_DICE">STATE_THROWING_DICE (state.PlayGame attribute)</a>
 </li>
       <li><a href="ui.html#ui.GraphicalUI.sum_vectors">sum_vectors() (ui.GraphicalUI method)</a>
 </li>
@@ -429,41 +499,51 @@
 <h2 id="V">V</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="game_rules.html#game_rules.GameRules.visit_arrows">visit_arrows() (game_rules.GameRules method)</a>
+      <li><a href="game_rules.html#game_rules.GameRules.visit_apply_dice_actions">visit_apply_dice_actions() (game_rules.GameRules method)</a>
+</li>
+      <li><a href="game_rules.html#game_rules.Die.visit_arrows">visit_arrows() (game_rules.Die method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_assign_character">visit_assign_character() (game_rules.GameRules method)</a>
 </li>
-      <li><a href="game_rules.html#game_rules.GameRules.visit_bombs">visit_bombs() (game_rules.GameRules method)</a>
+      <li><a href="ui.html#ui.GraphicalUI.visit_assign_dice">visit_assign_dice() (ui.GraphicalUI method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_character_counter_rules">visit_character_counter_rules() (game_rules.GameRules method)</a>
 
       <ul>
         <li><a href="player.html#player.Character.visit_character_counter_rules">(player.Character method)</a>
 </li>
+        <li><a href="player.html#player.Elie.visit_character_counter_rules">(player.Elie method)</a>
+</li>
       </ul></li>
-      <li><a href="game_rules.html#game_rules.GameRules.visit_character_stats_rules">visit_character_stats_rules() (game_rules.GameRules method)</a>
+      <li><a href="game_rules.html#game_rules.Die.visit_character_stats_rules">visit_character_stats_rules() (game_rules.Die method)</a>
 
       <ul>
         <li><a href="player.html#player.Character.visit_character_stats_rules">(player.Character method)</a>
+</li>
+        <li><a href="player.html#player.Doc.visit_character_stats_rules">(player.Doc method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="game_rules.html#game_rules.GameRules.visit_finish_turn">visit_finish_turn() (game_rules.GameRules method)</a>
 </li>
+      <li><a href="game_rules.html#game_rules.GameRules.visit_hit">visit_hit() (game_rules.GameRules method)</a>
+</li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_initialize_player">visit_initialize_player() (game_rules.GameRules method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_life">visit_life() (game_rules.GameRules method)</a>
 </li>
-      <li><a href="game_rules.html#game_rules.GameRules.visit_shoot">visit_shoot() (game_rules.GameRules method)</a>
+      <li><a href="game_rules.html#game_rules.GameRules.visit_lock_dice">visit_lock_dice() (game_rules.GameRules method)</a>
+</li>
+      <li><a href="player.html#player.Character.visit_recognize_hit1">visit_recognize_hit1() (player.Character method)</a>
+</li>
+      <li><a href="player.html#player.Character.visit_recognize_hit2">visit_recognize_hit2() (player.Character method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_status">visit_status() (game_rules.GameRules method)</a>
 </li>
       <li><a href="game_rules.html#game_rules.GameRules.visit_throw_dice">visit_throw_dice() (game_rules.GameRules method)</a>
 </li>
-      <li><a href="game_rules.html#game_rules.GameRules.visit_update_life">visit_update_life() (game_rules.GameRules method)</a>
-</li>
-      <li><a href="game_rules.html#game_rules.GameRules.visitHit">visitHit() (game_rules.GameRules method)</a>
+      <li><a href="game_rules.html#game_rules.Die.visit_update_life">visit_update_life() (game_rules.Die method)</a>
 </li>
   </ul></td>
 </tr></table>

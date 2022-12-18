@@ -14,7 +14,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,7 +46,62 @@
 <li class="toctree-l2"><a class="reference internal" href="nobang.html">nobang module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="player.html">player module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="settings.html">settings module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">state module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">state module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#state.Display"><code class="docutils literal notranslate"><span class="pre">Display</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.Display.get_message"><code class="docutils literal notranslate"><span class="pre">Display.get_message()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.Display.message"><code class="docutils literal notranslate"><span class="pre">Display.message()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.Display.next_state"><code class="docutils literal notranslate"><span class="pre">Display.next_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.Display.transitionate"><code class="docutils literal notranslate"><span class="pre">Display.transitionate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.Display.update"><code class="docutils literal notranslate"><span class="pre">Display.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.Display.using"><code class="docutils literal notranslate"><span class="pre">Display.using()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#state.GameOver"><code class="docutils literal notranslate"><span class="pre">GameOver</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.GameOver.transitionate"><code class="docutils literal notranslate"><span class="pre">GameOver.transitionate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.GameOver.update"><code class="docutils literal notranslate"><span class="pre">GameOver.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#state.GameStart"><code class="docutils literal notranslate"><span class="pre">GameStart</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.GameStart.transitionate"><code class="docutils literal notranslate"><span class="pre">GameStart.transitionate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.GameStart.update"><code class="docutils literal notranslate"><span class="pre">GameStart.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#state.Lobby"><code class="docutils literal notranslate"><span class="pre">Lobby</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.Lobby.handle_answer_add_user"><code class="docutils literal notranslate"><span class="pre">Lobby.handle_answer_add_user()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.Lobby.transitionate"><code class="docutils literal notranslate"><span class="pre">Lobby.transitionate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.Lobby.update"><code class="docutils literal notranslate"><span class="pre">Lobby.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#state.PerformActivity"><code class="docutils literal notranslate"><span class="pre">PerformActivity</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.PerformActivity.transitionate"><code class="docutils literal notranslate"><span class="pre">PerformActivity.transitionate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PerformActivity.update"><code class="docutils literal notranslate"><span class="pre">PerformActivity.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#state.PlayGame"><code class="docutils literal notranslate"><span class="pre">PlayGame</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.STATE_ENDING_TURN"><code class="docutils literal notranslate"><span class="pre">PlayGame.STATE_ENDING_TURN</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.STATE_PLAYER_DECIDING"><code class="docutils literal notranslate"><span class="pre">PlayGame.STATE_PLAYER_DECIDING</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.STATE_THROWING_DICE"><code class="docutils literal notranslate"><span class="pre">PlayGame.STATE_THROWING_DICE</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.apply_rules"><code class="docutils literal notranslate"><span class="pre">PlayGame.apply_rules()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.handle_answer_rerol"><code class="docutils literal notranslate"><span class="pre">PlayGame.handle_answer_rerol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.set_player_choices"><code class="docutils literal notranslate"><span class="pre">PlayGame.set_player_choices()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.transitionate"><code class="docutils literal notranslate"><span class="pre">PlayGame.transitionate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.PlayGame.update"><code class="docutils literal notranslate"><span class="pre">PlayGame.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#state.Quit"><code class="docutils literal notranslate"><span class="pre">Quit</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.Quit.update"><code class="docutils literal notranslate"><span class="pre">Quit.update()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#state.State"><code class="docutils literal notranslate"><span class="pre">State</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#state.State.get_state"><code class="docutils literal notranslate"><span class="pre">State.get_state()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.State.set_transitionable"><code class="docutils literal notranslate"><span class="pre">State.set_transitionable()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.State.transitionate"><code class="docutils literal notranslate"><span class="pre">State.transitionate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.State.traverseState"><code class="docutils literal notranslate"><span class="pre">State.traverseState()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#state.State.update"><code class="docutils literal notranslate"><span class="pre">State.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="ui.html">ui module</a></li>
 </ul>
 </li>
@@ -63,9 +120,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="modules.html">src</a> &raquo;</li>
-      <li>state module</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">src</a></li>
+      <li class="breadcrumb-item active">state module</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/state.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -76,11 +133,11 @@
            <div itemprop="articleBody">
              
   <section id="module-state">
-<span id="state-module"></span><h1>state module<a class="headerlink" href="#module-state" title="Permalink to this headline"></a></h1>
+<span id="state-module"></span><h1>state module<a class="headerlink" href="#module-state" title="Permalink to this heading"></a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="state.Display">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">Display</span></span><a class="headerlink" href="#state.Display" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
 <p>This state is reached from any state that requests showing a message.</p>
 <img alt="_images/display-state_sequence.png" src="_images/display-state_sequence.png" />
 <p>usage example:</p>
@@ -105,7 +162,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.Display.message">
-<span class="sig-name descname"><span class="pre">message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">state.State</span></a></span></span><a class="headerlink" href="#state.Display.message" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">message</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">State</span></a></span></span><a class="headerlink" href="#state.Display.message" title="Permalink to this definition"></a></dt>
 <dd><p>Sets the message that should be shown to the player.
 :return: this state. Use it to chain setup calls.
 :rtype: State</p>
@@ -113,12 +170,12 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.Display.next_state">
-<span class="sig-name descname"><span class="pre">next_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">state.State</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">state.State</span></a></span></span><a class="headerlink" href="#state.Display.next_state" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">next_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">next_state</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">State</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">State</span></a></span></span><a class="headerlink" href="#state.Display.next_state" title="Permalink to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.Display.transitionate">
-<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Display.transitionate" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Display.transitionate" title="Permalink to this definition"></a></dt>
 <dd><p>Uses the <strong>callback</strong> function defined in the <cite>uses</cite> function to
 perform the transitionate step.</p>
 <dl class="field-list simple">
@@ -136,7 +193,7 @@ perform the transitionate step.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.Display.using">
-<span class="sig-name descname"><span class="pre">using</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">state.State</span></a></span></span><a class="headerlink" href="#state.Display.using" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">using</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">State</span></a></span></span><a class="headerlink" href="#state.Display.using" title="Permalink to this definition"></a></dt>
 <dd><p>Use this method to define the <strong>callback</strong> function to be used
 during this display execution.</p>
 <dl class="field-list simple">
@@ -154,7 +211,7 @@ during this display execution.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="state.GameOver">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">GameOver</span></span><a class="headerlink" href="#state.GameOver" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
 <p>This state is reached when player has died in the game.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="state.GameOver.transitionate">
@@ -199,7 +256,7 @@ for the next game round.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="state.GameStart">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">GameStart</span></span><a class="headerlink" href="#state.GameStart" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
 <p>This state is reached after players are registered and the players group
 is ready to start the game. During this state, roles and characters are
 randomly assigned.</p>
@@ -238,7 +295,7 @@ randomly assigned.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.GameStart.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.GameStart.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.GameStart.update" title="Permalink to this definition"></a></dt>
 <dd><p>Uses the game data infrastructure to assign characters and roles to
 players.</p>
 </dd></dl>
@@ -248,12 +305,12 @@ players.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="state.Lobby">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">Lobby</span></span><a class="headerlink" href="#state.Lobby" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
 <p>Reached at the very begining of the game start and it is used to register
 players in the game.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="state.Lobby.handle_answer_add_user">
-<span class="sig-name descname"><span class="pre">handle_answer_add_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Lobby.handle_answer_add_user" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">handle_answer_add_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Lobby.handle_answer_add_user" title="Permalink to this definition"></a></dt>
 <dd><p>High-order function, returns a message that should be shown to the
 player and the function that should be used to handle player’s response
 to the displayed question.
@@ -307,7 +364,7 @@ usage example:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.Lobby.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Lobby.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.Lobby.update" title="Permalink to this definition"></a></dt>
 <dd><p>Lobby just waits for the players to be registered.
 Future implementations will add options to create new play rooms and
 options to allow users to register in those game rooms.
@@ -319,7 +376,7 @@ options to allow users to register in those game rooms.
 <dl class="py class">
 <dt class="sig sig-object py" id="state.PerformActivity">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">PerformActivity</span></span><a class="headerlink" href="#state.PerformActivity" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
 <p>This state is reached when player has thrown the dice and has made the
 decision about what actions should be performed. It is important to remark
 that there are actions available for other players that have been given by
@@ -358,7 +415,7 @@ decide to activate those actions and this is the state where that occur.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.PerformActivity.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PerformActivity.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PerformActivity.update" title="Permalink to this definition"></a></dt>
 <dd><p>This method will enable character specific and role specific actions
 and will execute the actions that any given player has decided to use.
 Only the first player that claims the action will be allowed.</p>
@@ -369,13 +426,28 @@ Only the first player that claims the action will be allowed.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="state.PlayGame">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">PlayGame</span></span><a class="headerlink" href="#state.PlayGame" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
 <p>This state is reached after roles and characters have been assigned. During
 this state, players throw the dice until their turns end and current player
 gets ready to execute actions.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="state.PlayGame.STATE_ENDING_TURN">
+<span class="sig-name descname"><span class="pre">STATE_ENDING_TURN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#state.PlayGame.STATE_ENDING_TURN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="state.PlayGame.STATE_PLAYER_DECIDING">
+<span class="sig-name descname"><span class="pre">STATE_PLAYER_DECIDING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#state.PlayGame.STATE_PLAYER_DECIDING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="state.PlayGame.STATE_THROWING_DICE">
+<span class="sig-name descname"><span class="pre">STATE_THROWING_DICE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#state.PlayGame.STATE_THROWING_DICE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 <dl class="py method">
 <dt class="sig sig-object py" id="state.PlayGame.apply_rules">
-<span class="sig-name descname"><span class="pre">apply_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameRules" title="game_rules.GameRules"><span class="pre">game_rules.GameRules</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PlayGame.apply_rules" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">apply_rules</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_rules</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameRules" title="game_rules.GameRules"><span class="pre">GameRules</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PlayGame.apply_rules" title="Permalink to this definition"></a></dt>
 <dd><p>This method uses the infrastructure of <code class="xref py py-class docutils literal notranslate"><span class="pre">GameRules</span></code> class to
 apply the game rules to the players in the game.</p>
 </dd></dl>
@@ -397,8 +469,13 @@ usage example:</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="state.PlayGame.set_player_choices">
+<span class="sig-name descname"><span class="pre">set_player_choices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#state.PlayGame.set_player_choices" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="state.PlayGame.transitionate">
-<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PlayGame.transitionate" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PlayGame.transitionate" title="Permalink to this definition"></a></dt>
 <dd><p>Moves the game to a different state depending on the state transitions.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -442,7 +519,7 @@ throw the dice again.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.PlayGame.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PlayGame.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.PlayGame.update" title="Permalink to this definition"></a></dt>
 <dd><p>Applies dice rules as required after each dice throw.</p>
 </dd></dl>
 
@@ -451,7 +528,7 @@ throw the dice again.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="state.Quit">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">state.</span></span><span class="sig-name descname"><span class="pre">Quit</span></span><a class="headerlink" href="#state.Quit" title="Permalink to this definition"></a></dt>
-<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">state.State</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></p>
 <p>This state is reached from Lobby state when the player wants to end the
 game.</p>
 <dl class="py method">
@@ -470,7 +547,7 @@ claimed resources before closing the game.</p>
 <p>Game engine is based on state machine theory. Generic state.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="state.State.get_state">
-<span class="sig-name descname"><span class="pre">get_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_class_name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">state.State</span></a></span></span><a class="headerlink" href="#state.State.get_state" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state_class_name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#state.State" title="state.State"><span class="pre">State</span></a></span></span><a class="headerlink" href="#state.State.get_state" title="Permalink to this definition"></a></dt>
 <dd><p>Returns a <a class="reference internal" href="#state.State" title="state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> object with current game state ready to
 execute next action.</p>
 </dd></dl>
@@ -485,21 +562,21 @@ stop until transitionable is set to true.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.State.transitionate">
-<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.transitionate" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">transitionate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.transitionate" title="Permalink to this definition"></a></dt>
 <dd><p>Abstraction function to be rewritten by sub-classes to provide
 desired behavior depending on game state.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.State.traverseState">
-<span class="sig-name descname"><span class="pre">traverseState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.traverseState" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">traverseState</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.traverseState" title="Permalink to this definition"></a></dt>
 <dd><p>Performs current state actions, update players stats and
 transitions to next state.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="state.State.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">game_rules.GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.update" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">game_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="game_rules.html#game_rules.GameData" title="game_rules.GameData"><span class="pre">GameData</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#state.State.update" title="Permalink to this definition"></a></dt>
 <dd><p>Abstraction function to be rewritten by sub-classes to provide
 desired behavior depending on game state.</p>
 </dd></dl>

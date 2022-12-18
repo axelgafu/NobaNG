@@ -12,14 +12,24 @@ set BUILDDIR=_build
 
 if "%1" == "" goto help
 
-if "%1" == "github" (
-	coverage run -m pytest test --html=docs/_static/test_report.html
-	
-	%SPHINXBUILD% -b html %SOURCEDIR% %SOURCEDIR% %BUILDDIR%
+if "%1" == "github" (	
+	echo.
+	echo.Compiling HTML
+	echo.===========================
+	%SPHINXBUILD% -b html %SOURCEDIR% %BUILDDIR%
     sphinx-apidoc --ext-autodoc -f -o docsrc src
+
+    echo.
+	echo.Updating documentation
+	echo.===========================
     %SPHINXBUILD% -M html %SOURCEDIR% %BUILDDIR% %SPHINXOPTS%
     robocopy %BUILDDIR%/html ../docs /E > nul
     echo.Generated files copied to ../docs
+
+	echo.
+	echo.Generating coverage report
+	echo.===========================
+	coverage run -m pytest test --html=docs/_static/test_report.html
 	coverage report -m 
 
     goto end
@@ -30,6 +40,7 @@ if "%1" == "help" (
 	echo.test:			executes unit testing.
 	echo.generate_test: use pynguin to create new test cases.
 	echo.github:		gets ready project prior to git push.
+	echo.autobuild:     Starts a local HTTP server for documentation development.
 
     goto end
 )
@@ -56,8 +67,8 @@ if "%1" == "test" (
 	
 	rem https://breadcrumbscollector.tech/how-to-use-code-coverage-in-python-with-pytest/
 	rem https://medium.com/swlh/unit-testing-in-python-basics-21a9a57418a0
-	rem pytest --flake8 --black src
-	coverage run -m pytest test --html=docs/_static/test_report.html --mypy --mccabe --cov-branch --cov-report term-missing
+	rem pytest --black src
+	coverage run -m pytest test --html=%BUILDDIR%/_static/test_report.html --mypy --mccabe --cov-branch --cov-report term-missing --self-contained-html
 	coverage report -m 
 
 	rem https://pypi.org/project/docstr-coverage/
@@ -68,14 +79,31 @@ if "%1" == "test" (
 
 if "%1" == "generate_test" (
 	rem https://www.youtube.com/watch?v=hLA9Q4tSkMU
-	pynguin.exe --project_path ./src --output_path ./test --module_name game_rules --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
-    pynguin.exe --project_path ./src --output_path ./test --module_name player --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
-    pynguin.exe --project_path ./src --output_path ./test --module_name ui --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
-    pynguin.exe --project_path ./src --output_path ./test --module_name state --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+	rem pynguin.exe --project_path ./src --output_path ./test --module_name game_rules --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+    rem pynguin.exe --project_path ./src --output_path ./test --module_name player --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+    rem pynguin.exe --project_path ./src --output_path ./test --module_name ui --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+    rem pynguin.exe --project_path ./src --output_path ./test --module_name state --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive True --seed_from_archive True --filter_covered_targets_from_test_cluster True -v
+
+	pynguin.exe --project_path ./src --output_path ./test --module_name game_rules --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive False --seed_from_archive True --filter_covered_targets_from_test_cluster False -v
+    pynguin.exe --project_path ./src --output_path ./test --module_name player --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive False --seed_from_archive True --filter_covered_targets_from_test_cluster False -v
+    pynguin.exe --project_path ./src --output_path ./test --module_name ui --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive False --seed_from_archive True --filter_covered_targets_from_test_cluster False -v
+    pynguin.exe --project_path ./src --output_path ./test --module_name state --create_coverage_report true --budget 15 --seed 20220225 --type_inference_strategy TYPE_HINTS --use-archive False --seed_from_archive True --filter_covered_targets_from_test_cluster False -v
 
     goto end
 )
 
+if "%1" == "autobuild" (
+	echo.
+	echo.Copying HTML generated files to ../docs
+	echo.=========================================
+	robocopy %BUILDDIR%/html ../docs /E > nul
+    
+	
+	sphinx-apidoc --ext-autodoc -f -o docsrc src
+	sphinx-autobuild -b html %SOURCEDIR% %BUILDDIR%
+	
+    goto end
+)
 
 
 %SPHINXBUILD% >NUL 2>NUL

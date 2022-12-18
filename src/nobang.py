@@ -28,20 +28,24 @@ class Game:
         self.state = Lobby()
         self.ui = GraphicalUI(self.screen)
         self.game_data = GameData()
+        self.background = pygame.image.load("image/lore/background.jpg")
+        self.background = pygame.transform.scale(
+            self.background, (WIDTH, HEIGTH))
 
     def run(self):
         """Big-Loop where the games resides in."""
-        self.screen.fill("black")
+        # self.screen.fill("black")
+        self.screen.blit(self.background, (0, 0))
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT or self.state.state_id == "ST_QUIT":
                     pygame.quit()
                     sys.exit()
                 if event.type == pygame.KEYDOWN:
-                    self.game_data.update_keys(pygame.key.get_pressed())
                     self.state.set_transitionable(True)
 
-            pygame.event.clear()
+            self.game_data.update_keys(pygame.key.get_pressed())
+            # pygame.event.clear()
             self.state = self.state.traverseState(self.game_data)
             self.ui.inflate(self.state, self.game_data)
             pygame.display.update()
